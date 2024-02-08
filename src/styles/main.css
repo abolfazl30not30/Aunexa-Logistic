@@ -1,0 +1,127 @@
+@import url("IRANYekan.css");
+@import url("IranSans.css");
+
+body {
+    direction: rtl !important;
+    background-color:#F2EDED;
+    word-spacing: -3px !important; ;
+}
+
+.table-body tr:nth-child(even){
+    background-color: #F8F8F8 !important;
+}
+.table-body .sales-table-row:nth-child(even){
+    background-color: #F8F8F8 !important;
+}
+.div-body > .MuiPaper-root:nth-child(even){
+    background-color: #F8F8F8 !important;
+    
+}
+.muirtl-15v22id-MuiAccordionDetails-root{
+   padding: 0px !important;
+}
+
+.MuiPaper-root  {
+    border-bottom: 1px solid #D9D9D9 !important;
+    padding-bottom:6px !important ;
+    
+}
+.muirtl-10w330c-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-color: #DB3746 !important;
+    color: white;
+}
+
+.plate{
+    background-image: url("/car-plate-default.svg");
+    background-size: 100% 100%;
+    width: 100%;
+    height: 46px;
+    background-repeat: no-repeat;
+    display: inline-flex;
+    box-sizing: content-box;
+    border-radius: 5px;
+    max-width: 230px;
+    min-width: 230px;
+}
+
+@media only screen and (max-width: 768px){
+    .table-body tr:hover{
+        background-color: #efefef;
+        cursor: pointer;
+    }
+}
+.MuiAccordionSummary-contentGutters{
+   display: block !important;
+}
+.muirtl-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded {
+margin:0px !important;}
+.labelUserAccount {
+    font-size: 20px !important;
+    font-weight: 900 !important;
+    color: #9F9F9F  !important;
+    margin-top: -26px !important ;
+    font-family: "IRANYekan" !important;
+
+}
+.inputUserAccount{
+    border-color:  #D9D9D9 !important;
+    font-family: "IRANYekan" !important;
+    font-size: 18px !important;
+    font-weight: 900 !important;
+}
+.boxUserAccount{
+    margin-top: 36px !important;
+}
+.MuiFormControlLabel-label {
+    font-family: "__fonts_2f4189,__fonts_Fallback_2f4189","IRANYekan" !important;
+    font-size: 0.8rem !important;
+}
+.individual-table{
+    background-color: inherit !important;
+}
+.MuiAccordionSummary-content{
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+/* .MuiButtonBase-root {
+    
+   gap: 16px !important;
+   padding-right: 4px !important;
+} */
+
+.MuiTabs-flexContainer{
+    display: flex !important;
+    justify-content: center !important;
+}
+.MuiTabs-flexContainer .Mui-selected{
+   color: #DB3746 !important;
+
+}
+.MuiTab-wrapper{
+    font-size: 18px !important;
+}
+.MuiTabs-root{
+    margin-bottom: 32px !important;
+}
+.example::-webkit-scrollbar {
+    display: none;
+}
+.geofence-map{
+    direction: ltr;
+}
+.geofence-map .leaflet-container{
+    height:20rem
+}
+.report-map .leaflet-container{
+    height:30rem
+}
+.bg-icon{
+    background: transparent !important;
+    border: none !important;
+}
+.rmdp-week-day{
+    font-size: 8px !important;
+}
+.rmdp-today .sd{
+    background-color: #9F9F9F !important;
+}
