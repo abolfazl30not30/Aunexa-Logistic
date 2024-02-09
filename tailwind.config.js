@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         mainRed: "#DB3746",
         textGray: "#4E4E4E",
+        gray50:"#D9D9D9",
         gray80: "#4E4E4E",
         gray70: "#797979",
         gray9F: "#9F9F9F",

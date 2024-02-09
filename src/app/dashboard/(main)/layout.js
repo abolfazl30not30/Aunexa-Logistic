@@ -25,6 +25,7 @@ const theme = createTheme({
   direction: "rtl",
 });
 import { useLazyGetLastFiveNotificationDashboardListQuery } from "@/redux/features/notification/NotificationDashboardSlice";
+import Navbar from "@/components/Dashboard/navbar/Navbar";
 export default function RootLayout({ children }) {
   const [subOrganizationId, setSubOrganizationId] = useState();
 
@@ -141,7 +142,7 @@ export default function RootLayout({ children }) {
                 fill="none">
                 <path
                   d="M4 16H28M4 8H28M4 24H28"
-                  stroke="black"
+                  stroke="#ffffff"
                   stroke-width="1.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -158,6 +159,9 @@ export default function RootLayout({ children }) {
               sizes="100vw"
               style={{ width: "100%", height: "auto" }}
             />
+          </div>
+          <div className="hidden md:block">
+            <Navbar/>
           </div>
           <div className="flex items-center gap-4">
             <button

@@ -10,7 +10,6 @@ import {
   useGetAllNewReportsQuery,
 } from "@/redux/features/new-reports/NewReportsSlice";
 import AddDataDialog from "@/components/Dashboard/reports/new-report/AddDataDialog";
-import FilterDialog from "@/components/Panel/sales/FilterDialog";
 import MoreInfoDialog from "@/components/Dashboard/reports/new-report/MoreInfoDialog";
 import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
