@@ -130,7 +130,7 @@ export default function RootLayout({ children }) {
   return (
     <>
       <div className="">
-        <header className="flex items-center justify-between bg-white w-full py-4 md:py-6 px-5 md:px-14">
+        <header className="flex items-center justify-between bg-mainRed w-full py-4 md:py-6 px-5 md:px-14">
           <div className="block md:hidden">
             <button onClick={handleOpenSidebar}>
               <svg
@@ -138,8 +138,7 @@ export default function RootLayout({ children }) {
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"
-                fill="none"
-              >
+                fill="none">
                 <path
                   d="M4 16H28M4 8H28M4 24H28"
                   stroke="black"
@@ -152,7 +151,7 @@ export default function RootLayout({ children }) {
           </div>
           <div className="w-[6rem] md:w-[7rem]">
             <Image
-              src="/monaco.svg"
+              src="/whiteLogo.svg"
               alt="costumer"
               width={0}
               height={0}
@@ -162,13 +161,14 @@ export default function RootLayout({ children }) {
           </div>
           <div className="flex items-center gap-4">
             <button
-              className="p-2 md:border md:border-borderGray rounded"
-              onClick={handleOpenAlertMenu}
-            >
+              className="p-2"
+              onClick={handleOpenAlertMenu}>
               <div className="relative">
-                <img src="/icons/bell.svg" alt="bell" />
+                <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.3031 25.3743C12.1551 26.1264 13.2743 26.5827 14.5001 26.5827C15.7259 26.5827 16.8451 26.1264 17.6971 25.3743M21.7501 9.66602C21.7501 7.7432 20.9863 5.89913 19.6266 4.53949C18.267 3.17985 16.4229 2.41602 14.5001 2.41602C12.5773 2.41602 10.7332 3.17985 9.37357 4.53949C8.01393 5.89913 7.25009 7.7432 7.25009 9.66602C7.25009 13.4 6.30816 15.9565 5.25594 17.6476C4.36837 19.0739 3.92459 19.7871 3.94086 19.9861C3.95888 20.2064 4.00555 20.2904 4.18307 20.4221C4.3434 20.541 5.06614 20.541 6.51163 20.541H22.4886C23.934 20.541 24.6568 20.541 24.8171 20.4221C24.9946 20.2904 25.0413 20.2064 25.0593 19.9861C25.0756 19.7871 24.6318 19.0739 23.7443 17.6476C22.692 15.9565 21.7501 13.4 21.7501 9.66602Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
                 <div className="absolute -top-1.5 -right-1">
-                  <span className=" rounded-full bg-mainRed w-[1rem] h-[1rem] text-[0.49rem] flex  items-center justify-center text-center text-white">
+                  <span className=" rounded-full bg-white w-[0.8rem] h-[0.8rem] text-[0.49rem] flex  items-center justify-center text-center text-neutral-800">
                     {counterList > 99 ? "99+" : counterList}
                   </span>
                 </div>
@@ -276,7 +276,7 @@ export default function RootLayout({ children }) {
               </div>
             </Menu>
             <div className="hidden md:flex items-center gap-2">
-              <div className="w-12 h-12 md:w-10 md:h-10 border border-solid border-1 border-borderGray rounded">
+              <div className="w-12 h-12 md:w-10 md:h-10  rounded">
                 <Image
                   src="/user.png"
                   alt="costumer"
@@ -288,7 +288,7 @@ export default function RootLayout({ children }) {
               </div>
               <div>
                 <button
-                  className="flex items-center text-textGray text-[0.8rem] tracking-tighter"
+                  className="flex items-center text-white text-[0.8rem] tracking-tighter"
                   onClick={handleOpenProfileMenu}
                 >
                   حساب کاربری من
@@ -301,7 +301,7 @@ export default function RootLayout({ children }) {
                   >
                     <path
                       d="M11.3332 6.33334L7.99984 9.66667L4.6665 6.33334"
-                      stroke="#29262A"
+                      stroke="#ffffff"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     />
@@ -381,7 +381,7 @@ export default function RootLayout({ children }) {
                       </span>
                     </Link>
                     <Link
-                      href="https://auth.prod.aunexa.net/logout"
+                      href="https://auth.aunexa.net/logout"
                       className="flex gap-2 py-3 px-4 hover:bg-neutral-100 border-t border-t-[#D9D9D9]"
                     >
                       <div>
@@ -452,22 +452,6 @@ export default function RootLayout({ children }) {
                 <div className="px-4 py-3">
                   <div>
                     <Link
-                      href="/panel"
-                      className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                    >
-                      <span
-                        className={
-                          pathname === "/panel"
-                            ? "text-mainRed text-[0.9rem]"
-                            : "text-gray9F hover:text-textGray text-[0.9rem]"
-                        }
-                      >
-                        پنل
-                      </span>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
                       href="/dashboard"
                       className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
                     >
@@ -495,7 +479,7 @@ export default function RootLayout({ children }) {
                             : "text-gray9F hover:text-textGray text-[0.9rem]"
                         }
                       >
-                        ردیابی
+                        مانیتورینگ
                       </span>
                     </Link>
                   </div>
@@ -561,80 +545,19 @@ export default function RootLayout({ children }) {
                     </details>
                   </div>
                   <div>
-                    <details className="group py-3 border-b border-b-1 border-b-solid  border-b-borderGray">
-                      <summary className="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
-                        <span className="text-gray9F group-open:text-textGray text-[0.9rem]">
-                          ژئوفنس
-                        </span>
-                        <svg
-                          className="transition group-open:rotate-90"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                        >
-                          <path
-                            d="M10 4L6 8L10 12"
-                            stroke="#9F9F9F"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </summary>
-                      <ul className="flex flex-col gap-1 pr-2">
-                        <li>
-                          <Link
-                            onClick={handleCloseSidebar}
-                            href="/dashboard/geofence/geographicArea"
-                            className="block py-2 px-5"
-                          >
-                            <span
-                              className={
-                                pathname ===
-                                "/dashboard/geofence/geographicArea"
-                                  ? "text-mainRed text-[0.9rem]"
-                                  : "text-gray9F hover:text-textGray text-[0.9rem]"
-                              }
-                            >
-                              ناحیه جغرافیایی
-                            </span>
-                          </Link>
-                        </li>
-                        {/*<li>*/}
-                        {/*  <Link*/}
-                        {/*    onClick={handleCloseSidebar}*/}
-                        {/*    href="/dashboard/geofence/group"*/}
-                        {/*    className="block py-2 px-5"*/}
-                        {/*  >*/}
-                        {/*    <span*/}
-                        {/*      className={*/}
-                        {/*        pathname === "/dashboard/geofence/group"*/}
-                        {/*          ? "text-mainRed text-[0.9rem]"*/}
-                        {/*          : "text-gray9F hover:text-textGray text-[0.9rem]"*/}
-                        {/*      }*/}
-                        {/*    >*/}
-                        {/*      گروه*/}
-                        {/*    </span>*/}
-                        {/*  </Link>*/}
-                        {/*</li>*/}
-                      </ul>
-                    </details>
-                  </div>
-                  <div>
                     <Link
                       onClick={handleCloseSidebar}
-                      href="/dashboard/fleet"
+                      href="/dashboard/geofence"
                       className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
                     >
                       <span
                         className={
-                          pathname === "/dashboard/fleet"
+                          pathname === "/dashboard/geofence"
                             ? "text-mainRed text-[0.9rem]"
                             : "text-gray9F hover:text-textGray text-[0.9rem]"
                         }
                       >
-                        ناوگان
+                        ژئوفنس
                       </span>
                     </Link>
                   </div>
@@ -720,192 +643,6 @@ export default function RootLayout({ children }) {
                   </div>
                   <div>
                     <Link
-                      onClick={handleCloseSidebar}
-                      href="/dashboard/purchase-request"
-                      className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                    >
-                      <span
-                        className={
-                          pathname === "/dashboard/purchase-request"
-                            ? "text-mainRed text-[0.9rem]"
-                            : "text-gray9F hover:text-textGray text-[0.9rem]"
-                        }
-                      >
-                        درخواست خرید
-                      </span>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                      onClick={handleCloseSidebar}
-                      href="/dashboard/products"
-                      className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                    >
-                      <span
-                        className={
-                          pathname === "/dashboard/products"
-                            ? "text-mainRed text-[0.9rem]"
-                            : "text-gray9F hover:text-textGray text-[0.9rem]"
-                        }
-                      >
-                        کالا و محصولات
-                      </span>
-                    </Link>
-                  </div>
-                  <div>
-                    <details className="group py-3 border-b border-b-1 border-b-solid  border-b-borderGray">
-                      <summary className="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
-                        <span className="text-gray9F group-open:text-textGray text-[0.9rem]">
-                          خرید
-                        </span>
-                        <svg
-                          className="transition group-open:rotate-90"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                        >
-                          <path
-                            d="M10 4L6 8L10 12"
-                            stroke="#9F9F9F"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </summary>
-                      <ul className="flex flex-col gap-1 pr-2">
-                        <li>
-                          <Link
-                            onClick={handleCloseSidebar}
-                            href="/dashboard/purchase/purchase-request-list"
-                            className="block py-2 px-5"
-                          >
-                            <span
-                              className={
-                                pathname ===
-                                "/dashboard/purchase/purchase-request-list"
-                                  ? "text-mainRed text-[0.8rem]"
-                                  : "text-gray9F hover:text-textGray text-[0.8rem]"
-                              }
-                            >
-                              لیست درخواست‌های خرید
-                            </span>
-                          </Link>
-                        </li>
-
-                        <li>
-                          <Link
-                            onClick={handleCloseSidebar}
-                            href="/dashboard/purchase/pending-purchase-request-list"
-                            className="block py-2 px-5"
-                          >
-                            <span
-                              className={
-                                pathname ===
-                                "/dashboard/purchase/pending-purchase-request-list"
-                                  ? "text-mainRed text-[0.8rem]"
-                                  : "text-gray9F hover:text-textGray text-[0.8rem]"
-                              }
-                            >
-                              صفحه در انتظار خرید
-                            </span>
-                          </Link>
-                        </li>
-
-                        <li>
-                          <Link
-                            onClick={handleCloseSidebar}
-                            href="/dashboard/purchase/successful-purchase-request-list"
-                            className="block py-2 px-5"
-                          >
-                            <span
-                              className={
-                                pathname ===
-                                "/dashboard/purchase/successful-purchase-request-list"
-                                  ? "text-mainRed text-[0.8rem]"
-                                  : "text-gray9F hover:text-textGray text-[0.8rem]"
-                              }
-                            >
-                              صفحه کالاهای خریداری شده
-                            </span>
-                          </Link>
-                        </li>
-
-                        <li>
-                          <Link
-                            onClick={handleCloseSidebar}
-                            href="/dashboard/purchase/unsuccessful-purchase-request-list"
-                            className="block py-2 px-5"
-                          >
-                            <span
-                              className={
-                                pathname ===
-                                "/dashboard/purchase/unsuccessful-purchase-request-list"
-                                  ? "text-mainRed text-[0.8rem]"
-                                  : "text-gray9F hover:text-textGray text-[0.8rem]"
-                              }
-                            >
-                              صفحه درخواستهای رد شده
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </details>
-                  </div>
-                  <div>
-                    <Link
-                      href="/dashboard/invoice/purchase-invoice"
-                      onClick={handleCloseSidebar}
-                      className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                    >
-                      <span
-                        className={
-                          pathname === "/dashboard/invoice/purchase-invoice"
-                            ? "text-mainRed text-[0.9rem]"
-                            : "text-gray9F hover:text-textGray text-[0.9rem]"
-                        }
-                      >
-                        فاکتور خرید
-                      </span>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                      onClick={handleCloseSidebar}
-                      href="/dashboard/employees"
-                      className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                    >
-                      <span
-                        className={
-                          pathname === "/dashboard/employees"
-                            ? "text-mainRed text-[0.9rem]"
-                            : "text-gray9F hover:text-textGray text-[0.9rem]"
-                        }
-                      >
-                        کارمندان
-                      </span>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                      onClick={handleCloseSidebar}
-                      href="/dashboard/register/role"
-                      className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                    >
-                      <span
-                        className={
-                          pathname === "/dashboard/register/role"
-                            ? "text-mainRed text-[0.9rem]"
-                            : "text-gray9F hover:text-textGray text-[0.9rem]"
-                        }
-                      >
-                        ثبت نقش
-                      </span>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
                       href="/dashboard/ticket"
                       onClick={handleCloseSidebar}
                       className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
@@ -918,23 +655,6 @@ export default function RootLayout({ children }) {
                         }
                       >
                         تیکت
-                      </span>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                      onClick={handleCloseSidebar}
-                      href="/dashboard/user-account"
-                      className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                    >
-                      <span
-                        className={
-                          pathname === "/dashboard/user-account"
-                            ? "text-mainRed text-[0.9rem]"
-                            : "text-gray9F hover:text-textGray text-[0.9rem]"
-                        }
-                      >
-                        حساب کاربری
                       </span>
                     </Link>
                   </div>
@@ -964,8 +684,25 @@ export default function RootLayout({ children }) {
                   </div>
                   <div>
                     <Link
+                        onClick={handleCloseSidebar}
+                        href="/dashboard/user-account"
+                        className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
+                    >
+                      <span
+                          className={
+                            pathname === "/dashboard/user-account"
+                                ? "text-mainRed text-[0.9rem]"
+                                : "text-gray9F hover:text-textGray text-[0.9rem]"
+                          }
+                      >
+                        حساب کاربری
+                      </span>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link
                       onClick={handleCloseSidebar}
-                      href="https://auth.prod.aunexa.net/logout"
+                      href="https://auth.aunexa.net/logout"
                       className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
                     >
                       <span className="text-gray9F hover:text-textGray text-[0.9rem]">
@@ -976,525 +713,6 @@ export default function RootLayout({ children }) {
                 </div>
               </div>
             </Drawer>
-          </div>
-          <div className="hidden md:block mt-5 md:mr-5  md:w-[30%] lg:w-[15%] bg-white">
-            <div className="px-4 py-3">
-              <div>
-                <Link
-                  href="/panel"
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/panel"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    پنل
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/dashboard"
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    داشبورد
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/dashboard/tracking"
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard/tracking"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    ردیابی
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <details className="group py-3 border-b border-b-1 border-b-solid  border-b-borderGray">
-                  <summary className="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
-                    <span className="text-gray9F group-open:text-textGray text-[0.9rem]">
-                      گزارش ها
-                    </span>
-                    <svg
-                      className="transition group-open:rotate-90"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M10 4L6 8L10 12"
-                        stroke="#9F9F9F"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </summary>
-                  <ul className="flex flex-col gap-1 pr-2">
-                    <li>
-                      <Link
-                        href="/dashboard/reports/new-report"
-                        className="block py-2 px-5"
-                      >
-                        <span
-                          className={
-                            pathname === "/dashboard/reports/new-report"
-                              ? "text-mainRed text-[0.9rem]"
-                              : "text-gray9F hover:text-textGray text-[0.9rem]"
-                          }
-                        >
-                          گزارش جدید
-                        </span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/dashboard/reports/history-of-reports"
-                        className="block py-2 px-5"
-                      >
-                        <span
-                          className={
-                            pathname === "/dashboard/reports/history-of-reports"
-                              ? "text-mainRed text-[0.9rem]"
-                              : "text-gray9F hover:text-textGray text-[0.9rem]"
-                          }
-                        >
-                          سابقه گزارش ها
-                        </span>
-                      </Link>
-                    </li>
-                  </ul>
-                </details>
-              </div>
-              <div>
-                <details className="group py-3 border-b border-b-1 border-b-solid  border-b-borderGray">
-                  <summary className="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
-                    <span className="text-gray9F group-open:text-textGray text-[0.9rem]">
-                      ژئوفنس
-                    </span>
-                    <svg
-                      className="transition group-open:rotate-90"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M10 4L6 8L10 12"
-                        stroke="#9F9F9F"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </summary>
-                  <ul className="flex flex-col gap-1 pr-2">
-                    <li>
-                      <Link
-                        href="/dashboard/geofence/geographicArea"
-                        className="block py-2 px-5"
-                      >
-                        <span
-                          className={
-                            pathname === "/dashboard/geofence/geographicArea"
-                              ? "text-mainRed text-[0.9rem]"
-                              : "text-gray9F hover:text-textGray text-[0.9rem]"
-                          }
-                        >
-                          ناحیه جغرافیایی
-                        </span>
-                      </Link>
-                    </li>
-                    {/*<li>*/}
-                    {/*  <Link*/}
-                    {/*    href="/dashboard/geofence/group"*/}
-                    {/*    className="block py-2 px-5"*/}
-                    {/*  >*/}
-                    {/*    <span*/}
-                    {/*      className={*/}
-                    {/*        pathname === "/dashboard/geofence/group"*/}
-                    {/*          ? "text-mainRed text-[0.9rem]"*/}
-                    {/*          : "text-gray9F hover:text-textGray text-[0.9rem]"*/}
-                    {/*      }*/}
-                    {/*    >*/}
-                    {/*      گروه*/}
-                    {/*    </span>*/}
-                    {/*  </Link>*/}
-                    {/*</li>*/}
-                  </ul>
-                </details>
-              </div>
-              <div>
-                <Link
-                  onClick={handleCloseSidebar}
-                  href="/dashboard/fleet"
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard/fleet"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    ناوگان
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <details className="group py-3 border-b border-b-1 border-b-solid  border-b-borderGray">
-                  <summary className="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
-                    <span className="text-gray9F group-open:text-textGray text-[0.9rem]">
-                      وسایل و تجهیزات
-                    </span>
-                    <svg
-                      className="transition group-open:rotate-90"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M10 4L6 8L10 12"
-                        stroke="#9F9F9F"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </summary>
-                  <ul className="flex flex-col gap-1 pr-2">
-                    <li>
-                      <Link
-                        onClick={handleCloseSidebar}
-                        href="/dashboard/vehicles-and-equipment"
-                        className="block py-2 px-5"
-                      >
-                        <span
-                          className={
-                            pathname === "/dashboard/vehicles-and-equipment"
-                              ? "text-mainRed text-[0.9rem]"
-                              : "text-gray9F hover:text-textGray text-[0.9rem]"
-                          }
-                        >
-                          وسایل و تجهیزات
-                        </span>
-                      </Link>
-                    </li>
-
-                    <li>
-                      <Link
-                        onClick={handleCloseSidebar}
-                        href="/dashboard/failure-and-repair-report"
-                        className="block py-2 px-5"
-                      >
-                        <span
-                          className={
-                            pathname === "/dashboard/failure-and-repair-report"
-                              ? "text-mainRed text-[0.9rem]"
-                              : "text-gray9F hover:text-textGray text-[0.9rem]"
-                          }
-                        >
-                          گزارش خرابی و تعمیرات
-                        </span>
-                      </Link>
-                    </li>
-
-                    <li>
-                      <Link
-                        onClick={handleCloseSidebar}
-                        href="/dashboard/history-of-reports"
-                        className="block py-2 px-5"
-                      >
-                        <span
-                          className={
-                            pathname === "/dashboard/history-of-reports"
-                              ? "text-mainRed text-[0.9rem]"
-                              : "text-gray9F hover:text-textGray text-[0.9rem]"
-                          }
-                        >
-                          سابقه گزارشات
-                        </span>
-                      </Link>
-                    </li>
-                  </ul>
-                </details>
-              </div>
-              <div>
-                <Link
-                  onClick={handleCloseSidebar}
-                  href="/dashboard/purchase-request"
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard/purchase-request"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    درخواست خرید
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  onClick={handleCloseSidebar}
-                  href="/dashboard/products"
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard/products"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    کالا و محصولات
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <details className="group py-3 border-b border-b-1 border-b-solid  border-b-borderGray">
-                  <summary className="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
-                    <span className="text-gray9F group-open:text-textGray text-[0.9rem]">
-                      خرید
-                    </span>
-                    <svg
-                      className="transition group-open:rotate-90"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M10 4L6 8L10 12"
-                        stroke="#9F9F9F"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </summary>
-                  <ul className="flex flex-col gap-1 pr-2">
-                    <li>
-                      <Link
-                        onClick={handleCloseSidebar}
-                        href="/dashboard/purchase/purchase-request-list"
-                        className="block py-2 px-5"
-                      >
-                        <span
-                          className={
-                            pathname ===
-                            "/dashboard/purchase/purchase-request-list"
-                              ? "text-mainRed text-[0.8rem]"
-                              : "text-gray9F hover:text-textGray text-[0.8rem]"
-                          }
-                        >
-                          لیست درخواست‌های خرید
-                        </span>
-                      </Link>
-                    </li>
-
-                    <li>
-                      <Link
-                        onClick={handleCloseSidebar}
-                        href="/dashboard/purchase/pending-purchase-request-list"
-                        className="block py-2 px-5"
-                      >
-                        <span
-                          className={
-                            pathname ===
-                            "/dashboard/purchase/pending-purchase-request-list"
-                              ? "text-mainRed text-[0.8rem]"
-                              : "text-gray9F hover:text-textGray text-[0.8rem]"
-                          }
-                        >
-                          صفحه در انتظار خرید
-                        </span>
-                      </Link>
-                    </li>
-
-                    <li>
-                      <Link
-                        onClick={handleCloseSidebar}
-                        href="/dashboard/purchase/successful-purchase-request-list"
-                        className="block py-2 px-5"
-                      >
-                        <span
-                          className={
-                            pathname ===
-                            "/dashboard/purchase/successful-purchase-request-list"
-                              ? "text-mainRed text-[0.8rem]"
-                              : "text-gray9F hover:text-textGray text-[0.8rem]"
-                          }
-                        >
-                          صفحه کالاهای خریداری شده
-                        </span>
-                      </Link>
-                    </li>
-
-                    <li>
-                      <Link
-                        onClick={handleCloseSidebar}
-                        href="/dashboard/purchase/unsuccessful-purchase-request-list"
-                        className="block py-2 px-5"
-                      >
-                        <span
-                          className={
-                            pathname ===
-                            "/dashboard/purchase/unsuccessful-purchase-request-list"
-                              ? "text-mainRed text-[0.8rem]"
-                              : "text-gray9F hover:text-textGray text-[0.8rem]"
-                          }
-                        >
-                          صفحه درخواستهای رد شده
-                        </span>
-                      </Link>
-                    </li>
-                  </ul>
-                </details>
-              </div>
-              <div>
-                <Link
-                  href="/dashboard/invoice/purchase-invoice"
-                  onClick={handleCloseSidebar}
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard/invoice/purchase-invoice"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    فاکتور خرید
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  onClick={handleCloseSidebar}
-                  href="/dashboard/employees"
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard/employees"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    کارمندان
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  onClick={handleCloseSidebar}
-                  href="/dashboard/register/role"
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard/register/role"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    ثبت نقش
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/dashboard/ticket"
-                  onClick={handleCloseSidebar}
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard/ticket"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    تیکت
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  onClick={handleCloseSidebar}
-                  href="/dashboard/user-account"
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard/user-account"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    حساب کاربری
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  onClick={handleCloseSidebar}
-                  href="/dashboard/notification"
-                  className="flex justify-between items-center py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span
-                    className={
-                      pathname === "/dashboard/notification"
-                        ? "text-mainRed text-[0.9rem]"
-                        : "text-gray9F hover:text-textGray text-[0.9rem]"
-                    }
-                  >
-                    اعلانیه
-                  </span>
-                  <span className=" rounded-lg bg-mainRed w-[1.5rem] text-[0.59rem] h-[1.2rem]  flex  items-center justify-center text-center text-white">
-                    {pathname === "/dashboard/notification"
-                      ? 0
-                      : counterList > 99
-                      ? "99+"
-                      : counterList}
-                  </span>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  onClick={handleCloseSidebar}
-                  href="https://auth.prod.aunexa.net/logout"
-                  className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                >
-                  <span className="text-gray9F hover:text-textGray text-[0.9rem]">
-                    خروج
-                  </span>
-                </Link>
-              </div>
-            </div>
           </div>
           <div className="mt-4 mx-1 md:m-5 h-screen w-full md:w-[70%] lg:w-[85%]">
             <CacheProvider value={cacheRtl}>

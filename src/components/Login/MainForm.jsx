@@ -42,7 +42,7 @@ export default function MainForm() {
 
         onSubmit: async ({username, password}) => {
             try{
-                const {data} = await axios.post('https://aunexa.net/realms/msc/protocol/openid-connect/token', {...formData,username,password}, {
+                const {data} = await axios.post('http://localhost:3000/realms/msc/protocol/openid-connect/token', {...formData,username,password}, {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
