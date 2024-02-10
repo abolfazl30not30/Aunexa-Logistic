@@ -131,7 +131,7 @@ export default function RootLayout({ children }) {
   return (
     <>
       <div className="">
-        <header className="flex items-center justify-between bg-mainRed w-full py-4 md:py-6 px-5 md:px-14">
+        <header className="flex items-center justify-between bg-mainBlack w-full py-4 md:py-6 px-5 md:px-14">
           <div className="block md:hidden">
             <button onClick={handleOpenSidebar}>
               <svg
@@ -718,7 +718,7 @@ export default function RootLayout({ children }) {
               </div>
             </Drawer>
           </div>
-          <div className="mt-4 mx-1 md:m-5 h-screen w-full md:w-[70%] lg:w-[85%]">
+          <div className="mt-4 mx-1 md:m-0  w-full">
             <CacheProvider value={cacheRtl}>
               <ThemeProvider theme={theme}>{children}</ThemeProvider>
             </CacheProvider>

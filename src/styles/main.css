@@ -115,6 +115,9 @@ margin:0px !important;}
 .report-map .leaflet-container{
     height:30rem
 }
+.geofence-map-pc .leaflet-container{
+    height:80vh
+}
 .bg-icon{
     background: transparent !important;
     border: none !important;
