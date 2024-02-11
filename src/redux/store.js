@@ -6,6 +6,7 @@ import accessReducer from "@/redux/permission/accessSlice";
 import { apiSlice } from '../redux/api/apiSlice';
 import { apiAuthServerSlice} from "@/redux/api/apiAuthServerSlice";
 import {getAccessSlice} from "@/redux/features/access/getAccessSlice";
+import geofenceReducer from "@/redux/geofence/geofenceSlice";
 
 export const store = configureStore({
     reducer: {
@@ -14,7 +15,9 @@ export const store = configureStore({
         [apiSlice.reducerPath]: apiSlice.reducer,
         [apiAuthServerSlice.reducerPath]: apiAuthServerSlice.reducer,
         auth:authReducer,
-        access:accessReducer
+        access:accessReducer,
+        geofence:geofenceReducer,
+
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(apiSlice.middleware,loginSlice.middleware,getAccessSlice.middleware,apiAuthServerSlice.middleware)

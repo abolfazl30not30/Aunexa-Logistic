@@ -3,8 +3,8 @@
 
 body {
     direction: rtl !important;
-    background-color:#F2EDED;
-    word-spacing: -3px !important; ;
+    background-color:#E6EEEE;
+    word-spacing: -3px !important;
 }
 
 .table-body tr:nth-child(even){
@@ -27,7 +27,7 @@ body {
     
 }
 .muirtl-10w330c-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-    background-color: #DB3746 !important;
+    background-color: #4D51DF !important;
     color: white;
 }
 
@@ -94,7 +94,7 @@ margin:0px !important;}
     justify-content: center !important;
 }
 .MuiTabs-flexContainer .Mui-selected{
-   color: #DB3746 !important;
+   color: #4D51DF !important;
 
 }
 .MuiTab-wrapper{

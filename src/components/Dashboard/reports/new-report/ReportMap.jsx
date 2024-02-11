@@ -8,6 +8,7 @@ import AllGeofences from "@/components/Dashboard/geofence/geographicArea/AllGeof
 import {Button, FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
 import Control from "react-leaflet-custom-control";
 import {FormControl} from "@mui/material";
+import {useGetAllGeofenceListQuery} from "@/redux/features/geofence/GeofenceSlice";
 
 
 const RecenterAutomatically = ({lat, lng}) => {
@@ -82,18 +83,16 @@ export default function ReportMap(props) {
     const SatelliteMap = () =>{
         return<TileLayer
             url={ osm.googleSat.url}
-            attribution={osm.googleSat.attribution}
             maxZoom={osm.googleSat.maxZoom }
-            subdomains={ osm.googleSat.subdomains}
-        />
+            subdomains={ osm.googleSat.subdomains}/>
     }
 
     const DefaultMap = () =>{
         return <TileLayer
-                url={ osm.maptiler.url}
-                attribution={osm.maptiler.attribution}/>
+                url={ osm.maptiler.url}/>
 
     }
+
     return (
         <>
             <div className="report-map">

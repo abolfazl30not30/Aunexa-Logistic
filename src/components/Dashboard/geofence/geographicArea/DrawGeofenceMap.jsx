@@ -12,6 +12,9 @@ import {EditControl} from "react-leaflet-draw";
 import "leaflet-draw/dist/leaflet.draw.css";
 import {useSaveGeofenceMutation} from "@/redux/features/geofence/GeofenceSlice";
 import {ConvertToNull} from "@/helper/ConvertToNull";
+import {FormControl} from "@mui/material";
+import {FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
+import Control from "react-leaflet-custom-control";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -25,8 +28,28 @@ L.Icon.Default.mergeOptions({
 });
 
 
-export default function GeofenceMap(props) {
+export default function DrawGeofenceMap(props) {
     const [center, setCenter] = useState([29.120738496597934, 55.33779332882627]);
+    const [radioValue, setRadioValue] = useState("default")
+    const handleChangeSatelliteMode = (e) =>{
+        setRadioValue(e.target.value)
+    }
+
+    const SatelliteMap = () =>{
+        return<TileLayer
+            url={ osm.googleSat.url}
+            attribution={osm.googleSat.attribution}
+            maxZoom={osm.googleSat.maxZoom }
+            subdomains={ osm.googleSat.subdomains}
+        />
+    }
+
+    const DefaultMap = () =>{
+        return <TileLayer
+            url={ osm.maptiler.url}
+            attribution={osm.maptiler.attribution}/>
+
+    }
 
     let edit = useRef();
 
@@ -60,7 +83,6 @@ export default function GeofenceMap(props) {
         }
         return newArr
     }
-
 
     const onCreated = (e) => {
         if (lastAddedPolygonID !== null) {
@@ -152,6 +174,28 @@ export default function GeofenceMap(props) {
         <>
             <div className="geofence-map-pc">
             <MapContainer center={center} zoom={ZOOM_LEVEL}>
+                {
+                    radioValue === "satelliteMap" ? (
+                        <SatelliteMap/>
+                    ) : (
+                        <DefaultMap/>
+                    )
+                }
+                <Control position={'bottomleft'}>
+                    <div>
+                        <FormControl>
+                            <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                name="radio-buttons-group"
+                                value={radioValue}
+                                onChange={handleChangeSatelliteMode}
+                            >
+                                <FormControlLabel className="rounded bg-white bg-opacity-70" value="default" control={<Radio />} label="حالت پیش فرض" />
+                                <FormControlLabel className="rounded bg-white bg-opacity-70" value="satelliteMap" control={<Radio />} label="حالت ماهواره" />
+                            </RadioGroup>
+                        </FormControl>
+                    </div>
+                </Control>
                 <FeatureGroup ref={edit}>
                     <EditControl
                         position="topright"
@@ -170,9 +214,6 @@ export default function GeofenceMap(props) {
                             }
                         }/>
                 </FeatureGroup>
-                <TileLayer
-                    url={osm.maptiler.url}
-                    attribution={osm.maptiler.attribution}/>
             </MapContainer>
             </div>
         </>

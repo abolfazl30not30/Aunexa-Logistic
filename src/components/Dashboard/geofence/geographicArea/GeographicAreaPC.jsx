@@ -2,19 +2,31 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { Tab } from '@headlessui/react'
-const GeofenceMap = dynamic(
+import Geofence from "@/components/Dashboard/geofence/geographicArea/Geofence";
+import Group from "@/components/Dashboard/geofence/geographicArea/Group";
+import DeleteDialog from "@/components/Dashboard/geofence/geographicArea/DeleteDialog";
+const DrawGeofenceMap = dynamic(
+    () =>
+        import(
+            "./DrawGeofenceMap"
+            ),
+    { ssr: false }
+);
+const ShowGeofenceMap = dynamic(
 
     () =>
         import(
-            "./GeofenceMap"
+            "./ShowGeofenceMap"
             ),
     { ssr: false }
 );
 function  GeographicAreaPC (){
+
+
     return(
         <>
             <div className="flex">
-                <div className="bg-white w-[30%] p-4">
+                <div className="bg-white w-[30%] p-4 h-screen">
                     <Tab.Group>
                         <Tab.List className="m-2 flex justify-center border border-1 border-[#BBCDCD] rounded">
                             <Tab className="w-1/2 m-1">
@@ -40,16 +52,21 @@ function  GeographicAreaPC (){
                                 )}
                             </Tab>
                         </Tab.List>
-                        <Tab.Panels>
-                            <Tab.Panel>Content 1</Tab.Panel>
-                            <Tab.Panel>Content 2</Tab.Panel>
+                        <Tab.Panels className="mt-5 border-t border-1 border-[#BBCDCD]">
+                            <Tab.Panel >
+                                <Geofence/>
+                            </Tab.Panel>
+                            <Tab.Panel>
+                                <Group/>
+                            </Tab.Panel>
                         </Tab.Panels>
                     </Tab.Group>
                 </div>
                 <div className="m-5  w-[70%]">
-                    <GeofenceMap/>
+                    <ShowGeofenceMap/>
                 </div>
             </div>
+
         </>
     )
 }

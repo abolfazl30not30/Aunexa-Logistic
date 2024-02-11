@@ -24,7 +24,7 @@ export default function AllGeofences(props) {
     return (
         <>
             {
-                geofenceList.map((geo)=>(
+               geofenceList.map((geo)=>(
                     <>
                         {geo.fenceType === "CIRCLE" ? (
                             <Circle center={[geo.centerPoint.latitude, geo.centerPoint.longitude]} pathOptions={{fillColor: 'blue'}} radius={geo.radius}/>
