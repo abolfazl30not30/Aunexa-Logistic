@@ -12,7 +12,7 @@ import {useLazyGetAllSubOrganizationQuery} from "@/redux/features/category/Categ
 import {setMapStatus} from "@/redux/geofence/geofenceSlice";
 import {useDispatch} from "react-redux";
 import {makeStyles} from "@material-ui/core/styles";
-
+import {ChromePicker, SketchPicker} from "react-color";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,7 +28,19 @@ const useStyles = makeStyles(theme => ({
 function NewGeofence() {
     const classes = useStyles();
     const dispatch = useDispatch();
-
+    const [displayColorPicker, setDisplayColorPicker] = useState(false)
+    const [color, setColor] = useState("")
+    const handleOpenColorPicker = (e) => {
+        e.preventDefault()
+        setDisplayColorPicker((state) => !state)
+    }
+    const handleCloseColorPicker = () => {
+        setDisplayColorPicker(false)
+    };
+    const handleChangeColor = (color) =>{
+        console.log(color)
+        setColor(color)
+    }
     //subOrganization input
     const [subOrganization, setSubOrganization] = useState(null)
     const [openSubOrganizationList, setOpenSubOrganizationList] = useState(false)
@@ -83,6 +95,18 @@ function NewGeofence() {
     const handleCancel = () => {
         dispatch(setMapStatus("show"))
     }
+    const popover = {
+        position: 'absolute',
+        zIndex: '10',
+    }
+    const cover = {
+        position: 'fixed',
+        top: '0px',
+        right: '0px',
+        bottom: '0px',
+        left: '0px',
+    }
+
     return (
         <>
             <div>
@@ -216,7 +240,16 @@ function NewGeofence() {
                                 }}
                                 InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>
                         </div>
-
+                        <div>
+                            <div>
+                                <button onClick={handleOpenColorPicker}>Pick Color</button>
+                                {displayColorPicker ?
+                                    <div style={popover}>
+                                        <div style={cover} onClick={handleCloseColorPicker}/>
+                                        <ChromePicker  color={color} onChange={handleChangeColor}/>
+                                    </div> : null}
+                            </div>
+                        </div>
                         <div className='flex justify-end gap-3'>
                             <div>
                                 {
