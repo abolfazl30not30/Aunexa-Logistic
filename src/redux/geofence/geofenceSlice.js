@@ -6,6 +6,11 @@ const geofenceSlice = createSlice({
     initialState: {
         selectedGeofence:[],
         mapStatus:"show",
+        fenceType: "",
+        centerPoint: "",
+        radius: "",
+        points: "",
+        color:"blue",
     },
     reducers: {
         setSelectedGeofence: (state, action) => {
@@ -14,9 +19,12 @@ const geofenceSlice = createSlice({
         setMapStatus: (state, action) => {
             state.mapStatus = action.payload
         },
+        setShapeColor: (state, action) => {
+            state.color = action.payload
+        },
     },
 })
 
-export const { setSelectedGeofence,setMapStatus } = geofenceSlice.actions
+export const { setSelectedGeofence,setMapStatus,setShapeColor } = geofenceSlice.actions
 export default geofenceSlice.reducer
 

@@ -15,6 +15,7 @@ import {ConvertToNull} from "@/helper/ConvertToNull";
 import {FormControl} from "@mui/material";
 import {FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
 import Control from "react-leaflet-custom-control";
+import {useSelector} from "react-redux";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -29,6 +30,9 @@ L.Icon.Default.mergeOptions({
 
 
 export default function DrawGeofenceMap(props) {
+
+    let color = useSelector((state) => state.geofence.color);
+
     const [center, setCenter] = useState([29.120738496597934, 55.33779332882627]);
     const [radioValue, setRadioValue] = useState("default")
     const handleChangeSatelliteMode = (e) =>{
@@ -154,8 +158,6 @@ export default function DrawGeofenceMap(props) {
 
     const formik = useFormik({
         initialValues: {
-            speed: "",
-            stopTimeInMinutes: "",
             fenceType: "",
             centerPoint: "",
             radius: "",
@@ -206,8 +208,29 @@ export default function DrawGeofenceMap(props) {
                         onDeleted={onDelete}
                         draw={
                             {
+                                circle: {
+                                    icon: new L.DivIcon({
+                                        iconSize: new L.Point(8, 8),
+                                        className: "leaflet-div-icon leaflet-editing-icon"
+                                    }),
+                                    shapeOptions: {
+                                        guidelineDistance: 10,
+                                        color: color,
+                                        weight: 2
+                                    }
+                                },
+                                polygon:{
+                                    icon: new L.DivIcon({
+                                        iconSize: new L.Point(8, 8),
+                                        className: "leaflet-div-icon leaflet-editing-icon"
+                                    }),
+                                    shapeOptions: {
+                                        guidelineDistance: 10,
+                                        color: color,
+                                        weight: 2
+                                    }
+                                },
                                 rectangle: false,
-                                //circle: false,
                                 circlemarker: false,
                                 marker: false,
                                 polyline: false,
