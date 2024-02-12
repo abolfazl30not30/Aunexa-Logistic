@@ -5,6 +5,7 @@ import { Tab } from '@headlessui/react'
 import Geofence from "@/components/Dashboard/geofence/geographicArea/Geofence";
 import Group from "@/components/Dashboard/geofence/geographicArea/Group";
 import DeleteDialog from "@/components/Dashboard/geofence/geographicArea/DeleteDialog";
+import {useSelector} from "react-redux";
 const DrawGeofenceMap = dynamic(
     () =>
         import(
@@ -22,7 +23,7 @@ const ShowGeofenceMap = dynamic(
 );
 function  GeographicAreaPC (){
 
-
+    const mapStatus = useSelector((state)=> state.geofence.mapStatus)
     return(
         <>
             <div className="flex">
@@ -63,7 +64,12 @@ function  GeographicAreaPC (){
                     </Tab.Group>
                 </div>
                 <div className="m-5  w-[70%]">
-                    <ShowGeofenceMap/>
+                    {mapStatus === "show" ? (
+                        <ShowGeofenceMap/>
+                    ):(
+                        <DrawGeofenceMap/>
+                    )}
+
                 </div>
             </div>
 
