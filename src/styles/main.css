@@ -116,7 +116,8 @@ margin:0px !important;}
     height:30rem
 }
 .geofence-map-pc .leaflet-container{
-    height:80vh
+    height:80vh;
+    direction: ltr;
 }
 .bg-icon{
     background: transparent !important;
@@ -127,4 +128,32 @@ margin:0px !important;}
 }
 .rmdp-today .sd{
     background-color: #9F9F9F !important;
+}
+.MuiIconButton-root{
+    padding:3px !important;
+}
+
+
+.leaflet-touch .leaflet-bar a {
+    width: 38px !important;
+    height: 38px !important;
+    line-height: 33px !important;
+}
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-polygon {
+    background-position: -26px 3px !important;
+}
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-circle {
+    background-position: -86px 2px !important;
+}
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-edit.leaflet-disabled {
+    background-position: -206px 3px !important;
+}
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-remove.leaflet-disabled {
+    background-position: -237px 2px !important;
+}
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-remove {
+    background-position: -176px 2px !important;
+}
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-edit {
+    background-position: -145px 2px !important;
 }

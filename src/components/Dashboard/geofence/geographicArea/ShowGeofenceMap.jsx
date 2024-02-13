@@ -31,7 +31,7 @@ L.Icon.Default.mergeOptions({
 
 export default function DrawGeofenceMap(props) {
     const [center, setCenter] = useState([29.120738496597934, 55.33779332882627]);
-    const [radioValue, setRadioValue] = useState("default")
+    const [radioValue, setRadioValue] = useState("satelliteMap")
     const handleChangeSatelliteMode = (e) =>{
         setRadioValue(e.target.value)
     }
@@ -91,8 +91,8 @@ export default function DrawGeofenceMap(props) {
                                 value={radioValue}
                                 onChange={handleChangeSatelliteMode}
                             >
-                                <FormControlLabel className="rounded bg-white bg-opacity-70" value="default" control={<Radio />} label="حالت پیش فرض" />
-                                <FormControlLabel className="rounded bg-white bg-opacity-70" value="satelliteMap" control={<Radio />} label="حالت ماهواره" />
+                                <FormControlLabel className="px-3 py-2 rounded bg-white bg-opacity-70" value="default" control={<Radio color="primary"/>} label="حالت پیش فرض" />
+                                <FormControlLabel className="px-3 py-2 rounded bg-white bg-opacity-70" value="satelliteMap" control={<Radio color="primary"/>} label="حالت ماهواره" />
                             </RadioGroup>
                         </FormControl>
                     </div>

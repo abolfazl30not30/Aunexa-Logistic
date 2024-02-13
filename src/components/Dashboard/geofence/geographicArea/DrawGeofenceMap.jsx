@@ -15,7 +15,17 @@ import {ConvertToNull} from "@/helper/ConvertToNull";
 import {FormControl} from "@mui/material";
 import {FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
 import Control from "react-leaflet-custom-control";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {resetStates, setCenterPoint, setFenceType, setPoints, setRadius} from "@/redux/geofence/geofenceSlice";
+
+const styles = theme => ({
+    radio: {
+        '&$checked': {
+            color: '#4D51DF'
+        }
+    },
+    checked: {}
+})
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -33,8 +43,11 @@ export default function DrawGeofenceMap(props) {
 
     let color = useSelector((state) => state.geofence.color);
 
+    const dispatch = useDispatch();
+
     const [center, setCenter] = useState([29.120738496597934, 55.33779332882627]);
-    const [radioValue, setRadioValue] = useState("default")
+
+    const [radioValue, setRadioValue] = useState("satelliteMap")
     const handleChangeSatelliteMode = (e) =>{
         setRadioValue(e.target.value)
     }
@@ -97,20 +110,21 @@ export default function DrawGeofenceMap(props) {
         }
 
         if (e.layerType === 'circle') {
-            formik.setFieldValue("fenceType", "CIRCLE")
+            dispatch(setFenceType("CIRCLE"))
 
             let radius = e.layer.getRadius()
-            formik.setFieldValue("radius", (Math.round(radius * 1000000) / 1000000))
+
+            dispatch(setRadius(Math.round(radius * 1000000) / 1000000))
             const location = e.layer.getLatLng()
             const locationObject = {
                 latitude: (Math.round(location.lat * 1000000) / 1000000),
                 longitude: (Math.round(location.lng * 1000000) / 1000000)
             }
-            formik.setFieldValue("centerPoint", locationObject)
+            dispatch(setCenterPoint(locationObject))
         } else {
-            formik.setFieldValue("fenceType", "POLYGON")
+            dispatch(setFenceType("POLYGON"))
             const polygonArr = convertPolygon(e.layer.getLatLngs())
-            formik.setFieldValue("points", polygonArr)
+            dispatch(setPoints(polygonArr))
         }
         lastAddedPolygonID = e.layer._leaflet_id;
         layerType = e.layerType;
@@ -119,58 +133,36 @@ export default function DrawGeofenceMap(props) {
     const OnEdited = (e) => {
         const layer = e.layers._layers[lastAddedPolygonID]
         if (layerType === 'circle') {
-            formik.setFieldValue("fenceType", "CIRCLE")
+            dispatch(setFenceType("CIRCLE"))
 
             let radius = layer.getRadius()
-            formik.setFieldValue("radius", (Math.round(radius * 1000000) / 1000000))
+            dispatch(setRadius(Math.round(radius * 1000000) / 1000000))
             const location = layer.getLatLng()
             const locationObject = {
                 latitude: (Math.round(location.lat * 1000000) / 1000000),
                 longitude: (Math.round(location.lng * 1000000) / 1000000)
             }
-            formik.setFieldValue("centerPoint", locationObject)
+            dispatch(setCenterPoint(locationObject))
         } else {
-            formik.setFieldValue("fenceType", "POLYGON")
+            dispatch(setFenceType("POLYGON"))
             const polygonArr = convertPolygon(layer.getLatLngs())
-            formik.setFieldValue("points", polygonArr)
+            dispatch(setPoints(polygonArr))
         }
     }
 
     const onDelete = (e) => {
         lastAddedPolygonID = null;
         layerType = null;
-        formik.setFieldValue("fenceType", "")
-        formik.setFieldValue("radius", "")
-        formik.setFieldValue("centerPoint", "")
-        formik.setFieldValue("points", "")
+        dispatch(resetStates)
     }
-
 
     const handleReset = () => {
         removeAllEditControlLayers()
         lastAddedPolygonID = null;
         layerType = null;
-        formik.resetForm()
-        setSubOrganization(null)
+        dispatch(resetStates)
     }
 
-
-
-    const formik = useFormik({
-        initialValues: {
-            fenceType: "",
-            centerPoint: "",
-            radius: "",
-            points: "",
-        },
-
-
-        onSubmit: async (geofence, helpers) => {
-            let updateGeofence = ConvertToNull(geofence)
-            const userData = await submitData(updateGeofence)
-            handleReset()
-        },
-    });
 
     return (
         <>
@@ -190,10 +182,9 @@ export default function DrawGeofenceMap(props) {
                                 aria-labelledby="demo-radio-buttons-group-label"
                                 name="radio-buttons-group"
                                 value={radioValue}
-                                onChange={handleChangeSatelliteMode}
-                            >
-                                <FormControlLabel className="rounded bg-white bg-opacity-70" value="default" control={<Radio />} label="حالت پیش فرض" />
-                                <FormControlLabel className="rounded bg-white bg-opacity-70" value="satelliteMap" control={<Radio />} label="حالت ماهواره" />
+                                onChange={handleChangeSatelliteMode}>
+                                <FormControlLabel className="px-3 py-2 rounded bg-white bg-opacity-70" value="default" control={<Radio color="primary"/>} label="حالت پیش فرض" />
+                                <FormControlLabel className="px-3 py-2 rounded bg-white bg-opacity-70" value="satelliteMap" control={<Radio color="primary"/>} label="حالت ماهواره" />
                             </RadioGroup>
                         </FormControl>
                     </div>

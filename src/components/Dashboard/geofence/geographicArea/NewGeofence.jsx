@@ -9,7 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import {TailSpin} from "react-loader-spinner";
 import {useSaveGeofenceMutation} from "@/redux/features/geofence/GeofenceSlice";
 import {useLazyGetAllSubOrganizationQuery} from "@/redux/features/category/CategorySlice";
-import {setMapStatus, setShapeColor} from "@/redux/geofence/geofenceSlice";
+import {resetStates, setMapStatus, setShapeColor} from "@/redux/geofence/geofenceSlice";
 import {useDispatch} from "react-redux";
 import {makeStyles} from "@material-ui/core/styles";
 import {ChromePicker, SketchPicker} from "react-color";
@@ -28,6 +28,8 @@ const useStyles = makeStyles(theme => ({
 function NewGeofence() {
     const classes = useStyles();
     const dispatch = useDispatch();
+
+
     const [displayColorPicker, setDisplayColorPicker] = useState(false)
     const [color, setColor] = useState("")
     const handleOpenColorPicker = (e) => {
@@ -58,6 +60,8 @@ function NewGeofence() {
     const handleReset = () => {
         formik.resetForm()
         setSubOrganization(null)
+        dispatch(setShapeColor("blue"))
+        dispatch(resetStates)
     }
 
     //submit data
@@ -65,7 +69,7 @@ function NewGeofence() {
 
     const schema = yup.object().shape({
         name: yup.string().required("لطفا نام ناحیه جغرافیایی را وارد کنید"),
-        speed: yup.string().required("لطفا حداكثر سرعت مجاز در اين ناحيه را وارد كنيد"),
+        subOrganizationId: yup.string().required("لطفا گروه را وارد کنید"),
         stopTimeInMinutes: yup.string().required("لطفا حداكثر زمان توقف در اين ناحيه را وارد كنيد"),
     });
 
@@ -74,13 +78,8 @@ function NewGeofence() {
             name: "",
             subOrganizationId: "",
             subOrganizationName: "",
-            speed: "",
             stopTimeInMinutes: "",
-            fenceType: "",
             description: "",
-            centerPoint: "",
-            radius: "",
-            points: "",
         },
 
         validationSchema: schema,
@@ -94,6 +93,7 @@ function NewGeofence() {
 
     const handleCancel = () => {
         dispatch(setMapStatus("show"))
+        handleReset()
     }
     const popover = {
         position: 'absolute',
@@ -180,7 +180,6 @@ function NewGeofence() {
                                 }}
                                 renderInput={(params) =>
                                     <TextField
-
                                         error={formik.touched.subOrganizationId && Boolean(formik.errors.subOrganizationId)}
                                         helperText={formik.touched.subOrganizationId && formik.errors.subOrganizationId}
                                         {...params}
@@ -198,31 +197,31 @@ function NewGeofence() {
                                                 </React.Fragment>
                                             )
                                         }}
-                                        placeholder="گروه"
+                                        placeholder="ناوگان"
                                     />}
                             />
                         </div>
-                        <div className="flex gap-2">
-                            <div className="w-1/2">
-                                <TextField
-                                    size="small"
-                                    fullWidth
-                                    placeholder="حداكثر‌سرعت مجاز (km/h)"
-                                    type="number"
-                                    name="speed"
-                                    value={formik.values.speed}
-                                    onChange={formik.handleChange}
-                                    error={formik.touched.speed && Boolean(formik.errors.speed)}
-                                    helperText={formik.touched.speed && formik.errors.speed}
-                                    inputProps={{
-                                        style: {
-                                            fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189",
-                                            fontSize: "0.8rem"
-                                        }
-                                    }}
-                                    InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>
-                            </div>
-                            <div className="w-1/2">
+                        <div className="flex ">
+                            {/*<div className="w-1/2">*/}
+                            {/*    <TextField*/}
+                            {/*        size="small"*/}
+                            {/*        fullWidth*/}
+                            {/*        placeholder="حداكثر‌سرعت مجاز (km/h)"*/}
+                            {/*        type="number"*/}
+                            {/*        name="speed"*/}
+                            {/*        value={formik.values.speed}*/}
+                            {/*        onChange={formik.handleChange}*/}
+                            {/*        error={formik.touched.speed && Boolean(formik.errors.speed)}*/}
+                            {/*        helperText={formik.touched.speed && formik.errors.speed}*/}
+                            {/*        inputProps={{*/}
+                            {/*            style: {*/}
+                            {/*                fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189",*/}
+                            {/*                fontSize: "0.8rem"*/}
+                            {/*            }*/}
+                            {/*        }}*/}
+                            {/*        InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>*/}
+                            {/*</div>*/}
+                            <div className="w-full">
                                 <TextField
                                     size="small"
                                     fullWidth

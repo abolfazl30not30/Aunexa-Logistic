@@ -5,7 +5,7 @@ import Checkbox, {checkboxClasses} from "@mui/material/Checkbox";
 import {useGetAllGeofenceQuery} from "@/redux/features/geofence/GeofenceSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {setAccess} from "@/redux/permission/accessSlice";
-import {setMapStatus, setSelectedGeofence} from "@/redux/geofence/geofenceSlice";
+import {setMapStatus, setSelectedGeofence, setShapeColor} from "@/redux/geofence/geofenceSlice";
 import DeleteDialog from "@/components/Dashboard/geofence/geographicArea/DeleteDialog";
 import NewGeofence from "@/components/Dashboard/geofence/geographicArea/NewGeofence";
 
@@ -51,6 +51,7 @@ function Geofence() {
         setFilterItem(params.toString());
     };
     const handleNewGeofence = () =>{
+        dispatch(setShapeColor("blue"))
         dispatch(setMapStatus("draw"))
     }
     const handlePagination = (event, value) => {
@@ -69,18 +70,18 @@ function Geofence() {
     return (
         <>
             <div className="p-3">
-                <div className="flex flex-wrap xl:flex-nowrap gap-2 items-center">
+                <div className="flex gap-2 items-center">
                     <div>
                         <button onClick={handleNewGeofence} className="text-[0.9rem] bg-mainBg py-2 px-6 rounded hover:bg-neutral-200">
                             جدید
                         </button>
                     </div>
-                    <div>
-                        <button className="text-[0.9rem] bg-mainBg py-2 px-6 rounded hover:bg-neutral-200">
-                            فیلتر
-                        </button>
-                    </div>
-                    <div>
+                    {/*<div>*/}
+                    {/*    <button className="text-[0.9rem] bg-mainBg py-2 px-6 rounded hover:bg-neutral-200">*/}
+                    {/*        فیلتر*/}
+                    {/*    </button>*/}
+                    {/*</div>*/}
+                    <div className="w-full">
                         <FormControl fullWidth>
                             <OutlinedInput
                                 value={searchValue}
@@ -190,7 +191,7 @@ function Geofence() {
                                                                     }}
                                                                     inputProps={{"aria-label": "controlled"}}/>
                                                             </div>
-                                                            <div>
+                                                            <div className="mx-1">
                                                                 {geofence.name}
                                                             </div>
                                                         </div>

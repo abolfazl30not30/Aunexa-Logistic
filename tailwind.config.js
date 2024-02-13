@@ -12,6 +12,7 @@ module.exports = {
         textGray: "#4E4E4E",
         mainBlack:"#34312D",
         mainPurple:"#4D51DF",
+        lightPurple:"#CACBFF",
         mainBg:"#E6EEEE",
         gray50:"#D9D9D9",
         gray80: "#4E4E4E",

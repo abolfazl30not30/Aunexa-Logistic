@@ -24,6 +24,7 @@ const ShowGeofenceMap = dynamic(
 function  GeographicAreaPC (){
 
     const mapStatus = useSelector((state)=> state.geofence.mapStatus)
+
     return(
         <>
             <div className="flex">
