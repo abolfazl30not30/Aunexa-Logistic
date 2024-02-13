@@ -68,7 +68,7 @@ export default function ReportMap(props) {
     }
 
     useEffect(() => {
-        if(props.locations.length){
+        if(props.locations?.length){
             let updateArray = []
             for (let loc of props.locations){
                 const newLoc = [loc.latitude,loc.longitude]
