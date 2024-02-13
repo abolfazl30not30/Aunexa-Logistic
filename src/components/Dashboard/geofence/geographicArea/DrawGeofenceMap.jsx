@@ -16,7 +16,7 @@ import {FormControl} from "@mui/material";
 import {FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
 import Control from "react-leaflet-custom-control";
 import {useDispatch, useSelector} from "react-redux";
-import {resetStates, setCenterPoint, setFenceType, setPoints, setRadius} from "@/redux/geofence/geofenceSlice";
+import {setCenterPoint, setFenceType, setPoints, setRadius} from "@/redux/geofence/geofenceSlice";
 
 const styles = theme => ({
     radio: {
@@ -42,6 +42,7 @@ L.Icon.Default.mergeOptions({
 export default function DrawGeofenceMap(props) {
 
     let color = useSelector((state) => state.geofence.color);
+    let mapStatus = useSelector((state) => state.geofence.mapStatus);
 
     const dispatch = useDispatch();
 
@@ -76,16 +77,16 @@ export default function DrawGeofenceMap(props) {
     let layerType = null;
 
     const removeAllEditControlLayers = () => {
-        let layerContainer = edit.current,
-            layers = layerContainer._layers,
-            layer_ids = Object.keys(layers),
-            layer;
-        layer_ids.forEach(id => {
-            layer = layers[id]
-            layerContainer.removeLayer(layer);
-        })
-        lastAddedPolygonID = null;
-        layer_ids = null
+            let layerContainer = edit.current,
+                layers = layerContainer?._layers,
+                layer_ids = Object.keys(layers),
+                layer;
+            layer_ids.forEach(id => {
+                layer = layers[id]
+                layerContainer.removeLayer(layer);
+            })
+            lastAddedPolygonID = null;
+            layer_ids = null
     }
 
     const convertPolygon = (arr) => {
@@ -153,14 +154,10 @@ export default function DrawGeofenceMap(props) {
     const onDelete = (e) => {
         lastAddedPolygonID = null;
         layerType = null;
-        dispatch(resetStates)
-    }
-
-    const handleReset = () => {
-        removeAllEditControlLayers()
-        lastAddedPolygonID = null;
-        layerType = null;
-        dispatch(resetStates)
+        dispatch(setFenceType(""))
+        dispatch(setPoints(""))
+        dispatch(setRadius(""))
+        dispatch(setCenterPoint(""))
     }
 
 
@@ -201,7 +198,7 @@ export default function DrawGeofenceMap(props) {
                             {
                                 circle: {
                                     icon: new L.DivIcon({
-                                        iconSize: new L.Point(8, 8),
+                                        iconSize: new L.Point(10, 10),
                                         className: "leaflet-div-icon leaflet-editing-icon"
                                     }),
                                     shapeOptions: {
@@ -212,7 +209,7 @@ export default function DrawGeofenceMap(props) {
                                 },
                                 polygon:{
                                     icon: new L.DivIcon({
-                                        iconSize: new L.Point(8, 8),
+                                        iconSize: new L.Point(10, 10),
                                         className: "leaflet-div-icon leaflet-editing-icon"
                                     }),
                                     shapeOptions: {

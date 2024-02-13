@@ -70,7 +70,6 @@ function  GeographicAreaPC (){
                     ):(
                         <DrawGeofenceMap/>
                     )}
-
                 </div>
             </div>
 

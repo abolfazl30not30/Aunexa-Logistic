@@ -9,8 +9,15 @@ import CircularProgress from "@mui/material/CircularProgress";
 import {TailSpin} from "react-loader-spinner";
 import {useSaveGeofenceMutation} from "@/redux/features/geofence/GeofenceSlice";
 import {useLazyGetAllSubOrganizationQuery} from "@/redux/features/category/CategorySlice";
-import {resetStates, setMapStatus, setShapeColor} from "@/redux/geofence/geofenceSlice";
-import {useDispatch} from "react-redux";
+import {
+     setCenterPoint,
+    setFenceType,
+    setMapStatus,
+    setPoints,
+    setRadius,
+    setShapeColor
+} from "@/redux/geofence/geofenceSlice";
+import {useDispatch, useSelector} from "react-redux";
 import {makeStyles} from "@material-ui/core/styles";
 import {ChromePicker, SketchPicker} from "react-color";
 
@@ -29,6 +36,10 @@ function NewGeofence() {
     const classes = useStyles();
     const dispatch = useDispatch();
 
+    const fenceType = useSelector((state) => state.geofence.fenceType);
+    const centerPoint = useSelector((state) => state.geofence.centerPoint);
+    const radius = useSelector((state) => state.geofence.radius);
+    const points = useSelector((state) => state.geofence.points);
 
     const [displayColorPicker, setDisplayColorPicker] = useState(false)
     const [color, setColor] = useState("")
@@ -40,6 +51,7 @@ function NewGeofence() {
         setDisplayColorPicker(false)
     };
     const handleChangeColor = (color) =>{
+        formik.setFieldValue("color",color.hex)
         dispatch(setShapeColor(color.hex))
         setColor(color)
     }
@@ -60,16 +72,19 @@ function NewGeofence() {
     const handleReset = () => {
         formik.resetForm()
         setSubOrganization(null)
-        dispatch(setShapeColor("blue"))
-        dispatch(resetStates)
+        dispatch(setShapeColor("#4D51DF"))
+        dispatch(setFenceType(""))
+        dispatch(setPoints(""))
+        dispatch(setRadius(""))
+        dispatch(setCenterPoint(""))
     }
 
     //submit data
     const [submitData, {isLoading: isSubmitLoading, error}] = useSaveGeofenceMutation()
 
     const schema = yup.object().shape({
-        name: yup.string().required("لطفا نام ناحیه جغرافیایی را وارد کنید"),
-        subOrganizationId: yup.string().required("لطفا گروه را وارد کنید"),
+        name: yup.string().required("لطفا نام ژئوفنس را وارد کنید"),
+        subOrganizationId: yup.string().required("لطفا ناوگان را انتخاب کنید"),
         stopTimeInMinutes: yup.string().required("لطفا حداكثر زمان توقف در اين ناحيه را وارد كنيد"),
     });
 
@@ -80,14 +95,22 @@ function NewGeofence() {
             subOrganizationName: "",
             stopTimeInMinutes: "",
             description: "",
+            fenceType: "",
+            centerPoint: "",
+            radius: "",
+            points: "",
+            color:"#4D51DF",
         },
 
         validationSchema: schema,
 
         onSubmit: async (geofence, helpers) => {
-            let updateGeofence = ConvertToNull(geofence)
+            console.log(points)
+            let updateGeofence = {...geofence,fenceType,centerPoint,radius,points};
+            updateGeofence = ConvertToNull(updateGeofence)
             const userData = await submitData(updateGeofence)
             handleReset()
+            dispatch(setMapStatus("show"))
         },
     });
 
@@ -110,6 +133,9 @@ function NewGeofence() {
     return (
         <>
             <div>
+                <div className="mt-2 mb-4 text-center">
+                    <h3 className="text-[1rem] text-mainPurple">افزودن ژئوفنس</h3>
+                </div>
                 <form className="flex justify-center " onSubmit={formik.handleSubmit} method="POST">
                     <div className="flex flex-col justify-center w-[90%] gap-3">
                         <div>
@@ -248,7 +274,7 @@ function NewGeofence() {
                                 </span>
                             </div>
                             <div>
-                                <div className={`w-5 h-5 rounded`} style={color !== "" ? {backgroundColor:color.hex}:{backgroundColor:"blue"}}></div>
+                                <div className={`w-5 h-5 rounded`} style={color !== "" ? {backgroundColor:color.hex}:{backgroundColor:"#4D51DF"}}></div>
                             </div>
                             <div>
                                 <button onClick={handleOpenColorPicker}>
