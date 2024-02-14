@@ -20,6 +20,8 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {makeStyles} from "@material-ui/core/styles";
 import {ChromePicker, SketchPicker} from "react-color";
+import Checkbox, {checkboxClasses} from "@mui/material/Checkbox";
+import {toast} from "react-toastify";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -43,6 +45,12 @@ function NewGeofence() {
 
     const [displayColorPicker, setDisplayColorPicker] = useState(false)
     const [color, setColor] = useState("")
+    const [timeLimitation,setTimeLimitation] = useState(false)
+
+    const handleTimeLimitation = () =>{
+        formik.setFieldValue("stopTimeInMinutes","")
+        setTimeLimitation((state)=>!state)
+    }
     const handleOpenColorPicker = (e) => {
         e.preventDefault()
         setDisplayColorPicker((state) => !state)
@@ -85,8 +93,17 @@ function NewGeofence() {
     const schema = yup.object().shape({
         name: yup.string().required("لطفا نام ژئوفنس را وارد کنید"),
         subOrganizationId: yup.string().required("لطفا ناوگان را انتخاب کنید"),
-        stopTimeInMinutes: yup.string().required("لطفا حداكثر زمان توقف در اين ناحيه را وارد كنيد"),
     });
+
+    const validate = (values, props) => {
+        const errors = {};
+
+        if(values.stopTimeInMinutes === "" && !timeLimitation){
+            errors.stopTimeInMinutes = "لطفا حداکثر زمان توقف رو را وارد کنید"
+        }
+
+        return errors;
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -103,14 +120,30 @@ function NewGeofence() {
         },
 
         validationSchema: schema,
+        validate: validate,
 
         onSubmit: async (geofence, helpers) => {
-            console.log(points)
-            let updateGeofence = {...geofence,fenceType,centerPoint,radius,points};
-            updateGeofence = ConvertToNull(updateGeofence)
-            const userData = await submitData(updateGeofence)
-            handleReset()
-            dispatch(setMapStatus("show"))
+            if(fenceType === ""){
+
+                toast.error("لطفا ناحیه جغرافیایی رسم کنید", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+
+            }else {
+                let updateGeofence = {...geofence,fenceType,centerPoint,radius,points};
+                updateGeofence = ConvertToNull(updateGeofence)
+                const userData = await submitData(updateGeofence)
+                handleReset()
+                dispatch(setMapStatus("show"))
+            }
+
         },
     });
 
@@ -227,6 +260,7 @@ function NewGeofence() {
                                     />}
                             />
                         </div>
+
                         <div className="flex ">
                             {/*<div className="w-1/2">*/}
                             {/*    <TextField*/}
@@ -249,6 +283,7 @@ function NewGeofence() {
                             {/*</div>*/}
                             <div className="w-full">
                                 <TextField
+                                    disabled={timeLimitation}
                                     size="small"
                                     fullWidth
                                     placeholder="حداكثرزمان‌توقف(دقيقه)"
@@ -266,6 +301,23 @@ function NewGeofence() {
                                     }}
                                     InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>
                             </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div>
+                                <Checkbox
+                                    checked={timeLimitation}
+                                    onClick={handleTimeLimitation}
+                                    sx={{
+                                        [`&.${checkboxClasses.checked}`]: {
+                                            color: '#4D51DF',
+                                        },
+                                    }}
+                                    inputProps={{"aria-label": "controlled"}}/>
+                            </div>
+                            <div className="text-[#797979] text-[0.9rem]">
+                                بدون محدودیت زمانی
+                            </div>
+
                         </div>
                         <div className="flex gap-3">
                             <div>
@@ -294,7 +346,7 @@ function NewGeofence() {
                             <div>
                                 {
                                     isSubmitLoading ? (<button disabled type="submit"
-                                                               className="flex  items-center justify-center w-full rounded-[0.5rem] py-2  border border-solid border-1 border-neutral-400  text-textGray bg-neutral-200">
+                                                               className="flex  items-center justify-center py-1 px-7 rounded-[0.5rem]   border border-solid border-1 border-neutral-400  text-textGray bg-neutral-200">
                                         <TailSpin
                                             height="20"
                                             width="20"
@@ -315,7 +367,7 @@ function NewGeofence() {
                             <div>
                                 <button
                                     onClick={handleCancel}
-                                    className="rounded-[0.5rem] py-1 px-7 hover:border hover:opacity-80   bg-[#D9D9D9] text-[#797979]">
+                                    className="rounded-[0.5rem] py-1 px-7 hover:border hover:opacity-80 bg-[#D9D9D9] text-[#797979]">
                                     لغو
                                 </button>
                             </div>

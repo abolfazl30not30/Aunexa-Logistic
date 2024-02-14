@@ -249,12 +249,12 @@ export default function MoreInfoDialog(props) {
                             <button onClick={()=>{props.handleOpenConfirm(props.moreInfoTarget);props.handleCloseMoreInfo()}} className="px-6 py-2 text-[0.8rem] text-[#4087DB] border border-[#4087DB] rounded hover:bg-[#4087DB] hover:text-white">
                                 تایید فاکتور
                             </button>
-                            <button onClick={()=>{props.handleOpenRejection(props.moreInfoTarget);props.handleCloseMoreInfo()}}  className="px-5 py-2 text-[0.8rem] text-mainRed border border-mainRed rounded hover:bg-mainRed hover:text-white">
+                            <button onClick={()=>{props.handleOpenRejection(props.moreInfoTarget);props.handleCloseMoreInfo()}}  className="px-5 py-2 text-[0.8rem] text-mainRed border border-mainRed rounded hover:bg-mainPurple hover:text-white">
                                 رد فاکتور
                             </button>
                         </div>
                         :props.moreInfoTarget?.status==="DONE"?<div className=" flex md:hidden justify-center mt-5 gap-3">
-                        <button onClick={()=>{props.handleOpenEditConfirmInvoiceInfo(props.moreInfoTarget);props.handleCloseMoreInfo()}} className="px-6 py-2 text-[0.8rem] text-mainRed border border-mainRed rounded hover:bg-mainRed hover:text-white">
+                        <button onClick={()=>{props.handleOpenEditConfirmInvoiceInfo(props.moreInfoTarget);props.handleCloseMoreInfo()}} className="px-6 py-2 text-[0.8rem] text-mainRed border border-mainRed rounded hover:bg-mainPurple hover:text-white">
                             رد فاکتور
                         </button>
                         

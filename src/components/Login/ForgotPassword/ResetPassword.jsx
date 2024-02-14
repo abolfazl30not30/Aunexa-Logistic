@@ -99,7 +99,7 @@ export default function ResetPassword() {
                     </div>
                     <div>
                         <button type="submit"
-                                className="w-full rounded-[0.5rem] py-3 border border-solid border-1 border-mainRed font-bold text-mainRed hover:bg-mainRed hover:text-white  ">تغییر رمز عبور
+                                className="w-full rounded-[0.5rem] py-3 border border-solid border-1 border-mainRed font-bold text-mainRed hover:bg-mainPurple hover:text-white  ">تغییر رمز عبور
                         </button>
                         <button disabled type="submit"
                                 className="hidden flex gap-3 items-center justify-center w-full rounded-[0.5rem] py-3  border border-solid border-1 border-neutral-400 font-bold text-textGray bg-neutral-200">

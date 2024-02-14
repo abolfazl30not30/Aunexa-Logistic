@@ -22,8 +22,8 @@ const RecenterAutomatically = ({lat,lng}) => {
 export default function TrackingMap(props) {
 
     const [center, setCenter] = useState([29.120738496597934,55.33779332882627]);
-
     const [radioValue, setRadioValue] = useState("default")
+
     const handleChangeSatelliteMode = (e) =>{
         setRadioValue(e.target.value)
     }
@@ -90,17 +90,16 @@ export default function TrackingMap(props) {
                     </Marker>
                     <RecenterAutomatically lat={props.trackingData?.latitude} lng={props.trackingData?.longitude}/>
                     <AllGeofences/>
-                    <Control position={'topmright'}>
+                    <Control position={'bottomleft'}>
                         <div>
                             <FormControl>
                                 <RadioGroup
                                     aria-labelledby="demo-radio-buttons-group-label"
                                     name="radio-buttons-group"
                                     value={radioValue}
-                                    onChange={handleChangeSatelliteMode}
-                                >
-                                    <FormControlLabel className="rounded bg-white bg-opacity-50" value="default" control={<Radio />} label="حالت پیش فرض" />
-                                    <FormControlLabel className="rounded bg-white bg-opacity-50" value="satelliteMap" control={<Radio />} label="حالت ماهواره" />
+                                    onChange={handleChangeSatelliteMode}>
+                                    <FormControlLabel className="px-3 py-2 rounded bg-white bg-opacity-70" value="default" control={<Radio color="primary"/>} label="حالت پیش فرض" />
+                                    <FormControlLabel className="px-3 py-2 rounded bg-white bg-opacity-70" value="satelliteMap" control={<Radio color="primary"/>} label="حالت ماهواره" />
                                 </RadioGroup>
                             </FormControl>
                         </div>

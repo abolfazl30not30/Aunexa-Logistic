@@ -127,7 +127,7 @@ export default function page({ params }) {
               >
                 <path
                   d="M6 12L10 8L6 4"
-                  stroke="#DB3746"
+                  stroke="#4D51DF"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
@@ -232,7 +232,7 @@ export default function page({ params }) {
                 <button
                   disabled={formik.values.value === "" ? true : false}
                   type="submit"
-                  className="w-full p-4 rounded-full font-bold  bg-mainRed text-white"
+                  className="w-full p-4 rounded-full font-bold  bg-mainPurple text-white"
                 >
                   <svg
                     disabled

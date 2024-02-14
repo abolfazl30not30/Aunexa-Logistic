@@ -677,7 +677,7 @@ export default function RootLayout({ children }) {
                       >
                         اعلانیه
                       </span>
-                      <span className=" rounded-lg bg-mainRed w-[1.5rem] text-[0.59rem] h-[1.2rem]  flex  items-center justify-center text-center text-white">
+                      <span className=" rounded-lg bg-mainPurple w-[1.5rem] text-[0.59rem] h-[1.2rem]  flex  items-center justify-center text-center text-white">
                         {pathname === "/dashboard/notification"
                           ? 0
                           : counterList > 99

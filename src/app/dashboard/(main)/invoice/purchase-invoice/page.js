@@ -508,7 +508,7 @@ function PurchaseInvoice() {
                                 >
                                   <path
                                     d="M12 4L4 12M4 4L12 12"
-                                    stroke="#DB3746"
+                                    stroke="#4D51DF"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                   />

@@ -72,7 +72,6 @@ function  GeographicAreaPC (){
                     )}
                 </div>
             </div>
-
         </>
     )
 }

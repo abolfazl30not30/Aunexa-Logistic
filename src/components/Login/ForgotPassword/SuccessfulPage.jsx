@@ -29,7 +29,7 @@ export default function SuccessfulPage() {
                 </div>
                 <div>
                     <Link href="/"
-                            className="block text-center w-full rounded-[0.5rem] py-3 bg-mainRed text-white font-bold text-mainRed hover:opacity-80 ">ورود
+                            className="block text-center w-full rounded-[0.5rem] py-3 bg-mainPurple text-white font-bold text-mainRed hover:opacity-80 ">ورود
                     </Link>
                 </div>
             </div>

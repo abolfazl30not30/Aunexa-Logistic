@@ -161,7 +161,7 @@ function registerRole() {
           <div className="">
             {
               <button
-                className="flex bg-mainRed text-white items-center text- px-3 py-2 rounded-full md:rounded"
+                className="flex bg-mainPurple text-white items-center text- px-3 py-2 rounded-full md:rounded"
                 onClick={handleOpenAddRole}
               >
                 <span className="hidden md:inline">ثبت نقش</span>

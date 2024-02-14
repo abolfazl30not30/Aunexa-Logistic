@@ -201,7 +201,7 @@ export default function NewReportMobile() {
         <div className="">
           {
             <button
-              className="flex bg-mainRed text-white items-center text- px-3 py-2 rounded-full md:rounded"
+              className="flex bg-mainPurple text-white items-center text- px-3 py-2 rounded-full md:rounded"
               onClick={handleOpenAddData}
             >
               <span className="hidden md:inline"> گزارش گیری</span>

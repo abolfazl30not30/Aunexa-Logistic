@@ -110,7 +110,7 @@ export default function EditConfirmInvoiceInfoDialog(props) {
                                             رد فاکتور
                                         </button>) : (
                                             <button type="submit"
-                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainRed text-white">رد فاکتور
+                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">رد فاکتور
                                             </button>
                                         )
                                     }

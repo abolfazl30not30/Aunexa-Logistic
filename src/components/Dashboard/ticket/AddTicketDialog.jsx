@@ -190,7 +190,7 @@ export default function AddTicketDialog(props) {
                                         </button>
                                         ) : (
                                             <button type="submit"
-                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainRed text-white">ثبت
+                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">ثبت
                                             </button>
                                         )
                                     }

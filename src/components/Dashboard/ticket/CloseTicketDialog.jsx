@@ -134,7 +134,7 @@ export default function CloseTicketDialog(props) {
                                             بستن تیکت
                                         </button>) : (
                                             <button type="submit"
-                                                    className="w-full rounded-[0.5rem] py-2 px-6 hover:border hover:opacity-80 font-bold  bg-mainRed text-white">بستن تیکت
+                                                    className="w-full rounded-[0.5rem] py-2 px-6 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">بستن تیکت
                                             </button>
                                         )
                                     }

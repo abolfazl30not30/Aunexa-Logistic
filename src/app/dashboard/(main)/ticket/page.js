@@ -112,7 +112,7 @@ function Ticket() {
           <div className="">
             {
               <button
-                className="flex bg-mainRed text-white items-center text- px-3 py-2 rounded-full md:rounded"
+                className="flex bg-mainPurple text-white items-center text- px-3 py-2 rounded-full md:rounded"
                 onClick={handleOpenAddTicket}
               >
                 <span className="hidden md:inline">ثبت تیکت</span>
@@ -186,7 +186,7 @@ function Ticket() {
                       <button
                         className={
                           ticketMethod === "source"
-                            ? "flex bg-mainRed text-white items-center md:text-base text-sm text- px-3 py-2 rounded-full md:rounded"
+                            ? "flex bg-mainPurple text-white items-center md:text-base text-sm text- px-3 py-2 rounded-full md:rounded"
                             : "flex bg-gray70 text-white items-center md:text-base text-sm text- px-3 py-2 rounded-full md:rounded"
                         }
                         onClick={() => {
@@ -200,7 +200,7 @@ function Ticket() {
                       <button
                         className={
                           ticketMethod === "target"
-                            ? "flex bg-mainRed text-white items-center md:text-base text-sm text- px-3 py-2 rounded-full md:rounded"
+                            ? "flex bg-mainPurple text-white items-center md:text-base text-sm text- px-3 py-2 rounded-full md:rounded"
                             : "flex bg-gray70 text-white items-center md:text-base text-sm text- px-3 py-2 rounded-full md:rounded"
                         }
                         onClick={() => {
@@ -396,7 +396,7 @@ function Ticket() {
                                     >
                                       <path
                                         d="M6.77778 5.33377L11.2222 9.66754M11.2222 5.33377L6.77778 9.66754M4.55556 14.0013V16.0256C4.55556 16.4875 4.55556 16.7184 4.65265 16.837C4.73709 16.9401 4.86513 17.0001 5.00048 17C5.15611 16.9998 5.34104 16.8556 5.71089 16.5671L7.8313 14.913C8.26446 14.5751 8.48104 14.4061 8.72221 14.286C8.93618 14.1794 9.16394 14.1015 9.3993 14.0544C9.66459 14.0013 9.94195 14.0013 10.4967 14.0013H12.7333C14.2268 14.0013 14.9735 14.0013 15.544 13.7179C16.0457 13.4686 16.4537 13.0708 16.7094 12.5815C17 12.0253 17 11.2972 17 9.84089V5.16042C17 3.70413 17 2.97599 16.7094 2.41977C16.4537 1.9305 16.0457 1.53271 15.544 1.28341C14.9735 1 14.2268 1 12.7333 1H5.26667C3.77319 1 3.02646 1 2.45603 1.28341C1.95426 1.53271 1.54631 1.9305 1.29065 2.41977C1 2.97599 1 3.70413 1 5.16042V10.5343C1 11.3403 1 11.7434 1.09086 12.074C1.33744 12.9714 2.05624 13.6723 2.97648 13.9127C3.31559 14.0013 3.72891 14.0013 4.55556 14.0013Z"
-                                        stroke="#DB3746"
+                                        stroke="#4D51DF"
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                       />

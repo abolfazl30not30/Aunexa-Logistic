@@ -187,7 +187,7 @@ export default function MoreInfoDialog(props) {
                                 props.handleOpenDelete(props.moreInfoTarget.id);
                                 props.handleCloseMoreInfo()
                             }}
-                                    className="px-6 py-2 text-[0.8rem] text-mainRed border border-mainRed rounded hover:bg-mainRed hover:text-white">
+                                    className="px-6 py-2 text-[0.8rem] text-mainRed border border-mainRed rounded hover:bg-mainPurple hover:text-white">
                                 حذف
                             </button>
                             {/*<button onClick={() => {*/}

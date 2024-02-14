@@ -170,7 +170,7 @@ function vehiclesAndEquipment() {
                 </svg>
                 {filterItemCounter !== 0 && (
                   <div className="absolute md:top-1 md:right-2 top-1 right-1">
-                    <span className=" rounded-full bg-mainRed w-[1rem] h-[1rem] text-[0.49rem] flex  items-center justify-center text-center text-white">
+                    <span className=" rounded-full bg-mainPurple w-[1rem] h-[1rem] text-[0.49rem] flex  items-center justify-center text-center text-white">
                       {filterItemCounter}
                     </span>
                   </div>

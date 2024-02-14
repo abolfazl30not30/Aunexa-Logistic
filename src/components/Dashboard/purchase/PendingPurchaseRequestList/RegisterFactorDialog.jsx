@@ -316,7 +316,7 @@ export default function RegisterFactorDialog(props) {
                                             uploadedImage !== null ? (
                                                 <div>
                                                     <div className="relative  rounded border border-dashed border-[#D9D9D9]">
-                                                        <button onClick={handleDeleteUpload} className="shadow hover:bg-red-400 absolute z-10 top-0 right-0 rounded-full bg-mainRed p-1">
+                                                        <button onClick={handleDeleteUpload} className="shadow hover:bg-red-400 absolute z-10 top-0 right-0 rounded-full bg-mainPurple p-1">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                                         </button>
                                                         <img className="object-cover w-full h-full" src={uploadedImage} alt="uploadedImage"/>
@@ -371,7 +371,7 @@ export default function RegisterFactorDialog(props) {
                                             ثبت
                                         </button>) : (
                                             <button type="submit"
-                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainRed text-white">ثبت
+                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">ثبت
                                             </button>
                                         )
                                     }

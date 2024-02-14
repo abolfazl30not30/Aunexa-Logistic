@@ -30,15 +30,15 @@
     }
     10%{
         transform: translateX(64px) scale(1);
-        background: #DB3746;
+        background: #4D51DF;
     }
     40%{
         transform: translateX(32px) scale(1.5);
-        background: #DB3746;
+        background: #4D51DF;
     }
     90%, 95% {
         transform: translateX(0px) scale(1);
-        background: #DB3746;
+        background: #4D51DF;
     }
     100% {
         transform: translateX(0px) scale(1);

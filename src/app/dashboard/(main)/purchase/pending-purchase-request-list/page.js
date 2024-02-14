@@ -239,14 +239,14 @@ export default function page() {
               >
                 <path
                   d="M7 12H17"
-                  stroke="#DB3746"
+                  stroke="#4D51DF"
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
                 <path
                   d="M12 7V17"
-                  stroke="#DB3746"
+                  stroke="#4D51DF"
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -528,8 +528,8 @@ export default function page() {
                                 cx="8"
                                 cy="8"
                                 r="7.5"
-                                fill="#DB3746"
-                                stroke="#DB3746"
+                                fill="#4D51DF"
+                                stroke="#4D51DF"
                               />
                             </svg>
                           ) : (

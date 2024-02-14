@@ -426,8 +426,8 @@ function PurchaseRequest() {
                                   cx="8"
                                   cy="8"
                                   r="7.5"
-                                  fill="#DB3746"
-                                  stroke="#DB3746"
+                                  fill="#4D51DF"
+                                  stroke="#4D51DF"
                                 />
                               </svg>
                             ) : (
@@ -521,7 +521,7 @@ function PurchaseRequest() {
                                 >
                                   <path
                                     d="M12 4L4 12M4 4L12 12"
-                                    stroke="#DB3746"
+                                    stroke="#4D51DF"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                   />

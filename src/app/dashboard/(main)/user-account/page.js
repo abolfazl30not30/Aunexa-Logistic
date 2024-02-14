@@ -552,7 +552,7 @@ export default function page() {
                   onClick={() => {
                     setEnable(false);
                   }}
-                  className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainRed text-white"
+                  className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white"
                 >
                   <TailSpin
                     height="20"
@@ -569,7 +569,7 @@ export default function page() {
               ) : (
                 <button
                   type="submit"
-                  className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainRed text-white"
+                  className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white"
                 >
                   ثبت
                 </button>

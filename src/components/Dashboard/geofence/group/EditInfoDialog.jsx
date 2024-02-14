@@ -42,7 +42,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
             color: '#fff',
             '& + .MuiSwitch-track': {
                 opacity: 1,
-                backgroundColor: theme.palette.mode === 'dark' ? '#DB3746' : '#DB3746',
+                backgroundColor: theme.palette.mode === 'dark' ? '#4D51DF' : '#4D51DF',
             },
         },
     },
@@ -269,7 +269,7 @@ export default function EditInfoDialog(props) {
                                             ثبت
                                         </button>) : (
                                             <button type="submit"
-                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainRed text-white">ثبت
+                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">ثبت
                                             </button>
                                         )
                                     }

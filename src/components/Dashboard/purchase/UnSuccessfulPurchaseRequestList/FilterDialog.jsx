@@ -40,7 +40,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
             color: '#fff',
             '& + .MuiSwitch-track': {
                 opacity: 1,
-                backgroundColor: theme.palette.mode === 'dark' ? '#DB3746' : '#DB3746',
+                backgroundColor: theme.palette.mode === 'dark' ? '#4D51DF' : '#4D51DF',
             },
         },
     },
@@ -382,7 +382,7 @@ export default function FilterDialog(props) {
 
                                 <div className="mt-8">
                                     <button type="submit"
-                                            className="w-full text-[0.9rem] rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainRed text-white">اعمال فیلتر
+                                            className="w-full text-[0.9rem] rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">اعمال فیلتر
                                     </button>
                                     <button disabled type="submit"
                                             className="hidden flex text-[0.9rem] gap-3 items-center justify-center w-full rounded-[0.5rem] py-3  border border-solid border-1 border-neutral-400 font-bold text-textGray bg-neutral-200">

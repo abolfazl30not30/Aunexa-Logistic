@@ -152,7 +152,7 @@ function PurchaseRequest() {
           <div className="">
             {
               <button
-                className="flex bg-mainRed text-white items-center text- px-3 py-2 rounded-full md:rounded"
+                className="flex bg-mainPurple text-white items-center text- px-3 py-2 rounded-full md:rounded"
                 onClick={handleOpenAddData}
               >
                 <span className="hidden md:inline">ثبت درخواست خرید</span>
@@ -423,8 +423,8 @@ function PurchaseRequest() {
                                   cx="8"
                                   cy="8"
                                   r="7.5"
-                                  fill="#DB3746"
-                                  stroke="#DB3746"
+                                  fill="#4D51DF"
+                                  stroke="#4D51DF"
                                 />
                               </svg>
                             ) : (

@@ -179,7 +179,7 @@ const validate = (values, props) => {
                                 <div  className="flex justify-center text-[#4E4E4E] ">
                                   {props.seconds === 0 && props.minutes=== 0 ? (
                                     <button 
-                                    className="flex gap-2 items-center border text-[#DB3746] border-[#DB3746] px-4 py-2 rounded hover:bg-[#DB3746] hover:text-white"
+                                    className="flex gap-2 items-center border text-[#4D51DF] border-[#4D51DF] px-4 py-2 rounded hover:bg-[#4D51DF] hover:text-white"
                                    
                                     onClick={props.resendOTP}
                                   >
@@ -225,7 +225,7 @@ const validate = (values, props) => {
                                
                                 <div>
                                             <button type="submit" onClick={()=>setClickForSubmit(true)}  
-                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainRed text-white">ثبت
+                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">ثبت
                                             </button>
                                 </div>
                             </div>

@@ -126,7 +126,7 @@ export default function MoreInfoDialog(props) {
                                                 {props.moreInfoTarget?.billCycle?.priority ? (
                                                     <div className="flex items-center gap-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                            <circle cx="8" cy="8" r="7.5" fill="#DB3746" stroke="#DB3746"/>
+                                                            <circle cx="8" cy="8" r="7.5" fill="#4D51DF" stroke="#4D51DF"/>
                                                         </svg>
                                                         <span>فوری</span>
                                                     </div>
@@ -235,7 +235,7 @@ export default function MoreInfoDialog(props) {
                                         {props.moreInfoTarget?.billCycle?.priority ? (
                                             <div className="flex items-center gap-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <circle cx="8" cy="8" r="7.5" fill="#DB3746" stroke="#DB3746"/>
+                                                <circle cx="8" cy="8" r="7.5" fill="#4D51DF" stroke="#4D51DF"/>
                                             </svg>
                                             <span>فوری</span>
                                         </div>
@@ -276,7 +276,7 @@ export default function MoreInfoDialog(props) {
                             </div>
                         </div>
                         <div className="md:hidden flex  justify-center mt-5 gap-3">
-                            <button onClick={()=>{props.handleOpenDelete(props.moreInfoTarget.id);props.handleCloseMoreInfo()}} className="px-6 py-2 text-[0.8rem] text-mainRed border border-mainRed rounded hover:bg-mainRed hover:text-white">
+                            <button onClick={()=>{props.handleOpenDelete(props.moreInfoTarget.id);props.handleCloseMoreInfo()}} className="px-6 py-2 text-[0.8rem] text-mainRed border border-mainRed rounded hover:bg-mainPurple hover:text-white">
                                 حذف
                             </button>
                             <button onClick={()=>{props.handleOpenEditInfo(props.moreInfoTarget);props.handleCloseMoreInfo()}}  className="px-5 py-2 text-[0.8rem] text-[#4087DB] border border-[#4087DB] rounded hover:bg-[#4087DB] hover:text-white">

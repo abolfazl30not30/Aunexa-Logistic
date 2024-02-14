@@ -109,7 +109,7 @@ export default function ConfirmDialog(props) {
                                             تایید
                                         </button>) : (
                                             <button type="submit"
-                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainRed text-white">تایید
+                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">تایید
                                             </button>
                                         )
                                     }

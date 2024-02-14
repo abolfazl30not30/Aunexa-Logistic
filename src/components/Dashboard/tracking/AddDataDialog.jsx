@@ -21,6 +21,7 @@ import {useSelector} from "react-redux";
 import { useGetAllTrackingMachineListQuery } from "@/redux/features/tracking/TrackingSlice";
 import List from "@mui/material/List";
 import { useLazyGetAllVehicleCategoryQuery } from "@/redux/features/category/CategorySlice";
+
 export default function AddDataDialog(props) {
     const [listOfChecked,setListOfChecked] = useState({})
 
@@ -36,9 +37,8 @@ export default function AddDataDialog(props) {
 
 
     const formik = useFormik({
-        initialValues: {
-            
-        },
+
+        initialValues: {},
 
         validationSchema: schema,
 
@@ -123,6 +123,7 @@ export default function AddDataDialog(props) {
       params.set(filterType, e.target.value);
       setFilterItem(params.toString());
     };
+
     const {
         data: organizationList = [],
         isLoading: isDataLoading,
@@ -130,15 +131,16 @@ export default function AddDataDialog(props) {
       } = useGetAllTrackingMachineListQuery({filterItem},{ refetchOnMountOrArgChange: true });
       const [type,setType]=useState("movement")
 
-      //
 
-     
+
       const [getVehicleCategoryList,{ data : vehicleCategoryList  = [] , isLoading : isVehicleCategoryLoading, isError: isVehicleCategoryError }] = useLazyGetAllVehicleCategoryQuery()
       useEffect(()=>{
           if(type==="type"){
               getVehicleCategoryList()
           }
       },[type])
+
+
     return (
         <>
             <Dialog
@@ -230,8 +232,6 @@ export default function AddDataDialog(props) {
                             </div>}
                         <form className="flex justify-center " onSubmit={formik.handleSubmit} method="POST">
                             <div className="flex flex-col justify-center w-[90%] gap-5">
-                                
-                                
                                 {  type==="movement" &&
                                     (<div className="w-full  flex flex-col gap-2 h-48 overflow-y-auto">
                                     <List
@@ -335,52 +335,7 @@ export default function AddDataDialog(props) {
                                                 machine?.tag?.slice(0, 2)):machine?.code}
                                                                 </sppan>
                                                             </div>
-                                                            {/* <Box sx={{display: 'flex', flexDirection: 'column', ml: 3}}>
-                                                                <FormControlLabel
-                                                                    label={page.authorities[`${page.title}::ReadOne`]}
-                                                                    control={<Checkbox checked={listOfChecked[`${page.title}::ReadOne`] || false}
-                                                                                       value={`${page.title}::ReadOne`}
-                                                                                       onChange={handleChangeChecked}/>}/>
-                                                            </Box> */}
                                                         </li>))}
-                                                        {/* <li>
-                                                            <Box sx={{display: 'flex', flexDirection: 'column',fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", ml: 3}}>
-                                                                <FormControlLabel
-                                                                    sx={{fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}
-                                                                    label={page.authorities[`${page.title}::ReadAll`]}
-                                                                    control={<Checkbox checked={listOfChecked[`${page.title}::ReadAll` ] || false}
-                                                                                       value={`${page.title}::ReadAll` || ''}
-                                                                                       onChange={handleChangeChecked}/>}/>
-                                                            </Box>
-                                                        </li>
-                                                        <li>
-                                                            <Box sx={{display: 'flex', flexDirection: 'column', ml: 3}}>
-                                                                <FormControlLabel
-                                                                    sx={{fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}
-                                                                    label={page.authorities[`${page.title}::Create`]}
-                                                                    control={<Checkbox checked={listOfChecked[`${page.title}::Create` ]|| false}
-                                                                                       value={`${page.title}::Create` || ''}
-                                                                                       onChange={handleChangeChecked}/>}/>
-                                                            </Box>
-                                                        </li>
-                                                        <li>
-                                                            <Box sx={{display: 'flex', flexDirection: 'column', ml: 3}}>
-                                                                <FormControlLabel
-                                                                    label={page.authorities[`${page.title}::Update`]}
-                                                                    control={<Checkbox checked={listOfChecked[`${page.title}::Update` ]|| false}
-                                                                                       value={`${page.title}::Update` || ''}
-                                                                                       onChange={handleChangeChecked}/>}/>
-                                                            </Box>
-                                                        </li>
-                                                        <li>
-                                                            <Box sx={{display: 'flex', flexDirection: 'column', ml: 3}}>
-                                                                <FormControlLabel
-                                                                    label={page.authorities[`${page.title}::Delete`]}
-                                                                    control={<Checkbox checked={listOfChecked[`${page.title}::Delete` ] || false}
-                                                                                       value={`${page.title}::Delete` || ''}
-                                                                                       onChange={handleChangeChecked}/>}/>
-                                                            </Box>
-                                                        </li> */}
                                                     </ul>
                                                 </details>
                                             </div>)
@@ -443,7 +398,7 @@ export default function AddDataDialog(props) {
                                             ثبت
                                         </button>) : (
                                             <button type="submit"
-                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainRed text-white">ثبت
+                                                    className="w-full rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">ثبت
                                             </button>
                                         )
                                     }

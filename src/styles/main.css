@@ -113,26 +113,29 @@ margin:0px !important;}
     height:20rem
 }
 .report-map .leaflet-container{
-    height:30rem
+    height:80vh;
 }
 .geofence-map-pc .leaflet-container{
     height:80vh;
     direction: ltr;
 }
+
 .bg-icon{
     background: transparent !important;
     border: none !important;
 }
+
 .rmdp-week-day{
     font-size: 8px !important;
 }
+
 .rmdp-today .sd{
     background-color: #9F9F9F !important;
 }
+
 .MuiIconButton-root{
     padding:3px !important;
 }
-
 
 .leaflet-touch .leaflet-bar a {
     width: 38px !important;

@@ -3,10 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 import {
-  FormControl,
-  InputAdornment,
   Menu,
-  OutlinedInput,
   Pagination,
   Skeleton,
 } from "@mui/material";
@@ -104,6 +101,7 @@ function vehiclesAndEquipment() {
     });
     setOpenMoreInfo(false);
   };
+
   const handleOpenDelete = (id) => {
     setDeleteTargetId(id);
     setOpenDelete(true);
@@ -174,7 +172,7 @@ function vehiclesAndEquipment() {
           </div>
           <div className="">
             <button
-              className="flex bg-mainRed text-white items-center text- px-3 py-2 rounded-full md:rounded"
+              className="flex bg-mainPurple text-white items-center text- px-3 py-2 rounded-full md:rounded"
               onClick={handleOpenAddData}
             >
               <span className="hidden md:inline">ثبت وسایل و تجهیزات</span>
@@ -247,7 +245,7 @@ function vehiclesAndEquipment() {
                 </svg>
                 {filterItemCounter !== 0 && (
                   <div className="absolute md:top-1 md:right-2 top-1 right-1">
-                    <span className=" rounded-full bg-mainRed w-[1rem] h-[1rem] text-[0.49rem] flex  items-center justify-center text-center text-white">
+                    <span className=" rounded-full bg-mainPurple w-[1rem] h-[1rem] text-[0.49rem] flex  items-center justify-center text-center text-white">
                       {filterItemCounter}
                     </span>
                   </div>
@@ -465,7 +463,7 @@ function vehiclesAndEquipment() {
                                 <rect width="24" height="24" fill="white" />
                                 <path
                                   d="M9 9L15 15M15 9L9 15M7.8 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21Z"
-                                  stroke="#DB3746"
+                                  stroke="#4D51DF"
                                   stroke-width="1.5"
                                   stroke-linecap="round"
                                   stroke-linejoin="round"

@@ -43,6 +43,7 @@ function Geofence() {
             dispatch(setSelectedGeofence(temp));
         }
     };
+
     const handleSearchBox = (e) => {
         setSearchValue(e.target.value);
         let params = new URLSearchParams();
@@ -127,7 +128,6 @@ function Geofence() {
                                 </div>
                             </div>
                             <div className="mt-5">
-
                                 <div>
                                     <ul>
                                         {
@@ -242,8 +242,7 @@ function Geofence() {
                                             page={page}
                                             count={geofenceData.totalPages}
                                             onChange={handlePagination}
-                                            shape="rounded"
-                                        />
+                                            shape="rounded"/>
                                     </div>
                                 </div>
                             </div>

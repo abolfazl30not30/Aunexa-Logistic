@@ -895,7 +895,7 @@ export default function registerOrganization() {
                                     >
                                       <path
                                         d="M6 12L10 8L6 4"
-                                        stroke="#DB3746"
+                                        stroke="#4D51DF"
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                       />
@@ -927,14 +927,14 @@ export default function registerOrganization() {
                                         >
                                           <path
                                             d="M7 12H17"
-                                            stroke="#DB3746"
+                                            stroke="#4D51DF"
                                             stroke-width="2"
                                             stroke-linecap="round"
                                             stroke-linejoin="round"
                                           />
                                           <path
                                             d="M12 7V17"
-                                            stroke="#DB3746"
+                                            stroke="#4D51DF"
                                             stroke-width="2"
                                             stroke-linecap="round"
                                             stroke-linejoin="round"
