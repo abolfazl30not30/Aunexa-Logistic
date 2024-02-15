@@ -8,8 +8,17 @@ import {setMapStatus, setSelectedGeofence, setShapeColor} from "@/redux/geofence
 import DeleteDialog from "@/components/Dashboard/geofence/geographicArea/DeleteDialog";
 import List from "@mui/material/List";
 import {useGetAllTrackingMachineListQuery} from "@/redux/features/tracking/TrackingSlice";
+import AddNewGroupDialog from "@/components/Dashboard/geofence/geographicArea/AddNewGroupDialog";
 
 function Group() {
+    const [openAddData, setOpenAddData] = useState(false);
+    const handleOpenAddData = () => {
+        setOpenAddData(true);
+    };
+    const handleCloseAddData = () => {
+        setOpenAddData(false);
+    };
+
     const [searchValue, setSearchValue] = useState("");
     const [trackingMachineList, setTrackingMachineList] = useState([]);
     const [page, setPage] = useState(1);
@@ -66,10 +75,7 @@ function Group() {
         params.set("name", e.target.value);
         setFilterItem(params.toString());
     };
-    const handleNewGeofence = () => {
-        dispatch(setShapeColor("blue"))
-        dispatch(setMapStatus("draw"))
-    }
+
     const handlePagination = (event, value) => {
         setPage(value);
     };
@@ -88,7 +94,7 @@ function Group() {
                 <div>
                     <div className="flex gap-2 items-center">
                         <div>
-                            <button onClick={handleNewGeofence}
+                            <button onClick={handleOpenAddData}
                                     className="text-[0.9rem] bg-mainBg py-2 px-6 rounded hover:bg-neutral-200">
                                 جدید
                             </button>
@@ -276,6 +282,10 @@ function Group() {
                     </div>
                 </div>
             </div>
+            <AddNewGroupDialog
+                handleCloseAddData={handleCloseAddData}
+                openAddData={openAddData}
+            />
             <DeleteDialog
                 deleteTargetId={deleteTargetId}
                 openDelete={openDelete}

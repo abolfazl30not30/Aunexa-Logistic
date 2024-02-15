@@ -18,6 +18,7 @@ export default function registerOrganization() {
   const handleChangeIndividualList = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
   const [page, setPage] = useState(1);
   const handlePagination = (event, value) => {
     setPage(value);
@@ -166,8 +167,7 @@ export default function registerOrganization() {
 
                                   <div
                                     scope="row"
-                                    className="hidden sm:flex gap-2 px-6  justify-center text-gray70 whitespace-nowrap "
-                                  >
+                                    className="hidden sm:flex gap-2 px-6  justify-center text-gray70 whitespace-nowrap ">
                                     <button
                                       onClick={() => {
                                         handleChangeIndividualList(
@@ -413,8 +413,7 @@ export default function registerOrganization() {
                               <div className="bg-white flex justify-end px-2 pt-1">
                                 <button
                                   onClick={() => setShowPage("organ")}
-                                  className="flex justify-center border-mainRed border text-white items-center text- p-[0.3rem] rounded"
-                                >
+                                  className="flex justify-center border-mainRed border text-white items-center text- p-[0.3rem] rounded">
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"

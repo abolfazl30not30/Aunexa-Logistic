@@ -1,14 +1,24 @@
-import Image from "next/image";
+
 import React from "react";
+import {MovementStatus} from "@/components/Dashboard/mainDashbaord/MovementStatus";
+import {OnlineStatus} from "@/components/Dashboard/mainDashbaord/OnlineStatus";
+import {DisplacedVolume} from "@/components/Dashboard/mainDashbaord/DisplacedVolume";
+import {Mileage} from "@/components/Dashboard/mainDashbaord/Mileage";
 
 export default function Dashboard() {
     return (
         <>
-            <div className="hidden md:flex py-3 px-3 w-full h-screen">
-                <Image src="/mainDash.svg" alt="costumer" width={0}
-                       height={0}
-                       sizes="100vw"
-                       style={{width: '100%', height: 'auto'}}/>
+            <div className="flex justify-center items-center mt-10">
+                <div className="w-3/4 flex flex-col gap-10">
+                    <div className="flex gap-16 w-full">
+                            <DisplacedVolume/>
+                            <MovementStatus/>
+                            <OnlineStatus/>
+                    </div>
+                    <div>
+                        <Mileage/>
+                    </div>
+                </div>
             </div>
         </>
     )

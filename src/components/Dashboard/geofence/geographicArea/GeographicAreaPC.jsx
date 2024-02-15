@@ -36,8 +36,7 @@ function  GeographicAreaPC (){
                                     <button
                                         className={
                                             selected ? 'w-full bg-mainPurple text-white rounded-md px-7 py-2' : 'w-full bg-transparent text-black rounded-md px-7 py-2'
-                                        }
-                                    >
+                                        }>
                                         ژئوفنس
                                     </button>
                                 )}
@@ -47,8 +46,7 @@ function  GeographicAreaPC (){
                                     <button
                                         className={
                                             selected ? 'w-full bg-mainPurple text-white rounded-md px-7 py-2' : 'w-full bg-transparent text-black rounded-md px-7 py-2'
-                                        }
-                                    >
+                                        }>
                                         گروه
                                     </button>
                                 )}
