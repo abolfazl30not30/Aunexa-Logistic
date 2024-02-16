@@ -46,22 +46,29 @@ export default function DeleteDialog(props) {
                         </div>
                         <div className="flex justify-center mt-10 gap-4">
                             <div>
-                                <button onClick={deleteData}
-                                        className="px-6 py-2 text-[0.8rem] rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">حذف
-                                </button>
-                                <button disabled type="submit"
-                                        className="hidden flex gap-3 items-center justify-center w-full rounded-[0.5rem] py-3  border border-solid border-1 border-neutral-400 font-bold text-textGray bg-neutral-200">
-                                    <TailSpin
-                                        height="20"
-                                        width="20"
-                                        color="#4E4E4E"
-                                        ariaLabel="tail-spin-loading"
-                                        radius="1"
-                                        wrapperStyle={{}}
-                                        wrapperClass=""
-                                        visible={true}/>
-                                    حذف
-                                </button>
+                                {
+                                    isLoading ? (
+                                        <button disabled type="submit"
+                                                className="flex gap-3 text-[0.8rem] items-center justify-center w-full rounded-[0.5rem] py-3  border border-solid border-1 border-neutral-400 font-bold text-textGray bg-neutral-200">
+                                            <TailSpin
+                                                height="20"
+                                                width="20"
+                                                color="#4E4E4E"
+                                                ariaLabel="tail-spin-loading"
+                                                radius="1"
+                                                wrapperStyle={{}}
+                                                wrapperClass=""
+                                                visible={true}/>
+                                            حذف
+                                        </button>
+                                    ) : (
+                                        <button onClick={deleteData}
+                                                className="px-6 py-2 text-[0.8rem] rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold  bg-mainPurple text-white">حذف
+                                        </button>
+                                    )
+                                }
+
+
                             </div>
                             <div>
                                 <button onClick={props.handleCloseDelete} className="px-6 py-2 text-[0.8rem]  rounded-[0.5rem] py-3 hover:border hover:opacity-80 font-bold bg-neutral-400 text-white">بستن</button>

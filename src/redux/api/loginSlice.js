@@ -7,7 +7,7 @@ let base64encodedData = Buffer.from(
 ).toString("base64");
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://auth.aunexa.net",
+  baseUrl: "https://auth.prod.aunexa.net",
   prepareHeaders: (headers) => {
     headers.set("Authorization", "Basic " + base64encodedData);
     return headers;

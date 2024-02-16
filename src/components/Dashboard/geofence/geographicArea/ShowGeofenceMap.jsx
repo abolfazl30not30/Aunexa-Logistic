@@ -1,17 +1,11 @@
 'use client'
 
 import React, {useEffect, useRef, useState} from "react";
-import * as yup from "yup";
-import {useFormik} from "formik";
 import "react-multi-date-picker/styles/colors/red.css"
-import {useLazyGetAllSubOrganizationQuery,} from "@/redux/features/category/CategorySlice";
 import osm from "../../../../helper/osm-providers";
 import L from "leaflet";
 import {Circle, FeatureGroup, MapContainer, Polygon, TileLayer} from "react-leaflet";
-import {EditControl} from "react-leaflet-draw";
 import "leaflet-draw/dist/leaflet.draw.css";
-import {useGetAllGeofenceListQuery, useSaveGeofenceMutation} from "@/redux/features/geofence/GeofenceSlice";
-import {ConvertToNull} from "@/helper/ConvertToNull";
 import {FormControl} from "@mui/material";
 import {FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
 import Control from "react-leaflet-custom-control";
@@ -35,13 +29,10 @@ export default function DrawGeofenceMap(props) {
     const handleChangeSatelliteMode = (e) =>{
         setRadioValue(e.target.value)
     }
-    const {
-        data: geofenceList = [],
-        isLoading: isDataLoading,
-        isError: isDataError,
-    } = useGetAllGeofenceListQuery({ refetchOnMountOrArgChange: true });
 
     const selectedGeofence = useSelector((state)=> state.geofence.selectedGeofence)
+    const selectedGroup = useSelector((state)=> state.geofence.selectedGroup)
+
     const SatelliteMap = () =>{
         return<TileLayer
             url={ osm.googleSat.url}
@@ -107,6 +98,20 @@ export default function DrawGeofenceMap(props) {
                                 <Polygon pathOptions={{fillColor: geo.color,color:geo.color}} positions={changePolygonFormat(geo.points)}/>
                             )}
                         </>
+                    ))
+                }
+                {
+                    selectedGroup?.map((group)=>(
+                        group?.geoFenceIds?.map((geo)=>(
+                            <>
+                                {geo.fenceType === "CIRCLE" ? (
+                                    <Circle center={[geo.centerPoint.latitude, geo.centerPoint.longitude]} pathOptions={{fillColor: geo.color,color:geo.color}} radius={geo.radius}/>
+                                ):(
+                                    <Polygon pathOptions={{fillColor: geo.color,color:geo.color}} positions={changePolygonFormat(geo.points)}/>
+                                )}
+                            </>
+                        ))
+
                     ))
                 }
             </MapContainer>

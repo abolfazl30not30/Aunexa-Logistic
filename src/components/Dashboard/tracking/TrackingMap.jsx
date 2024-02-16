@@ -22,7 +22,7 @@ const RecenterAutomatically = ({lat,lng}) => {
 export default function TrackingMap(props) {
 
     const [center, setCenter] = useState([29.120738496597934,55.33779332882627]);
-    const [radioValue, setRadioValue] = useState("default")
+    const [radioValue, setRadioValue] = useState("satelliteMap")
 
     const handleChangeSatelliteMode = (e) =>{
         setRadioValue(e.target.value)

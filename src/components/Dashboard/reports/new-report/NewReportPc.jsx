@@ -179,14 +179,13 @@ function NewReportPc() {
                           method="POST">
                         <div className="flex flex-col justify-center gap-3 lg:w-[90%] w-[98%] ">
                             <div>
-                                <FormControl fullWidth>
+                                <FormControl size="small" fullWidth>
                                     <InputLabel id="demo-simple-select-label" sx={{
                                         fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189",
                                         fontSize: "0.8rem",
                                         color: "#9F9F9F"
                                     }}>تمپلیت جدید</InputLabel>
                                     <Select
-                                        size="small"
                                         // disabled={(formik.values.fromDate || formik.values.toDate) ? true : false }
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"

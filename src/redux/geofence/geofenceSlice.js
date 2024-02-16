@@ -3,8 +3,10 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const geofenceSlice = createSlice({
     name: 'geofence',
+
     initialState: {
         selectedGeofence:[],
+        selectedGroup:[],
         mapStatus:"show",
         fenceType: "",
         centerPoint: "",
@@ -16,6 +18,9 @@ const geofenceSlice = createSlice({
     reducers: {
         setSelectedGeofence: (state, action) => {
             state.selectedGeofence = action.payload
+        },
+        setSelectedGroup: (state, action) => {
+            state.selectedGroup = action.payload
         },
         setMapStatus: (state, action) => {
             state.mapStatus = action.payload
@@ -44,6 +49,6 @@ const geofenceSlice = createSlice({
     },
 })
 
-export const { setSelectedGeofence,setMapStatus,setShapeColor,setFenceType,setCenterPoint,setRadius,setPoints,resetStates } = geofenceSlice.actions
+export const { setSelectedGeofence,setSelectedGroup,setMapStatus,setShapeColor,setFenceType,setCenterPoint,setRadius,setPoints,resetStates } = geofenceSlice.actions
 export default geofenceSlice.reducer
 

@@ -8,7 +8,7 @@ export const CategorySlice = apiSlice.injectEndpoints({
     }),
 
     getAllMachine: builder.query({
-      query: () => "vehicle/machine/filter",
+      query: () => "golgohar/machine/filter",
       providesTags: ["category"],
     }),
     getAllUnit: builder.query({
@@ -16,11 +16,11 @@ export const CategorySlice = apiSlice.injectEndpoints({
       providesTags: ["category"],
     }),
     getAllVehicleCategory: builder.query({
-      query: () => "vehicle/category/find-all/machine",
+      query: () => "golgohar/category/find-all/machine",
       providesTags: ["category"],
     }),
     getAllVehicle: builder.query({
-      query: () => "vehicle/machine/find-all",
+      query: () => "golgohar/machine/find-all",
       providesTags: ["category"],
     }),
     getAllSubOrganization: builder.query({

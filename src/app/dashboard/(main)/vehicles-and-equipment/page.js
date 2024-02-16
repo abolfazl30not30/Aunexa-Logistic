@@ -167,7 +167,7 @@ function vehiclesAndEquipment() {
         <header className="flex justify-between items-center text-[0.9rem] bg-white py-6 px-5 md:px-10">
           <div className="">
             <h2 className="font-[800] text-[0.9rem] md:text-[1.1rem]">
-              وسایل و تجهیزات
+              وسایل نقليه
             </h2>
           </div>
           <div className="">
@@ -175,7 +175,7 @@ function vehiclesAndEquipment() {
               className="flex bg-mainPurple text-white items-center text- px-3 py-2 rounded-full md:rounded"
               onClick={handleOpenAddData}
             >
-              <span className="hidden md:inline">ثبت وسایل و تجهیزات</span>
+              <span className="hidden md:inline">ثبت وسيله نقليه</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -336,9 +336,9 @@ function vehiclesAndEquipment() {
                     <th className="hidden md:table-cell px-6 py-4">#</th>
                     <th className="px-2 md:px-6 py-4">نوع وسیله</th>
                     <th className="px-2 md:px-6 px-6 py-4">وضعیت GPS</th>
-                    <th className="px-2 md:px-6 px-6 py-4">تاریخ خرید</th>
+                    <th className="px-2 md:px-6 px-6 py-4">IMEI</th>
                     <th className="hidden md:table-cell px-6 py-4">
-                      شاخص عملکردی
+                      نوع GPS
                     </th>
                     <th className="px-2 md:px-6 px-6 py-4">
                       <span className="inline">وضعیت</span>
@@ -472,10 +472,10 @@ function vehiclesAndEquipment() {
                             )}
                           </td>
                           <td className="px-2 md:px-6 py-2  text-gray70 whitespace-nowrap ">
-                            {data?.purchaseDate ? data?.purchaseDate : "---"}
+                            {data?.imei ? data?.imei : "---"}
                           </td>
                           <td className="hidden md:table-cell px-6 py-4  text-gray70 whitespace-nowrap ">
-                            17
+                            {data?.gpsModel ? data?.gpsModel : "---"}
                           </td>
                           <td className="px-2 md:px-6 py-4  text-gray70 whitespace-nowrap ">
                             {data.status === "IN_USE" ? (

@@ -209,7 +209,12 @@ export default function AddDataDialog(props) {
             tag: "",
             code: "",
             hasGps:false,
+            gpsModel:"",
+            imei:"",
+            password:"",
             gpsURL: "",
+            phoneNumber1:"",
+            phoneNumber2:"",
             status:"",
             subOrganizationId:"",
             subOrganizationName:"",
@@ -222,8 +227,8 @@ export default function AddDataDialog(props) {
         validationSchema: schema,
 
         onSubmit: async (vehicle) => {
-            const updateVehicle = ConvertToNull(vehicle)
-            console.log(updateVehicle)
+            let updateVehicle = {...vehicle,phoneNumbers:[vehicle.phoneNumber1,vehicle.phoneNumber2]}
+            updateVehicle = ConvertToNull(updateVehicle)
             const userData = await submitData(updateVehicle)
             handleReset()
             props.handleCloseAddData()
@@ -259,48 +264,95 @@ export default function AddDataDialog(props) {
                         </div>
                         <form className="flex justify-center " onSubmit={formik.handleSubmit} method="POST">
                             <div className="flex flex-col justify-center w-[90%] gap-5">
-                                <div className=" flex flex-col">
-                                    <Autocomplete
-                                        open={openVehicleCategoryList}
-                                        onOpen={() => {
-                                            setOpenVehicleCategoryList(true);
-                                        }}
-                                        onClose={() => {
-                                            setOpenVehicleCategoryList(false);
-                                        }}
-                                        fullWidth
-                                        clearOnEscape
-                                        disablePortal
-                                        id="combo-box-demo"
-                                        ListboxProps={{
-                                            sx: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"},
-                                        }}
-                                        options={vehicleCategoryList}
-                                        getOptionLabel={(option) => option.name}
-                                        value={vehicleCategory}
-                                        onChange={(event, newValue) => {
-                                            
-                                            setVehicleCategory(newValue)
-                                            formik.setFieldValue("type", newValue?.name)
-                                        }}
-                                        renderInput={(params) =>
-                                            <TextField
-                                                error={formik.touched.type && Boolean(formik.errors.type)}
-                                                helperText={formik.touched.type && formik.errors.type}
-                                                {...params}
-                                                InputProps={{
-                                                    ...params.InputProps,
-                                                    style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"},
-                                                    endAdornment:(
-                                                        <React.Fragment>
-                                                            {isVehicleCategoryLoading ? <CircularProgress color="inherit" size={20} /> : null}
-                                                            {params.InputProps.endAdornment}
-                                                        </React.Fragment>
-                                                    )
+                                <div className="flex flex-col md:flex-row gap-2">
+                                    <div className="w-full md:w-1/2">
+                                        <Autocomplete
+                                            size="small"
+                                            open={openVehicleCategoryList}
+                                            onOpen={() => {
+                                                setOpenVehicleCategoryList(true);
                                             }}
-                                                placeholder="نوع وسیله"
-                                            />}
-                                    />
+                                            onClose={() => {
+                                                setOpenVehicleCategoryList(false);
+                                            }}
+                                            fullWidth
+                                            clearOnEscape
+                                            disablePortal
+                                            id="combo-box-demo"
+                                            ListboxProps={{
+                                                sx: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"},
+                                            }}
+                                            options={vehicleCategoryList}
+                                            getOptionLabel={(option) => option.name}
+                                            value={vehicleCategory}
+                                            onChange={(event, newValue) => {
+
+                                                setVehicleCategory(newValue)
+                                                formik.setFieldValue("type", newValue?.name)
+                                            }}
+                                            renderInput={(params) =>
+                                                <TextField
+                                                    error={formik.touched.type && Boolean(formik.errors.type)}
+                                                    helperText={formik.touched.type && formik.errors.type}
+                                                    {...params}
+                                                    InputProps={{
+                                                        ...params.InputProps,
+                                                        style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"},
+                                                        endAdornment:(
+                                                            <React.Fragment>
+                                                                {isVehicleCategoryLoading ? <CircularProgress color="inherit" size={20} /> : null}
+                                                                {params.InputProps.endAdornment}
+                                                            </React.Fragment>
+                                                        )
+                                                    }}
+                                                    placeholder="نوع وسیله"
+                                                />}
+                                        />
+                                    </div>
+                                    <div className="w-full md:w-1/2">
+                                        <Autocomplete
+                                            size="small"
+                                            open={openSubOrganizationList}
+                                            onOpen={() => {
+                                                setOpenSubOrganizationList(true);
+                                            }}
+                                            onClose={() => {
+                                                setOpenSubOrganizationList(false);
+                                            }}
+                                            fullWidth
+                                            clearOnEscape
+                                            disablePortal
+                                            id="combo-box-demo"
+                                            ListboxProps={{
+                                                sx: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"},
+                                            }}
+                                            options={subOrganizationList}
+                                            getOptionLabel={(option) => option.name}
+                                            value={subOrganization}
+                                            onChange={(event, newValue) => {
+                                                setSubOrganization(newValue)
+                                                formik.setFieldValue("subOrganizationId", newValue?.id)
+                                                formik.setFieldValue("subOrganizationName", newValue?.name)
+                                            }}
+                                            renderInput={(params) =>
+                                                <TextField
+                                                    error={formik.touched.subOrganizationId && Boolean(formik.errors.subOrganizationId)}
+                                                    helperText={formik.touched.subOrganizationId && formik.errors.subOrganizationId}
+                                                    {...params}
+                                                    InputProps={{
+                                                        ...params.InputProps,
+                                                        style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"},
+                                                        endAdornment:(
+                                                            <React.Fragment>
+                                                                {isSubOrganizationLoading ? <CircularProgress color="inherit" size={20} /> : null}
+                                                                {params.InputProps.endAdornment}
+                                                            </React.Fragment>
+                                                        )
+                                                    }}
+                                                    placeholder="ناوگان"
+                                                />}
+                                        />
+                                    </div>
                                 </div>
                                 <div>
                                     <div className="flex flex-col md:flex-row">
@@ -353,7 +405,6 @@ export default function AddDataDialog(props) {
                                         </div>
                                         <div className="w-full md:w-[47%]">
                                             <TextField
-                                                
                                                 fullWidth
                                                 placeholder="کد وسیله نقلیه(اجباری)"
                                                 type="text"
@@ -376,80 +427,7 @@ export default function AddDataDialog(props) {
                                         }
                                     </div>
                                 </div>
-                                <div>
-                                    <div className="flex flex-col">
-                                        <div className="flex w-full">
-                                            <div className="border border-[#D9D9D9] py-4 w-1/2 px-3">
-                                                <span className="text-[#9F9F9F] text-[0.8rem]">آیا داری GPS می باشد؟</span>
-                                            </div>
-                                            <div className="border border-[#D9D9D9] py-4 w-1/2">
-                                                <div className="flex justify-center gap-2">
-                                                    <span className="text-[#9F9F9F] text-[0.8rem]">خیر</span>
-                                                    <AntSwitch checked={formik.values.hasGps} onChange={(e)=>{formik.setFieldValue("hasGps", e.target.checked)}}  inputProps={{ 'aria-label': 'ant design' }} />
-                                                    <span className="text-[#9F9F9F] text-[0.8rem]">بله</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <TextField
-                                        disabled={!formik.values.hasGps}
-                                        fullWidth
-                                        placeholder="API جی پی اس"
-                                        type="text"
-                                        name="gpsURL"
-                                        value={formik.values.gpsURL}
-                                        onChange={formik.handleChange}
-                                        error={formik.touched.gpsURL && Boolean(formik.errors.gpsURL)}
-                                        helperText={formik.touched.gpsURL && formik.errors.gpsURL}
-                                        inputProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}}
-                                        InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>
-                                </div>
-                                <div className=" flex flex-col">
-                                    <Autocomplete
-                                        open={openSubOrganizationList}
-                                        onOpen={() => {
-                                            setOpenSubOrganizationList(true);
-                                        }}
-                                        onClose={() => {
-                                            setOpenSubOrganizationList(false);
-                                        }}
-                                        fullWidth
-                                        clearOnEscape
-                                        disablePortal
-                                        id="combo-box-demo"
-                                        ListboxProps={{
-                                            sx: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"},
-                                        }}
-                                        options={subOrganizationList}
-                                        getOptionLabel={(option) => option.name}
-                                        value={subOrganization}
-                                        onChange={(event, newValue) => {
-                                            setSubOrganization(newValue)
-                                            formik.setFieldValue("subOrganizationId", newValue?.id)
-                                            formik.setFieldValue("subOrganizationName", newValue?.name)
-                                        }}
-                                        renderInput={(params) =>
-                                            <TextField
-                                                error={formik.touched.subOrganizationId && Boolean(formik.errors.subOrganizationId)}
-                                                helperText={formik.touched.subOrganizationId && formik.errors.subOrganizationId}
-                                                {...params}
-                                                InputProps={{
-                                                    ...params.InputProps,
-                                                    style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"},
-                                                    endAdornment:(
-                                                        <React.Fragment>
-                                                            {isSubOrganizationLoading ? <CircularProgress color="inherit" size={20} /> : null}
-                                                            {params.InputProps.endAdornment}
-                                                        </React.Fragment>
-                                                    )
-                                                }}
-                                                placeholder="گروه"
-                                            />}
-                                    />
-                                </div>
-                                <FormControl fullWidth error={formik.touched.status && Boolean(formik.errors.status)}>
+                                <FormControl size="small" fullWidth error={formik.touched.status && Boolean(formik.errors.status)}>
                                     <InputLabel id="demo-simple-select-label" sx={{fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem",color:"#9F9F9F"}}>وضعیت</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label"
@@ -468,53 +446,175 @@ export default function AddDataDialog(props) {
                                     <FormHelperText>{formik.touched.status && formik.errors.status}</FormHelperText>
                                 </FormControl>
                                 <div>
-                                    <DatePicker
-                                        calendarPosition={`bottom`}
-                                        className="red"
-                                        digits={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']}
-                                        format={`YYYY/MM/DD`}
-                                        containerStyle={{
-                                            width: "100%"
-                                        }}
-                                        placeholder="تاریخ خرید (اختیاری)"
-                                        inputClass={`border border-[#D9D9D9] placeholder-neutral-300 text-gray-900 text-[0.8rem] rounded focus:ring-[#3B82F67F] focus:border-[#3B82F67F] block w-full px-3 py-4`}
-                                        value={date}
-                                        onChange={(value) => {
-                                            handleDateInput(value)
-                                        }}
-                                        mapDays={({date}) => {
-                                            let props = {}
-                                            let isWeekend = [6].includes(date.weekDay.index)
-
-                                            if (isWeekend)
-                                                props.className = "highlight highlight-red";
-
-                                            return props
-                                        }}
-
-                                        weekDays={
-                                            [
-                                                ["شنبه", "Sat"],
-                                                ["یکشنبه", "Sun"],
-                                                ["دوشنبه", "Mon"],
-                                                ["سه شنبه", "Tue"],
-                                                ["چهارشنبه", "Wed"],
-                                                ["پنجشنبه", "Thu"],
-                                                ["جمعه", "Fri"],
-                                            ]
-                                        }
-
-                                        calendar={persian}
-                                        locale={persian_fa}>
-                                        <button className="px-2 pb-4" onClick={(e) => {
-                                            e.preventDefault()
-                                            setDate("")
-                                            formik.setFieldValue("purchaseDate", "")
-                                        }}>
-                                            ریست
-                                        </button>
-                                    </DatePicker>
+                                    <div className="flex flex-col">
+                                        <div className="flex w-full">
+                                            <div className="border border-[#D9D9D9] py-1 w-1/2 px-3">
+                                                <span className="text-[#9F9F9F] text-[0.8rem]">آیا داری GPS می باشد؟</span>
+                                            </div>
+                                            <div className="border border-[#D9D9D9] py-2 w-1/2">
+                                                <div className="flex justify-center gap-2">
+                                                    <span className="text-[#9F9F9F] text-[0.8rem]">خیر</span>
+                                                    <AntSwitch checked={formik.values.hasGps} onChange={(e)=>{formik.setFieldValue("hasGps", e.target.checked)}}  inputProps={{ 'aria-label': 'ant design' }} />
+                                                    <span className="text-[#9F9F9F] text-[0.8rem]">بله</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div className={formik.values.hasGps ? "flex flex-col gap-2 "  : "hidden"}>
+                                    <div className="flex flex-col md:flex-row gap-2">
+                                        <div className="w-full md:w-1/2">
+                                            <FormControl  size="small" fullWidth error={formik.touched.gpsModel && Boolean(formik.errors.gpsModel)}>
+                                                <InputLabel id="demo-simple-select-label" sx={{fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem",color:"#9F9F9F"}}>مدل GPS</InputLabel>
+                                                <Select
+                                                    disabled={!formik.values.hasGps}
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    defaultValue={formik.values.gpsModel}
+                                                    value={formik.values.gpsModel}
+                                                    name="gpsModel"
+                                                    input={<OutlinedInput sx={{fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}} label="مدل GPS" />}
+                                                    sx={{fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}
+                                                    onChange={formik.handleChange}>
+                                                    <MenuItem value="" sx={{fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}>هيچكدام</MenuItem>
+                                                    <MenuItem value="Teltonika FMB120" sx={{fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}>Teltonika FMB120</MenuItem>
+                                                </Select>
+                                                <FormHelperText>{formik.touched.gpsModel && formik.errors.gpsModel}</FormHelperText>
+                                            </FormControl>
+                                        </div>
+                                        <div className="w-full md:w-1/2">
+                                            <div>
+                                                <TextField
+                                                    size="small"
+                                                    disabled={!formik.values.hasGps}
+                                                    fullWidth
+                                                    placeholder="IMEI"
+                                                    type="text"
+                                                    name="imei"
+                                                    value={formik.values.imei}
+                                                    onChange={formik.handleChange}
+                                                    error={formik.touched.imei && Boolean(formik.errors.imei)}
+                                                    helperText={formik.touched.imei && formik.errors.imei}
+                                                    inputProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}}
+                                                    InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-col md:flex-row gap-2">
+                                        <div className='w-full md:w-1/2'>
+                                            <TextField
+                                                size="small"
+                                                disabled={!formik.values.hasGps}
+                                                fullWidth
+                                                placeholder="آدرس سرور"
+                                                type="text"
+                                                name="gpsURL"
+                                                value={formik.values.gpsURL}
+                                                onChange={formik.handleChange}
+                                                error={formik.touched.gpsURL && Boolean(formik.errors.gpsURL)}
+                                                helperText={formik.touched.gpsURL && formik.errors.gpsURL}
+                                                inputProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}}
+                                                InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>
+                                        </div>
+                                        <div className='w-full md:w-1/2'>
+                                            <TextField
+                                                size="small"
+                                                disabled={!formik.values.hasGps}
+                                                fullWidth
+                                                placeholder="پسورد سرور"
+                                                type="text"
+                                                name="password"
+                                                value={formik.values.password}
+                                                onChange={formik.handleChange}
+                                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                                helperText={formik.touched.password && formik.errors.password}
+                                                inputProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}}
+                                                InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-col md:flex-row gap-2">
+                                        <div className='w-full md:w-1/2'>
+                                            <TextField
+                                                size="small"
+                                                disabled={!formik.values.hasGps}
+                                                fullWidth
+                                                placeholder="شماره‌همراه اول"
+                                                type="text"
+                                                name="phoneNumber1"
+                                                value={formik.values.phoneNumber1}
+                                                onChange={formik.handleChange}
+                                                error={formik.touched.phoneNumber1 && Boolean(formik.errors.phoneNumber1)}
+                                                helperText={formik.touched.phoneNumber1 && formik.errors.phoneNumber1}
+                                                inputProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}}
+                                                InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>
+                                        </div>
+                                        <div className='w-full md:w-1/2'>
+                                            <TextField
+                                                size="small"
+                                                disabled={!formik.values.hasGps}
+                                                fullWidth
+                                                placeholder="شماره‌همراه دوم"
+                                                type="text"
+                                                name="phoneNumber2"
+                                                value={formik.values.phoneNumber2}
+                                                onChange={formik.handleChange}
+                                                error={formik.touched.phoneNumber2 && Boolean(formik.errors.phoneNumber2)}
+                                                helperText={formik.touched.phoneNumber2 && formik.errors.phoneNumber2}
+                                                inputProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189", fontSize: "0.8rem"}}}
+                                                InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/*<div>*/}
+                                {/*    <DatePicker*/}
+                                {/*        calendarPosition={`bottom`}*/}
+                                {/*        className="red"*/}
+                                {/*        digits={['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']}*/}
+                                {/*        format={`YYYY/MM/DD`}*/}
+                                {/*        containerStyle={{*/}
+                                {/*            width: "100%"*/}
+                                {/*        }}*/}
+                                {/*        placeholder="تاریخ خرید (اختیاری)"*/}
+                                {/*        inputClass={`border border-[#D9D9D9] placeholder-neutral-300 text-gray-900 text-[0.8rem] rounded focus:ring-[#3B82F67F] focus:border-[#3B82F67F] block w-full px-3 py-4`}*/}
+                                {/*        value={date}*/}
+                                {/*        onChange={(value) => {*/}
+                                {/*            handleDateInput(value)*/}
+                                {/*        }}*/}
+                                {/*        mapDays={({date}) => {*/}
+                                {/*            let props = {}*/}
+                                {/*            let isWeekend = [6].includes(date.weekDay.index)*/}
+
+                                {/*            if (isWeekend)*/}
+                                {/*                props.className = "highlight highlight-red";*/}
+
+                                {/*            return props*/}
+                                {/*        }}*/}
+
+                                {/*        weekDays={*/}
+                                {/*            [*/}
+                                {/*                ["شنبه", "Sat"],*/}
+                                {/*                ["یکشنبه", "Sun"],*/}
+                                {/*                ["دوشنبه", "Mon"],*/}
+                                {/*                ["سه شنبه", "Tue"],*/}
+                                {/*                ["چهارشنبه", "Wed"],*/}
+                                {/*                ["پنجشنبه", "Thu"],*/}
+                                {/*                ["جمعه", "Fri"],*/}
+                                {/*            ]*/}
+                                {/*        }*/}
+
+                                {/*        calendar={persian}*/}
+                                {/*        locale={persian_fa}>*/}
+                                {/*        <button className="px-2 pb-4" onClick={(e) => {*/}
+                                {/*            e.preventDefault()*/}
+                                {/*            setDate("")*/}
+                                {/*            formik.setFieldValue("purchaseDate", "")*/}
+                                {/*        }}>*/}
+                                {/*            ریست*/}
+                                {/*        </button>*/}
+                                {/*    </DatePicker>*/}
+                                {/*</div>*/}
                                 <div>
                                     {
                                         isSubmitLoading ? (<button disabled type="submit"

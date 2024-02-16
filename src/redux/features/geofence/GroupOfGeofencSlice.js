@@ -34,7 +34,7 @@ export const GroupOfGeofenceSlice = apiSlice.injectEndpoints({
         }),
         deleteGroup: builder.mutation({
             query: (id) => ({
-                url: `golgohar/geofence-grou/${id}`,
+                url: `golgohar/geofence-group/${id}`,
                 method: "DELETE",
                 body: id,
             }),
