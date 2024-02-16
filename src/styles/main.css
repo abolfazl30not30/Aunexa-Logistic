@@ -160,3 +160,6 @@ margin:0px !important;}
 .leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-edit {
     background-position: -145px 2px !important;
 }
+.geofence-in-group:last-child{
+    border: none;
+}

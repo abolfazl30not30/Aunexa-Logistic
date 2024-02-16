@@ -12,6 +12,8 @@ import { useGetAllGeofenceQuery } from "@/redux/features/geofence/GeofenceSlice"
 
 import NewReportPc from "@/components/Dashboard/reports/new-report/NewReportPc";
 import NewReportMobile from "@/components/Dashboard/reports/new-report/NewReportMobile";
+import GeographicAreaPC from "@/components/Dashboard/geofence/geographicArea/GeographicAreaPC";
+import GeographicAreaMobile from "@/components/Dashboard/geofence/geographicArea/GeographicAreaMobile";
 // const AddDataDialog = dynamic(
 //   () =>
 //     import(
@@ -200,7 +202,15 @@ function NewReport() {
   // }, [filterItem]);
 
   return (
-    <>{window.innerWidth >= 724 ? <NewReportPc /> : <NewReportMobile />}</>
+
+    <>
+      <div className="hidden md:block">
+        <NewReportPc />
+      </div>
+      <div className="block md:hidden">
+        <NewReportMobile />
+      </div>
+    </>
   );
 }
 

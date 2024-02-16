@@ -15,6 +15,5 @@ export const TrackingSlice = apiSlice.injectEndpoints({
 
 export const {
     useGetAllTrackingMachineListQuery,
-
 } = TrackingSlice;
 

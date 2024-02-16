@@ -4,7 +4,7 @@ export const GeofenceSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAllGeofence: builder.query({
             query: ({ page, sort, filterItem }) => ({
-                url: `vehicle/geo-fence/filter?page=${
+                url: `golgohar/geo-fence/filter?page=${
                     page - 1
                 }&size=10&sort=date,${sort}&sort=time,${sort}&${filterItem}`,
             }),
@@ -12,13 +12,13 @@ export const GeofenceSlice = apiSlice.injectEndpoints({
         }),
         getAllGeofenceList: builder.query({
             query: () => ({
-                url: `vehicle/geo-fence/find-all`,
+                url: `golgohar/geo-fence/find-all`,
             }),
             providesTags: ["geofence"],
         }),
         saveGeofence: builder.mutation({
             query: (body) => ({
-                url: "vehicle/geo-fence",
+                url: "golgohar/geo-fence",
                 method: "POST",
                 body: body,
             }),
@@ -26,7 +26,7 @@ export const GeofenceSlice = apiSlice.injectEndpoints({
         }),
         updateGeofence: builder.mutation({
             query: (body) => ({
-                url: `vehicle/geo-fence`,
+                url: `golgohar/geo-fence`,
                 method: "PUT",
                 body: body,
             }),
@@ -34,7 +34,7 @@ export const GeofenceSlice = apiSlice.injectEndpoints({
         }),
         deleteGeofence: builder.mutation({
             query: (id) => ({
-                url: `vehicle/geo-fence/${id}`,
+                url: `golgohar/geo-fence/${id}`,
                 method: "DELETE",
                 body: id,
             }),

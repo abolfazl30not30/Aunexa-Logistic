@@ -63,7 +63,8 @@ export const apiSlice = createApi({
     "category",
     "vehicle-machine",
     "product",
-     "geofence"
+     "geofence",
+      "geofenceGroup",
   ],
   endpoints: (builder) => ({}),
 });

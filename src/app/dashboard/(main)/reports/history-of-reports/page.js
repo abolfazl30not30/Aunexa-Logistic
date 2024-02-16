@@ -14,9 +14,7 @@ import {
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { boolean } from "yup";
-import FixFailureDialog from "@/components/Panel/failure-and-repair-report/FixFailureDialog";
 import FilterDialog from "@/components/Dashboard/reports/history-of-reports/FilterDialog";
-import MoreInfoDialog from "@/components/Panel/history-of-reports/MoreInfoDialog";
 import { useGetAllHistoryOfReportQuery } from "@/redux/features/new-reports/HistoryOfReportSlice";
 import ShowDemo from "@/components/Dashboard/reports/history-of-reports/ShowDemo";
 
@@ -445,11 +443,6 @@ function vehiclesAndEquipment() {
           handleCloseFilter={handleCloseFilter}
         />
         <ShowDemo openDemo={openDemo} handleCloseDemo={handleCloseDemo} />
-        <MoreInfoDialog
-          moreInfoTarget={moreInfoTarget}
-          openMoreInfo={openMoreInfo}
-          handleCloseMoreInfo={handleCloseMoreInfo}
-        />
       </div>
     </>
   );

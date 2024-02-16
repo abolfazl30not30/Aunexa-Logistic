@@ -33,22 +33,22 @@ function  GeographicAreaPC (){
                         <Tab.List className="m-2 flex justify-center border border-1 border-[#BBCDCD] rounded">
                             <Tab className="w-1/2 m-1">
                                 {({ selected }) => (
-                                    <button
+                                    <div
                                         className={
                                             selected ? 'w-full bg-mainPurple text-white rounded-md px-7 py-2' : 'w-full bg-transparent text-black rounded-md px-7 py-2'
                                         }>
                                         ژئوفنس
-                                    </button>
+                                    </div>
                                 )}
                             </Tab>
                             <Tab className="w-1/2 m-1">
                                 {({ selected }) => (
-                                    <button
+                                    <div
                                         className={
                                             selected ? 'w-full bg-mainPurple text-white rounded-md px-7 py-2' : 'w-full bg-transparent text-black rounded-md px-7 py-2'
                                         }>
                                         گروه
-                                    </button>
+                                    </div>
                                 )}
                             </Tab>
                         </Tab.List>
