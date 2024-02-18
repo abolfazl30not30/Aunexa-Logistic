@@ -49,7 +49,7 @@ export default function TrackingMap(props) {
     return(
         <>
             <div className="report-map">
-                <MapContainer center={[props.trackingData?.latitude,props.trackingData?.longitude]} zoom={ZOOM_LEVEL} >
+                <MapContainer key={new Date().getTime()} center={[props.trackingData?.latitude,props.trackingData?.longitude]} zoom={ZOOM_LEVEL} >
                     {
                        radioValue === "satelliteMap"  ? (
                             <SatelliteMap/>
@@ -58,37 +58,45 @@ export default function TrackingMap(props) {
                         )
                     }
 
-                    <Marker position={[props.trackingData?.latitude,props.trackingData?.longitude]} icon={ iconCar }>
-                        <Popup>
-                            <div>
-                                <div className="flex">
-                                    <div className="ml-1">
-                                        شماره پلاک:
+                    {
+                        props.trackingMachineList?.length > 0 && (
+                            <Marker position={[props.trackingData?.latitude,props.trackingData?.longitude]} icon={ iconCar }>
+                                <Popup>
+                                    <div>
+                                        <div className="flex">
+                                            <div className="ml-1">
+                                                شماره پلاک:
+                                            </div>
+                                            <div className="text-bold">
+                                                40- 475 ق 53
+                                            </div>
+                                        </div>
+                                        <div className="flex">
+                                            <div className="ml-1">
+                                                سرعت:
+                                            </div>
+                                            <div className="text-bold">
+                                                {props.trackingData?.speed}
+                                            </div>
+                                        </div>
+                                        <div className="flex">
+                                            <div className="ml-1">
+                                                ساعت:
+                                            </div>
+                                            <div className="text-bold">
+                                                {props.trackingData?.timestamp}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="text-bold">
-                                        40- 475 ق 53
-                                    </div>
-                                </div>
-                                <div className="flex">
-                                    <div className="ml-1">
-                                        سرعت:
-                                    </div>
-                                    <div className="text-bold">
-                                        {props.trackingData?.speed}
-                                    </div>
-                                </div>
-                                <div className="flex">
-                                    <div className="ml-1">
-                                        ساعت:
-                                    </div>
-                                    <div className="text-bold">
-                                        {props.trackingData?.timestamp}
-                                    </div>
-                                </div>
-                            </div>
-                        </Popup>
-                    </Marker>
-                    <RecenterAutomatically lat={props.trackingData?.latitude} lng={props.trackingData?.longitude}/>
+                                </Popup>
+                            </Marker>
+                        )
+                    }
+                    {
+                        props.trackingMachineList?.length > 0 && (
+                            <RecenterAutomatically lat={props.trackingData?.latitude} lng={props.trackingData?.longitude}/>
+                        )
+                    }
                     <AllGeofences/>
                     <Control position={'bottomleft'}>
                         <div>

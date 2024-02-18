@@ -314,7 +314,7 @@ export default function AddDataDialog(props) {
                                         InputLabelProps={{style: {fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189"}}}/>
                                 </div>
                                 <div className="geofence-map" >
-                                    <MapContainer center={center} zoom={ZOOM_LEVEL} >
+                                    <MapContainer key={new Date().getTime()} center={center} zoom={ZOOM_LEVEL} >
                                         <FeatureGroup ref={edit}>
                                             <EditControl
                                                 position="topright"

@@ -1,11 +1,11 @@
 'use client'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import dynamic from "next/dynamic";
 import {Tab} from '@headlessui/react'
-import {useGetAllTrackingMachineListQuery} from "@/redux/features/tracking/TrackingSlice";
+import {useGetAllTrackingMachineListQuery, useLazyGetLastPositionQuery} from "@/redux/features/tracking/TrackingSlice";
 import Checkbox from "@mui/material/Checkbox";
 import List from "@mui/material/List";
-import {useGetAllVehicleCategoryQuery} from "@/redux/features/category/CategorySlice";
+import {useGetAllVehicleCategoryQuery, useLazyGetAllVehicleQuery} from "@/redux/features/category/CategorySlice";
 import {FormControl, InputAdornment, OutlinedInput} from "@material-ui/core";
 import {useSubscription} from "react-stomp-hooks";
 
@@ -81,6 +81,22 @@ function TrackingPc() {
             setTrackingMachineList(updateList)
         }
     }
+
+    const [getLastPosition,{ data : lastPosition  = [] , isLoading : isLastPositionLoading, isError: lastPositionIsError }] =   useLazyGetLastPositionQuery()
+
+    const getPosition = async () =>{
+        let lastDate = await getLastPosition()
+        if(lastDate.data){
+            setTrackingData(lastDate.data)
+        }
+
+    }
+
+    useEffect(()=>{
+        getPosition()
+    },[])
+
+
 
     const [trackingData, setTrackingData] = useState({
         altitude: 1226,
@@ -185,8 +201,7 @@ function TrackingPc() {
                                                     <details className="group py-1">
                                                         <summary
                                                             className="flex items-center justify-between gap-2 font-medium marker:content-none hover:cursor-pointer px-2">
-                                                            <div className="flex items-center py-1 gap-2">
-                                                                <div className="text-gray70 whitespace-nowrap ">
+                                                            <div className="text-gray70 flex items-center py-1 gap-2">
                                                                     <Checkbox
                                                                         id={item?.machines[0]?.id}
                                                                         checked={item.machines?.every((data) => trackingMachineList?.some((machine) => machine.id === data.id))}
@@ -198,11 +213,8 @@ function TrackingPc() {
                                                                             height: 10
                                                                         }}
                                                                         inputProps={{"aria-label": "controlled"}}/>
-                                                                </div>
-                                                                <div>
-                                                                    <label
+                                                                    <label htmlFor={item?.machines[0]?.id}
                                                                            className="text-textGray  text-[0.9rem] text-sm">{item?.subOrganizationName}</label>
-                                                                </div>
                                                             </div>
                                                             <svg
                                                                 className="transition group-open:rotate-90"
@@ -222,8 +234,7 @@ function TrackingPc() {
                                                         <ul className="flex flex-col px-5">
                                                             {item.machines?.map((machine, index) => (
                                                                 <li className="flex gap-3 items-center px-2 py-2 ">
-                                                                    <div className="gap-3 flex items-center">
-                                                                        <div className="text-gray70 whitespace-nowrap ">
+                                                                    <div className="text-gray70 gap-3 flex items-center">
                                                                             <Checkbox
                                                                                 id={machine.id}
                                                                                 checked={trackingMachineList.some(
@@ -237,11 +248,8 @@ function TrackingPc() {
                                                                                     height: 10
                                                                                 }}
                                                                                 inputProps={{"aria-label": "controlled"}}/>
-                                                                        </div>
-                                                                        <div>
                                                                             <label htmlFor={machine.id}
                                                                                    className="text-sm text-gray70 whitespace-nowrap ">{machine?.type}</label>
-                                                                        </div>
                                                                     </div>
                                                                     <div>
                                                                         <span className="text-sm">
@@ -291,7 +299,7 @@ function TrackingPc() {
                     </Tab.Group>
                 </div>
                 <div className="m-5  w-[70%]">
-                    <TrackingMap trackingData={trackingData}/>
+                    <TrackingMap trackingMachineList={trackingMachineList} trackingData={trackingData}/>
                 </div>
             </div>
         </>

@@ -142,7 +142,7 @@ function NewReportPc() {
     const [getLocations, {isLoading: isGetLocationsLoading}] = useGetAllGPSPointMutation()
 
     const schema = yup.object().shape({
-        // machineId: yup.string().required("لطفا متحرک را انتخاب کنید"),
+        machineId: yup.string().required("لطفا متحرک را انتخاب کنید"),
     });
 
     const formik = useFormik({
@@ -166,7 +166,7 @@ function NewReportPc() {
             //
             // let paramsGPS = handleURLSearchParamsForGPS(updateProduct)
             // setFilterItemForGps(paramsGPS.toString())
-            const location = await getLocations(updateProduct)
+            const location = await getLocations({...updateProduct,dateTo:updateProduct.toDate,dateFrom:updateProduct.fromDate,timeTo:updateProduct.toTime,timeFrom:updateProduct.fromTime})
             setLocations(location.data)
 
             const report = await getReports(updateProduct)

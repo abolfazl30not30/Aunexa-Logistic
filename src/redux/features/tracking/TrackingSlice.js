@@ -8,12 +8,18 @@ export const TrackingSlice = apiSlice.injectEndpoints({
             }),
             providesTags: ["tracking"],
         }),
-
+        getLastPosition: builder.query({
+            query: () => ({
+                url: `golgohar/gps/last-position`,
+            }),
+            providesTags: ["tracking"],
+        }),
 
     }),
 });
 
 export const {
     useGetAllTrackingMachineListQuery,
+    useLazyGetLastPositionQuery
 } = TrackingSlice;
 

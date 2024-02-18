@@ -133,7 +133,7 @@ export default function MoreInfoDialog(props) {
                                 }
 
                                 <div className="geofence-map mt-2">
-                                    <MapContainer center={center} zoom={ZOOM_LEVEL}>
+                                    <MapContainer key={new Date().getTime()} center={center} zoom={ZOOM_LEVEL}>
                                         <TileLayer
                                             url={osm.maptiler.url}
                                             attribution={osm.maptiler.attribution}/>
@@ -173,7 +173,7 @@ export default function MoreInfoDialog(props) {
                                     )
                                 }
                                 <div className="geofence-map mt-2">
-                                    <MapContainer center={center} zoom={ZOOM_LEVEL}>
+                                    <MapContainer key={new Date().getTime()} center={center} zoom={ZOOM_LEVEL}>
                                         <TileLayer
                                             url={osm.maptiler.url}
                                             attribution={osm.maptiler.attribution}/>

@@ -5,7 +5,7 @@ export const NewReportsSlice = apiSlice.injectEndpoints({
 
     getAllNewReports: builder.mutation({
       query: ( body ) => ({
-        url: `golgohar/report/filter`,
+        url: `golgohar/report/filter?page=0&size=50`,
         method: "POST",
         body: body,
       }),

@@ -92,7 +92,7 @@ export default function DrawGeofenceMap(props) {
     return (
         <>
             <div className="geofence-map-pc">
-            <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
+            <MapContainer key={new Date().getTime()} center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
                 {
                     radioValue === "satelliteMap" ? (
                         <SatelliteMap/>
