@@ -1,21 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
-import {
-    FormControl,
-    InputAdornment,
-    Menu,
-    OutlinedInput,
-    Pagination,
-    Skeleton,
-} from "@mui/material";
-
-import Link from "next/link";
-import { useSelector } from "react-redux";
-import { boolean } from "yup";
+import {Menu, Pagination, Skeleton,} from "@mui/material";
+import {useSelector} from "react-redux";
 import FilterDialog from "@/components/Dashboard/reports/history-of-reports/FilterDialog";
-import { useGetAllHistoryOfReportQuery } from "@/redux/features/new-reports/HistoryOfReportSlice";
+import {useGetAllHistoryOfReportQuery} from "@/redux/features/new-reports/HistoryOfReportSlice";
 import ShowDemo from "@/components/Dashboard/reports/history-of-reports/ShowDemo";
 
 function vehiclesAndEquipment() {
@@ -119,8 +109,8 @@ function vehiclesAndEquipment() {
         isLoading: isDataLoading,
         isError: isDataError,
     } = useGetAllHistoryOfReportQuery(
-        { page, sort, filterItem },
-        { refetchOnMountOrArgChange: true }
+        {page, sort, filterItem},
+        {refetchOnMountOrArgChange: true}
     );
     // isPrimaryStoreInputReadAll
     //     :
@@ -168,7 +158,8 @@ function vehiclesAndEquipment() {
                                 </svg>
                                 {filterItemCounter !== 0 && (
                                     <div className="absolute md:top-1 md:right-2 top-1 right-1">
-                    <span className=" rounded-full bg-mainPurple w-[1rem] h-[1rem] text-[0.49rem] flex  items-center justify-center text-center text-white">
+                    <span
+                        className=" rounded-full bg-mainPurple w-[1rem] h-[1rem] text-[0.49rem] flex  items-center justify-center text-center text-white">
                       {filterItemCounter}
                     </span>
                                     </div>
@@ -221,8 +212,8 @@ function vehiclesAndEquipment() {
                                             },
                                         },
                                     }}
-                                    transformOrigin={{ horizontal: "left", vertical: "top" }}
-                                    anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+                                    transformOrigin={{horizontal: "left", vertical: "top"}}
+                                    anchorOrigin={{horizontal: "left", vertical: "bottom"}}
                                 >
                                     <div className="px-2 py-2">
                                         <div>
@@ -252,11 +243,12 @@ function vehiclesAndEquipment() {
                     </div>
                     <div className="mt-10">
                         <div className="overflow-x-auto">
-                            <table className=" w-full table-auto overflow-scroll border-collapse border-spacing-0 text-sm text-center text-gray70  ">
+                            <table
+                                className=" w-full table-auto overflow-scroll border-collapse border-spacing-0 text-sm text-center text-gray70  ">
                                 <thead className="text-[0.9rem] text-gray80  bg-[#F8F8F8] md:bg-[#F2EDED] ">
                                 <tr>
                                     <th className="hidden md:table-cell px-6 py-4">#</th>
-                                    <th className="px-2 md:px-6 py-4">وسیله / گروه / نوع</th>
+                                    <th className="px-2 md:px-6 py-4">وسیله نقلیه</th>
 
                                     <th className="px-2 md:px-6 px-6 py-4"> تاریخ ثبت گزارش</th>
 
@@ -273,25 +265,25 @@ function vehiclesAndEquipment() {
                                             <td className="hidden md:table-cell px-6 py-4  text-gray70 whitespace-nowrap ">
                                                 <Skeleton
                                                     variant="text"
-                                                    sx={{ fontSize: "1rem" }}
+                                                    sx={{fontSize: "1rem"}}
                                                 />
                                             </td>
                                             <td className="px-2 md:px-6 py-4  text-gray70 whitespace-nowrap ">
                                                 <Skeleton
                                                     variant="text"
-                                                    sx={{ fontSize: "1rem" }}
+                                                    sx={{fontSize: "1rem"}}
                                                 />
                                             </td>
                                             <td className="px-2 md:px-6 py-4  text-gray70 whitespace-nowrap ">
                                                 <Skeleton
                                                     variant="text"
-                                                    sx={{ fontSize: "1rem" }}
+                                                    sx={{fontSize: "1rem"}}
                                                 />
                                             </td>
                                             <td className="px-2 md:px-6 py-2  text-gray70 whitespace-nowrap ">
                                                 <Skeleton
                                                     variant="text"
-                                                    sx={{ fontSize: "1rem" }}
+                                                    sx={{fontSize: "1rem"}}
                                                 />
                                             </td>
 
@@ -317,32 +309,28 @@ function vehiclesAndEquipment() {
                                             <td className="hidden md:table-cell px-6 py-4  text-gray70 whitespace-nowrap ">
                                                 {index + 1}
                                             </td>
-                                            {data?.machine ? (
-                                                <td className="px-2 md:px-6 py-4  text-gray70 whitespace-nowrap ">
-                                                    <div>{data?.type}</div>
-                                                    <div className="mt-1 text-gray9F text-[0.75rem]">
-                                                        {data?.tag === null
-                                                            ? data?.machine?.code
-                                                            : data?.machine?.tag?.slice(2, 5) +
-                                                            "-" +
-                                                            data?.machine?.tag?.slice(5, 7) +
-                                                            " " +
-                                                            data?.machine?.tag?.slice(7, 8) +
-                                                            " " +
-                                                            data?.machine?.tag?.slice(0, 2)}
-                                                    </div>
-                                                </td>
-                                            ) : data?.type ? (
-                                                <td className="px-2 md:px-6 py-4  text-gray70 whitespace-nowrap ">
-                                                    <span>نوع :</span>
-                                                    <span>{data?.type} </span>
-                                                </td>
-                                            ) : data?.subOrganizationName ? (
-                                                <td className="px-2 md:px-6 py-4  text-gray70 whitespace-nowrap ">
-                                                    <span>گروه :</span>
-                                                    <span>{data?.subOrganizationName} </span>
-                                                </td>
-                                            ) : null}
+                                            <td className="px-2 md:px-6 py-4  text-gray70 whitespace-nowrap ">
+                                                {
+                                                    data?.machine?.tag || data?.machine?.code ? (
+                                                        <div>
+                                                            <div>{data?.machine?.type}</div>
+                                                            <div className="mt-1 text-gray9F text-[0.75rem]">
+                                                                {data?.machine?.tag === null
+                                                                    ? data?.machine?.code
+                                                                    : data?.machine?.tag?.slice(2, 5) +
+                                                                    "-" +
+                                                                    data?.machine?.tag?.slice(5, 7) +
+                                                                    " " +
+                                                                    data?.machine?.tag?.slice(7, 8) +
+                                                                    " " +
+                                                                    data?.machine?.tag?.slice(0, 2)}
+                                                            </div>
+                                                        </div>
+                                                    ):(
+                                                        "-----"
+                                                    )
+                                                }
+                                            </td>
                                             <td className="px-2 md:px-6 py-4 flex justify-center  text-gray70 whitespace-nowrap ">
                                                 {data?.date}
                                             </td>
@@ -426,7 +414,7 @@ function vehiclesAndEquipment() {
                     </div>
                     <div
                         className="flex justify-center mb-5 mt-7"
-                        style={{ direction: "rtl" }}
+                        style={{direction: "rtl"}}
                     >
                         <Pagination
                             page={page}
@@ -442,7 +430,7 @@ function vehiclesAndEquipment() {
                     openFilter={openFilter}
                     handleCloseFilter={handleCloseFilter}
                 />
-                <ShowDemo openDemo={openDemo} handleCloseDemo={handleCloseDemo} />
+                <ShowDemo openDemo={openDemo} handleCloseDemo={handleCloseDemo}/>
             </div>
         </>
     );

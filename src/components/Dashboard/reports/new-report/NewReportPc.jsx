@@ -92,7 +92,7 @@ function NewReportPc() {
     const [reportData,setReportData] = useState([])
     const [locations,setLocations] = useState([])
 
-    const [template, setTemplate] = useState()
+    const [template, setTemplate] = useState("")
 
     const [vehicle, setVehicle] = useState(null)
     const [openVehicleList, setOpenVehicleList] = useState(false)
@@ -169,14 +169,13 @@ function NewReportPc() {
             const location = await getLocations(updateProduct)
             setLocations(location.data)
 
+            const report = await getReports(updateProduct)
+            setReportData(report.data)
+
             updateProduct = ConvertToNull(updateProduct)
             const userData = await submitData(updateProduct)
 
 
-
-            const report = await getReports(updateProduct)
-            setReportData(report.data)
-            console.log(location)
         },
     });
 
@@ -189,7 +188,8 @@ function NewReportPc() {
     const [submitData, {isLoading: isSubmitLoading}] = useSaveNewReportsMutation()
 
 
-    const handleReset = () => {
+    const handleReset = (e) => {
+        e.preventDefault()
         formik.resetForm()
         setFromDate()
         setToDate()
@@ -245,6 +245,7 @@ function NewReportPc() {
                                                     labelId="demo-simple-select-label"
                                                     id="demo-simple-select"
                                                     value={template}
+                                                    onChange={(e)=>setTemplate(e.target.value)}
                                                     name="template"
                                                     input={<OutlinedInput sx={{
                                                         fontFamily: "__fonts_2f4189,__fonts_Fallback_2f4189",
@@ -485,7 +486,7 @@ function NewReportPc() {
                                         <div className='flex justify-end gap-3'>
                                             <div>
                                                 {
-                                                    isSubmitLoading ? (<button disabled type="submit" className="flex  items-center justify-center py-1 px-7 rounded-[0.5rem]   border border-solid border-1 border-neutral-400  text-textGray bg-neutral-200">
+                                                    isSubmitLoading || isGetLocationsLoading || isGetReportsLoading ? (<button disabled type="submit" className="flex  items-center justify-center py-1 px-7 rounded-[0.5rem]   border border-solid border-1 border-neutral-400  text-textGray bg-neutral-200">
                                                         <TailSpin
                                                             height="20"
                                                             width="20"
@@ -505,6 +506,7 @@ function NewReportPc() {
                                             </div>
                                             <div>
                                                 <button
+                                                    type='button'
                                                     onClick={handleReset}
                                                     className="rounded-[0.5rem] py-1 px-7 hover:border hover:opacity-80 bg-[#D9D9D9] text-[#797979]">
                                                     لغو
