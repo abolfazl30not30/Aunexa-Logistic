@@ -35,28 +35,6 @@ export default function ReportMap(props) {
             speed: 8,
             timestamp: "1402/10/15 16:13:11"
         },
-        {
-            altitude: 1226,
-            angle: 292,
-            id: "6597fe44d4eb903333925d93",
-            imei: "350424065730184",
-            latitude: 29.120738496597934,
-            longitude: 55.33779332882627,
-            satellites: 12,
-            speed: 8,
-            timestamp: "1402/10/15 16:13:11"
-        },
-        {
-            altitude: 1226,
-            angle: 292,
-            id: "6597fe44d4eb903333925d93",
-            imei: "350424065730184",
-            latitude: 29.120838496597934,
-            longitude: 55.33209332882627,
-            satellites: 12,
-            speed: 8,
-            timestamp: "1402/10/15 16:13:11"
-        }
     ]
 
     const [locationArray, setLocationArray] = useState([]);
@@ -68,7 +46,7 @@ export default function ReportMap(props) {
     }
 
     useEffect(() => {
-        if(props.locations?.length){
+        if(props.locations?.length !== 0){
             let updateArray = []
             for (let loc of props.locations){
                 const newLoc = [loc.latitude,loc.longitude]
@@ -77,8 +55,10 @@ export default function ReportMap(props) {
             setLocationArray(updateArray)
             setLocations(props.locations)
             setCenter([props.locations[props.locations.length - 1].latitude,props.locations[props.locations.length - 1].longitude])
+        }else {
+            setLocationArray([])
+            setLocations([])
         }
-
     }, [props.locations]);
 
     const SatelliteMap = () =>{

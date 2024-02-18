@@ -21,7 +21,10 @@ import {useSaveNewReportsMutation} from "@/redux/features/new-reports/HistoryOfR
 import {TailSpin} from "react-loader-spinner";
 import {useLazyGetAllVehicleQuery} from "@/redux/features/category/CategorySlice";
 import {Autocomplete, Skeleton,} from "@mui/material";
-import {useGetAllGPSPointQuery, useGetAllNewReportsQuery,} from "@/redux/features/new-reports/NewReportsSlice";
+import {
+    useGetAllGPSPointMutation,
+    useGetAllNewReportsMutation,
+} from "@/redux/features/new-reports/NewReportsSlice";
 import HistroyOfReport from "@/components/Dashboard/reports/history-of-reports/HistroyOfReport";
 
 const ReportMap = dynamic(
@@ -31,6 +34,7 @@ const ReportMap = dynamic(
             ),
     {ssr: false}
 );
+
 function NewReportPc() {
 
     const [reportHistory,setReportHistory] = useState(false)
@@ -52,8 +56,8 @@ function NewReportPc() {
         if(values.type){
             params.set("type",values.type)
         }
-        if(values.step){
-            params.set("step",values.step)
+        if(values.timeStep){
+            params.set("timeStep",values.timeStep)
         } if(values.fromTime){
             params.set("fromTime",values.fromTime)
         }
@@ -77,30 +81,16 @@ function NewReportPc() {
         if(values.toTime){
             params.set("timeTo",values.toTime)
         }
+        if(values.timeStep){
+            params.set("timeStep",values.timeStep)}
         return params
     }
 
     const [skipFetch, setSkipFetch] = useState(true)
     const [filterItem, setFilterItem] = useState("");
     const [filterItemForGps, setFilterItemForGps] = useState("");
-
-    const {
-        data: inventoryData = [],
-        isLoading: isDataLoading,
-        isError: isDataError,
-    } = useGetAllNewReportsQuery(
-        {filterItem},
-        {skip: skipFetch, refetchOnMountOrArgChange: true}
-    );
-
-    const {
-        data: locations = [],
-        isLoading: isLocationsLoading,
-        isError: isLocationsError,
-    } = useGetAllGPSPointQuery(
-        {filterItemForGps},
-        {skip: skipFetch, refetchOnMountOrArgChange: true}
-    );
+    const [reportData,setReportData] = useState([])
+    const [locations,setLocations] = useState([])
 
     const [template, setTemplate] = useState()
 
@@ -126,7 +116,7 @@ function NewReportPc() {
             setFromDate(value)
             let date = new DateObject(value)
             formik.setFieldValue("fromDate", date.format("YYYY/MM/DD"))
-            formik.setFieldValue("fromTime",date.format("hh:mm:ss"))
+            formik.setFieldValue("fromTime",date.format("HH:MM:SS"))
         } else {
             setFromDate("")
             formik.setFieldValue("fromDate", "")
@@ -140,7 +130,7 @@ function NewReportPc() {
             setToDate(value)
             let date = new DateObject(value)
             formik.setFieldValue("toDate", date.format("YYYY/MM/DD"))
-            formik.setFieldValue("toTime",date.format("hh:mm:ss"))
+            formik.setFieldValue("toTime",date.format("HH:MM:SS"))
         } else {
             setToDate("")
             formik.setFieldValue("toDate", "")
@@ -148,8 +138,13 @@ function NewReportPc() {
         }
     }
 
+    const [getReports, {isLoading: isGetReportsLoading}] = useGetAllNewReportsMutation()
+    const [getLocations, {isLoading: isGetLocationsLoading}] = useGetAllGPSPointMutation()
 
-    const schema = yup.object().shape({});
+    const schema = yup.object().shape({
+        // machineId: yup.string().required("لطفا متحرک را انتخاب کنید"),
+    });
+
     const formik = useFormik({
         initialValues: {
             fromDate: "",
@@ -163,19 +158,25 @@ function NewReportPc() {
         validationSchema: schema,
 
         onSubmit: async (product, helpers) => {
-            let updateProduct = {
-                ...product
-            }
+            let updateProduct = {...product}
 
-            setSkipFetch(false)
-            let params = handleURLSearchParams(updateProduct)
-            setFilterItem(params.toString())
-
-            let paramsGPS = handleURLSearchParamsForGPS(updateProduct)
-            setFilterItemForGps(paramsGPS.toString())
+            // setSkipFetch(false)
+            // let params = handleURLSearchParams(updateProduct)
+            // setFilterItem(params.toString())
+            //
+            // let paramsGPS = handleURLSearchParamsForGPS(updateProduct)
+            // setFilterItemForGps(paramsGPS.toString())
+            const location = await getLocations(updateProduct)
+            setLocations(location.data)
 
             updateProduct = ConvertToNull(updateProduct)
             const userData = await submitData(updateProduct)
+
+
+
+            const report = await getReports(updateProduct)
+            setReportData(report.data)
+            console.log(location)
         },
     });
 
@@ -185,7 +186,8 @@ function NewReportPc() {
         formik.setFieldValue("timeStep",newValue)
     };
 
-    const [submitData, {isLoading: isSubmitLoading, error}] = useSaveNewReportsMutation()
+    const [submitData, {isLoading: isSubmitLoading}] = useSaveNewReportsMutation()
+
 
     const handleReset = () => {
         formik.resetForm()
@@ -193,9 +195,12 @@ function NewReportPc() {
         setToDate()
         setStep()
         setTemplate("")
+        setReportData([])
+        setLocations([])
     }
 
     const mapStatus = useSelector((state) => state.geofence.mapStatus)
+
     return (
         <>
             <div className="flex">
@@ -550,7 +555,7 @@ function NewReportPc() {
                                         </tr>
                                         </thead>
                                         <tbody className="table-body">
-                                        {isDataLoading
+                                        {isGetReportsLoading
                                             ? [...Array(8)].map(() => (
                                                 <tr className="border-b">
                                                     <td className="hidden md:table-cell px-6 py-4  text-gray70 whitespace-nowrap ">
@@ -577,9 +582,9 @@ function NewReportPc() {
 
                                                 </tr>
                                             ))
-                                            : inventoryData?.content?.map((data, index) => (
+                                            : reportData?.content?.map((data, index) => (
                                                 <tr
-                                                    onClick={() => {handleOpenMoreInfoRow(data);}}
+                                                    // onClick={() => {handleOpenMoreInfoRow(data);}}
                                                     className="table-row border-b">
                                                     <td className="hidden md:table-cell px-6 py-4  text-gray70 whitespace-nowrap ">
                                                         {index + 1}

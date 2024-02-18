@@ -207,9 +207,9 @@ function NewReport() {
       <div className="hidden md:block">
         <NewReportPc />
       </div>
-      <div className="block md:hidden">
-        <NewReportMobile />
-      </div>
+      {/*<div className="block md:hidden">*/}
+      {/*  <NewReportMobile />*/}
+      {/*</div>*/}
     </>
   );
 }

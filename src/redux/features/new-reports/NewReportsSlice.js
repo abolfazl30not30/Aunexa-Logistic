@@ -2,21 +2,27 @@ import { apiSlice } from "@/redux/api/apiSlice";
 
 export const NewReportsSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAllNewReports: builder.query({
-      query: ({ page, sort, filterItem }) => ({
-        url: `golgohar/report/filter?page=${page - 1}&size=10&${filterItem}`,
+
+    getAllNewReports: builder.mutation({
+      query: ( body ) => ({
+        url: `golgohar/report/filter`,
+        method: "POST",
+        body: body,
       }),
-      providesTags: ["new-reports"],
+      invalidatesTags: ["new-reports"],
     }),
 
-    getAllGPSPoint: builder.query({
-      query: ({ filterItemForGps }) => ({
-        url: `golgohar/gps/find-all/filter?${filterItemForGps}`,
+    getAllGPSPoint: builder.mutation({
+      query: (body) => ({
+        url: `golgohar/gps/find-all/filter`,
+        method: "POST",
+        body: body,
       }),
-      providesTags: ["new-reports"],
+      invalidatesTags: ["new-reports"],
     }),
+
 
   }),
 });
 
-export const { useGetAllNewReportsQuery, useGetAllGPSPointQuery } = NewReportsSlice;
+export const { useGetAllNewReportsMutation, useGetAllGPSPointMutation } = NewReportsSlice;
