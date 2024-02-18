@@ -30,7 +30,7 @@ export default function Entrance() {
                     </h3>
                 </div>
                 <div>
-                <a href={`https://auth.prod.aunexa.net/oauth2/authorize?response_type=code&client_id=client1&scope=openid&redirect_uri=http://localhost:3000/redirect&code_challenge=${codeChallenge}&code_challenge_method=S256`}  className="block text-center w-full rounded-[0.5rem] py-3 bg-mainPurple text-white font-bold text-mainRed hover:opacity-80 ">ورود
+                <a href={`https://auth.prod.aunexa.net/oauth2/authorize?response_type=code&client_id=client1&scope=openid&redirect_uri=https://golgohar.aunexa.net/redirect&code_challenge=${codeChallenge}&code_challenge_method=S256`}  className="block text-center w-full rounded-[0.5rem] py-3 bg-mainPurple text-white font-bold text-mainRed hover:opacity-80 ">ورود
                     </a>
                 </div>
             </div>
