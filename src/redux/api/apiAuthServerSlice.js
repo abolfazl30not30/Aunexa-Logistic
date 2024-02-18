@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://auth.aunexa.net/",
+  baseUrl: "https://auth.prod.aunexa.net/",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.accessToken;
     if (token) {
@@ -26,7 +26,7 @@ const login = async () => {
     grant_type: "refresh_token",
   };
 
-  return await axios.post("https://auth.aunexa.net/oauth2/token", formData, {
+  return await axios.post("https://auth.prod.aunexa.net/oauth2/token", formData, {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: "Basic " + base64encodedData,
