@@ -27,7 +27,7 @@ function vehiclesAndEquipment() {
     params.set(e.target.value, "");
     setFilterItem(params.toString());
     setSearchValue("");
-  };a
+  };
 
   const handleSearchBox = (e) => {
     setSearchValue(e.target.value);

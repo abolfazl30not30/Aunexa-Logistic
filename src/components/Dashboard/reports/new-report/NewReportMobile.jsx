@@ -5,10 +5,7 @@ import {
   Pagination,
   Skeleton,
 } from "@mui/material";
-import {
-  useGetAllGPSPointQuery,
-  useGetAllNewReportsQuery,
-} from "@/redux/features/new-reports/NewReportsSlice";
+
 const AddDataDialog = dynamic(
     () =>
         import(
@@ -188,7 +185,6 @@ export default function NewReportMobile() {
   const handleCloseAddData = () => {
     setOpenAddData(false);
   };
-
 
   return (
     <div>

@@ -11,7 +11,6 @@ import dynamic from "next/dynamic";
 import { useGetAllGeofenceQuery } from "@/redux/features/geofence/GeofenceSlice";
 
 import NewReportPc from "@/components/Dashboard/reports/new-report/NewReportPc";
-import NewReportMobile from "@/components/Dashboard/reports/new-report/NewReportMobile";
 import GeographicAreaPC from "@/components/Dashboard/geofence/geographicArea/GeographicAreaPC";
 import GeographicAreaMobile from "@/components/Dashboard/geofence/geographicArea/GeographicAreaMobile";
 // const AddDataDialog = dynamic(
