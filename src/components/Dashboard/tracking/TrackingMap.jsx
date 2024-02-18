@@ -46,7 +46,6 @@ export default function TrackingMap(props) {
 
     }
 
-
     return(
         <>
             <div className="report-map">
@@ -58,6 +57,7 @@ export default function TrackingMap(props) {
                             <DefaultMap/>
                         )
                     }
+
                     <Marker position={[props.trackingData?.latitude,props.trackingData?.longitude]} icon={ iconCar }>
                         <Popup>
                             <div>

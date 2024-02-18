@@ -20,8 +20,7 @@ export default function redirect() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [login, { isLoading: isLoadingLogin, error: errorLogin }] =
-    useLoginMutation();
+  const [login, { isLoading: isLoadingLogin, error: errorLogin }] = useLoginMutation();
 
   const code = searchParams.get("code");
 

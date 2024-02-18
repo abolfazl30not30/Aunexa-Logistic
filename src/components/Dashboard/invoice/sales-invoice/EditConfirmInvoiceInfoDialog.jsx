@@ -9,7 +9,7 @@ import Dialog from "@mui/material/Dialog";
 import {TailSpin} from "react-loader-spinner";
 import * as yup from "yup";
 import {useFormik} from "formik";
-import "react-multi-date-picker/styles/colors/red.css"
+
 import { useRejectSalesInvoiceMutation } from "@/redux/features/invoice/sales-invoice/SalesInvoiceSlice";
 
 export default function EditConfirmInvoiceInfoDialog(props) {

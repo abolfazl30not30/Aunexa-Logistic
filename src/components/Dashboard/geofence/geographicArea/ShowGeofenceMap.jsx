@@ -1,15 +1,16 @@
 'use client'
 
 import React, {useEffect, useRef, useState} from "react";
-import "react-multi-date-picker/styles/colors/red.css"
+
 import osm from "../../../../helper/osm-providers";
 import L from "leaflet";
-import {Circle, FeatureGroup, MapContainer, Polygon, TileLayer} from "react-leaflet";
+import {Circle, FeatureGroup, MapContainer, Polygon, TileLayer, useMap} from "react-leaflet";
 import "leaflet-draw/dist/leaflet.draw.css";
 import {FormControl} from "@mui/material";
 import {FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
 import Control from "react-leaflet-custom-control";
 import {useSelector} from "react-redux";
+import {ChangePolygonFormat} from "@/helper/ChangePolygonFormat";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -23,12 +24,47 @@ L.Icon.Default.mergeOptions({
 });
 
 
+
+const RecenterAutomatically = ({selectedGeofence,selectedGroup}) => {
+    const map = useMap();
+    useEffect(() => {
+        if(selectedGroup.length > 0){
+            let bounds = []
+            for(let group of selectedGroup){
+                for(let geo of group.geoFenceIds){
+                    let polygon =ChangePolygonFormat(geo.points)
+                    bounds = [...bounds,polygon]
+                }
+            }
+            console.log(bounds)
+            map.fitBounds(bounds)
+        }
+
+        if(selectedGeofence.length > 0){
+            let bounds = []
+            for(let geo of selectedGeofence){
+                let polygon =ChangePolygonFormat(geo.points)
+                bounds = [...bounds,polygon]
+            }
+            console.log(bounds)
+            map.fitBounds(bounds)
+        }
+
+    }, [selectedGeofence, selectedGroup]);
+    return null;
+}
+
 export default function DrawGeofenceMap(props) {
+    let edit = useRef();
+    let mapRef = useRef();
+
+
     const [center, setCenter] = useState([29.120738496597934, 55.33779332882627]);
     const [radioValue, setRadioValue] = useState("satelliteMap")
     const handleChangeSatelliteMode = (e) =>{
         setRadioValue(e.target.value)
     }
+
 
     const selectedGeofence = useSelector((state)=> state.geofence.selectedGeofence)
     const selectedGroup = useSelector((state)=> state.geofence.selectedGroup)
@@ -49,24 +85,14 @@ export default function DrawGeofenceMap(props) {
 
     }
 
-    let edit = useRef();
-
     const ZOOM_LEVEL = 14;
 
-    const changePolygonFormat = (pointArray) => {
-        let points = []
-        for (let location of pointArray) {
-            let loc = []
-            loc = [location.latitude, location.longitude]
-            points.push(loc)
-        }
-        return points
-    }
+
 
     return (
         <>
             <div className="geofence-map-pc">
-            <MapContainer center={center} zoom={ZOOM_LEVEL}>
+            <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
                 {
                     radioValue === "satelliteMap" ? (
                         <SatelliteMap/>
@@ -74,6 +100,7 @@ export default function DrawGeofenceMap(props) {
                         <DefaultMap/>
                     )
                 }
+                <RecenterAutomatically selectedGroup={selectedGroup} selectedGeofence={selectedGeofence}/>
                 <Control position={'bottomleft'}>
                     <div>
                         <FormControl>
@@ -95,7 +122,7 @@ export default function DrawGeofenceMap(props) {
                             {geo.fenceType === "CIRCLE" ? (
                                 <Circle center={[geo.centerPoint.latitude, geo.centerPoint.longitude]} pathOptions={{fillColor: geo.color,color:geo.color}} radius={geo.radius}/>
                             ):(
-                                <Polygon pathOptions={{fillColor: geo.color,color:geo.color}} positions={changePolygonFormat(geo.points)}/>
+                                <Polygon pathOptions={{fillColor: geo.color,color:geo.color}} positions={ChangePolygonFormat(geo.points)}/>
                             )}
                         </>
                     ))
@@ -107,7 +134,7 @@ export default function DrawGeofenceMap(props) {
                                 {geo.fenceType === "CIRCLE" ? (
                                     <Circle center={[geo.centerPoint.latitude, geo.centerPoint.longitude]} pathOptions={{fillColor: geo.color,color:geo.color}} radius={geo.radius}/>
                                 ):(
-                                    <Polygon pathOptions={{fillColor: geo.color,color:geo.color}} positions={changePolygonFormat(geo.points)}/>
+                                    <Polygon pathOptions={{fillColor: geo.color,color:geo.color}} positions={ChangePolygonFormat(geo.points)}/>
                                 )}
                             </>
                         ))

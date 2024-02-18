@@ -5,7 +5,9 @@ import { Tab } from '@headlessui/react'
 import Geofence from "@/components/Dashboard/geofence/geographicArea/Geofence";
 import Group from "@/components/Dashboard/geofence/geographicArea/Group";
 import DeleteDialog from "@/components/Dashboard/geofence/geographicArea/DeleteDialog";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setSelectedGeofence} from "@/redux/geofence/geofenceSlice";
+
 const DrawGeofenceMap = dynamic(
     () =>
         import(
@@ -13,17 +15,23 @@ const DrawGeofenceMap = dynamic(
             ),
     { ssr: false }
 );
-const ShowGeofenceMap = dynamic(
 
+const ShowGeofenceMap = dynamic(
     () =>
         import(
             "./ShowGeofenceMap"
             ),
     { ssr: false }
 );
+
 function  GeographicAreaPC (){
 
     const mapStatus = useSelector((state)=> state.geofence.mapStatus)
+    const dispatch = useDispatch();
+
+    const handleResetGeofence = () =>{
+        dispatch(setSelectedGeofence([]))
+    }
 
     return(
         <>
@@ -31,17 +39,15 @@ function  GeographicAreaPC (){
                 <div className="bg-white w-[30%] p-4 h-screen">
                     <Tab.Group>
                         <Tab.List className="m-2 flex justify-center border border-1 border-[#BBCDCD] rounded">
-                            <Tab className="w-1/2 m-1">
+                            <Tab className="w-1/2 m-1" onClick={handleResetGeofence}>
                                 {({ selected }) => (
                                     <div
-                                        className={
-                                            selected ? 'w-full bg-mainPurple text-white rounded-md px-7 py-2' : 'w-full bg-transparent text-black rounded-md px-7 py-2'
-                                        }>
+                                        className={selected ? 'w-full bg-mainPurple text-white rounded-md px-7 py-2' : 'w-full bg-transparent text-black rounded-md px-7 py-2'}>
                                         ژئوفنس
                                     </div>
                                 )}
                             </Tab>
-                            <Tab className="w-1/2 m-1">
+                            <Tab className="w-1/2 m-1" onClick={handleResetGeofence}>
                                 {({ selected }) => (
                                     <div
                                         className={

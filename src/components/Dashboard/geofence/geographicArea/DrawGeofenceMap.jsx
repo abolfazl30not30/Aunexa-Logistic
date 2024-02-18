@@ -3,7 +3,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import * as yup from "yup";
 import {useFormik} from "formik";
-import "react-multi-date-picker/styles/colors/red.css"
+
 import {useLazyGetAllSubOrganizationQuery,} from "@/redux/features/category/CategorySlice";
 import osm from "../../../../helper/osm-providers";
 import L from "leaflet";

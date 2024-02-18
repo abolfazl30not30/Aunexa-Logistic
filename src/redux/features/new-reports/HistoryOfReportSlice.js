@@ -4,7 +4,7 @@ export const HistoryOfReportSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllHistoryOfReport: builder.query({
       query: ({ page, sort, filterItem }) => ({
-        url: `vehicle/report-history/filter?page=${
+        url: `golgohar/report-history/filter?page=${
           page - 1
         }&size=10&sort=date,${sort}&sort=time,${sort}&${filterItem}`,
       }),
@@ -13,7 +13,7 @@ export const HistoryOfReportSlice = apiSlice.injectEndpoints({
 
     saveNewReports: builder.mutation({
       query: (body) => ({
-        url: "vehicle/report-history",
+        url: "golgohar/report-history",
         method: "POST",
         body: body,
       }),

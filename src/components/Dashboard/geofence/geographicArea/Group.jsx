@@ -8,8 +8,29 @@ import AddNewGroupDialog from "@/components/Dashboard/geofence/geographicArea/Ad
 import {useGetAllGroupQuery} from "@/redux/features/geofence/GroupOfGeofencSlice";
 import DeleteGroupDialog from "@/components/Dashboard/geofence/geographicArea/DeleteGroupDialog";
 import {setSelectedGroup} from "@/redux/geofence/geofenceSlice";
+import EditGroupDialog from "@/components/Dashboard/geofence/geographicArea/EditGroupDialog";
 
 function Group() {
+    const [openEditInfo, setOpenEditInfo] = useState(false);
+    const [editInfoTarget, setEditInfoTarget] = useState({
+        groupName: "",
+        description: "",
+        geoFenceIds:[],
+    });
+
+    const handleOpenEditInfo = (info) => {
+        setEditInfoTarget(info);
+        setOpenEditInfo(true);
+    };
+
+    const handleCloseEditInfo = () => {
+        setEditInfoTarget({
+            groupName: "",
+            description: "",
+            geoFenceIds:[],
+        });
+        setOpenEditInfo(false);
+    };
 
     const selectedGroup = useSelector((state) => state.geofence.selectedGroup)
 
@@ -182,7 +203,7 @@ function Group() {
                                                                className="text-textGray  text-[0.9rem] text-sm">{item?.groupName}</label>
                                                     </div>
                                                     <div className='flex items-center'>
-                                                        <button className="rounded-full hover:bg-neutral-100 p-2">
+                                                        <button className="rounded-full hover:bg-neutral-100 p-2" onClick={()=>{handleOpenEditInfo(item)}}>
                                                             <svg width="21" height="22" viewBox="0 0 15 16"
                                                                  fill="none"
                                                                  xmlns="http://www.w3.org/2000/svg">
@@ -290,6 +311,11 @@ function Group() {
             <AddNewGroupDialog
                 handleCloseAddData={handleCloseAddData}
                 openAddData={openAddData}
+            />
+            <EditGroupDialog
+                editInfoTarget={editInfoTarget}
+                handleCloseEditInfo={handleCloseEditInfo}
+                openEditInfo={openEditInfo}
             />
         </>
     )

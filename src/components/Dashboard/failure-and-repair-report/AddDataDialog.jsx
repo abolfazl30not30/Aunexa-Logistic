@@ -20,7 +20,7 @@ import {TailSpin} from "react-loader-spinner";
 import * as yup from "yup";
 import {useFormik} from "formik";
 import CircularProgress from '@mui/material/CircularProgress';
-import "react-multi-date-picker/styles/colors/red.css"
+
 import { useSaveFailureVehiclesMutation } from "@/redux/features/failure-and-repair-report/FailureAndRepairReportSlice";
 import {   useLazyGetAllVehicleQuery} from "@/redux/features/category/CategorySlice";
 export default function AddDataDialog(props) {

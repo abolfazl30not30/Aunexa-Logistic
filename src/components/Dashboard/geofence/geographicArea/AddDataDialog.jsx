@@ -12,7 +12,7 @@ import {TailSpin} from "react-loader-spinner";
 import * as yup from "yup";
 import {useFormik} from "formik";
 import CircularProgress from '@mui/material/CircularProgress';
-import "react-multi-date-picker/styles/colors/red.css"
+
 import {useLazyGetAllSubOrganizationQuery,} from "@/redux/features/category/CategorySlice";
 import {useSavePurchaseRequestMutation} from "@/redux/features/purchase-request/PurchaseRequestSlice";
 import { PersianToEnglish } from "@/helper/PersianToEnglish";

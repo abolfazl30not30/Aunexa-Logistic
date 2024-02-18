@@ -31,19 +31,57 @@ const ReportMap = dynamic(
     {ssr: false}
 );
 
-// const ShowGeofenceMap = dynamic(
-
-//     () =>
-//         import(
-//             "./ShowGeofenceMap"
-//             ),
-//     { ssr: false }
-// );
 function NewReportPc() {
+
+    const handleURLSearchParams = (values) =>{
+        let params = new URLSearchParams()
+        if(values.fromDate){
+            params.set("fromDate",values.fromDate)
+        }
+        if(values.toDate){
+            params.set("toDate",values.toDate)
+        }
+        if(values.machineId){
+            params.set("machineId",values.machineId)
+        }
+        if(values.subOrganizationId){
+            params.set("subOrganizationId",values.subOrganizationId)
+        }
+        if(values.type){
+            params.set("type",values.type)
+        }
+        if(values.step){
+            params.set("step",values.step)
+        } if(values.fromTime){
+            params.set("fromTime",values.fromTime)
+        }
+        if(values.toTime){
+            params.set("toTime",values.toTime)
+        }
+        return params
+    }
+
+    const handleURLSearchParamsForGPS = (values) =>{
+        let params = new URLSearchParams()
+        if(values.fromDate){
+            params.set("dateFrom",values.fromDate)
+        }
+        if(values.toDate){
+            params.set("dateTo",values.toDate)
+        }
+        if(values.fromTime){
+            params.set("timeFrom",values.fromTime)
+        }
+        if(values.toTime){
+            params.set("timeTo",values.toTime)
+        }
+        return params
+    }
 
     const [skipFetch, setSkipFetch] = useState(true)
     const [filterItem, setFilterItem] = useState("");
     const [filterItemForGps, setFilterItemForGps] = useState("");
+
     const {
         data: inventoryData = [],
         isLoading: isDataLoading,
@@ -52,6 +90,7 @@ function NewReportPc() {
         {filterItem},
         {skip: skipFetch, refetchOnMountOrArgChange: true}
     );
+
     const {
         data: locations = [],
         isLoading: isLocationsLoading,
@@ -60,6 +99,7 @@ function NewReportPc() {
         {filterItemForGps},
         {skip: skipFetch, refetchOnMountOrArgChange: true}
     );
+
     const [template, setTemplate] = useState()
 
     const [vehicle, setVehicle] = useState(null)
@@ -69,11 +109,14 @@ function NewReportPc() {
         isLoading: isVehicleLoading,
         isError: vehicleIsError
     }] = useLazyGetAllVehicleQuery()
+
+
     useEffect(() => {
         if (openVehicleList) {
             getVehicleList()
         }
     }, [openVehicleList])
+
     const [fromDate, setFromDate] = useState(
         ((number) =>
                 new DateObject().set({
@@ -126,12 +169,11 @@ function NewReportPc() {
     const schema = yup.object().shape({});
     const formik = useFormik({
         initialValues: {
-
-
             fromDate: "",
-            machineId: ""
-        },
+            toDate:"",
+            machineId: "",
 
+        },
 
         validationSchema: schema,
 
@@ -152,19 +194,17 @@ function NewReportPc() {
 
             updateProduct = ConvertToNull(updateProduct)
             const userData = await submitData(updateProduct)
-            handleReset()
-
-
         },
     });
+
     const [submitData, {isLoading: isSubmitLoading, error}] = useSaveNewReportsMutation()
+
     const handleReset = () => {
         formik.resetForm()
         setFromDate()
         setToDate()
         setStep()
-
-
+        setTemplate("")
     }
 
     const mapStatus = useSelector((state) => state.geofence.mapStatus)
@@ -451,6 +491,7 @@ function NewReportPc() {
                                 </div>
                                 <div>
                                     <button
+                                        onClick={handleReset}
                                         className="rounded-[0.5rem] py-1 px-7 hover:border hover:opacity-80 bg-[#D9D9D9] text-[#797979]">
                                         لغو
                                     </button>
@@ -473,7 +514,6 @@ function NewReportPc() {
                                     <th className="px-2 md:px-6 px-6 py-4 xl:table-cell hidden">
                                         مدت زمان
                                     </th>
-
                                     <th className="hidden md:table-cell px-6 py-4">مسافت (کیلومتر)</th>
 
                                 </tr>

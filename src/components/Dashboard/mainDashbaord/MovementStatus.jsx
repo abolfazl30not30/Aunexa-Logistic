@@ -6,20 +6,22 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-    labels: ['هیدروکربن', 'تولوئن', 'بوتادین'],
+    labels: ['درحال حرکت', 'بدون مختصات', 'درحال توقف','وضعیت نامشخص'],
     datasets: [
         {
             label: "",
-            data: [16,28,53],
+            data: [70,10,15,5],
             backgroundColor: [
                 '#4D79E8',
                 '#FFC122',
                 '#FF2F93',
+                '#A9B1A6',
             ],
             borderColor: [
                 '#4D79E8',
                 '#FFC122',
                 '#FF2F93',
+                '#A9B1A6',
             ],
             borderWidth: 1,
         },

@@ -15,7 +15,7 @@ import Dialog from "@mui/material/Dialog";
 import {TailSpin} from "react-loader-spinner";
 import * as yup from "yup";
 import {useFormik} from "formik";
-import "react-multi-date-picker/styles/colors/red.css"
+
 import "leaflet-draw/dist/leaflet.draw.css";
 import {useGetAllGeofenceQuery, useSaveGeofenceMutation} from "@/redux/features/geofence/GeofenceSlice";
 import {ConvertToNull} from "@/helper/ConvertToNull";
@@ -83,8 +83,7 @@ export default function AddNewGroupDialog(props) {
         data: geofenceData = [],
         isLoading: isDataLoading,
         isError: isDataError,
-    } = useGetAllGeofenceQuery({page, sort, filterItem},
-        {refetchOnMountOrArgChange: true});
+    } = useGetAllGeofenceQuery({page, sort, filterItem}, {refetchOnMountOrArgChange: true});
 
 
     const formik = useFormik({

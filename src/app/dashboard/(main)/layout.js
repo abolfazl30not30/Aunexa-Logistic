@@ -17,6 +17,7 @@ import { useLazyGetCounterOfDashboardNotificationQuery } from "@/redux/features/
 import { useSubscription } from "react-stomp-hooks";
 import { toast } from "react-toastify";
 
+
 const cacheRtl = createCache({
   key: "muirtl",
   stylisPlugins: [prefixer, rtlPlugin],
@@ -385,7 +386,7 @@ export default function RootLayout({ children }) {
                       </span>
                     </Link>
                     <Link
-                      href="https://auth.prod.aunexa.net/logout"
+                      href="https://auth.aunexa.net/logout"
                       className="flex gap-2 py-3 px-4 hover:bg-neutral-100 border-t border-t-[#D9D9D9]"
                     >
                       <div>
@@ -551,12 +552,12 @@ export default function RootLayout({ children }) {
                   <div>
                     <Link
                       onClick={handleCloseSidebar}
-                      href="/dashboard/geofence"
+                      href="/dashboard/geofence/geographicArea"
                       className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
                     >
                       <span
                         className={
-                          pathname === "/dashboard/geofence"
+                          pathname === "/dashboard/geofence/geographicArea"
                             ? "text-mainRed text-[0.9rem]"
                             : "text-gray9F hover:text-textGray text-[0.9rem]"
                         }
@@ -706,7 +707,7 @@ export default function RootLayout({ children }) {
                   <div>
                     <Link
                       onClick={handleCloseSidebar}
-                      href="https://auth.prod.aunexa.net/logout"
+                      href="https://auth.aunexa.net/logout"
                       className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
                     >
                       <span className="text-gray9F hover:text-textGray text-[0.9rem]">

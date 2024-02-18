@@ -7,6 +7,7 @@ import Checkbox from "@mui/material/Checkbox";
 import List from "@mui/material/List";
 import {useGetAllVehicleCategoryQuery} from "@/redux/features/category/CategorySlice";
 import {FormControl, InputAdornment, OutlinedInput} from "@material-ui/core";
+import {useSubscription} from "react-stomp-hooks";
 
 const TrackingMap = dynamic(
     () =>
@@ -72,12 +73,10 @@ function TrackingPc() {
     const handleChangeAllChecked = (event, item) => {
         if (event.target.checked) {
             const obj = item?.machines
-
             let updateList = trackingMachineList?.filter((machine) => !item.machines.find(vehicle => (vehicle.id === machine.id)))
             updateList = [...updateList, ...obj]
             setTrackingMachineList(updateList)
         } else {
-
             let updateList = trackingMachineList.filter((machine) => !item.machines.find(vehicle => (vehicle.id === machine.id)))
             setTrackingMachineList(updateList)
         }
@@ -94,6 +93,12 @@ function TrackingPc() {
         speed: 8,
         timestamp: "1402/10/15 16:13:11"
     })
+
+    useSubscription(`/queue/real-time`, (message) => {
+        const obj = JSON.parse(message.body);
+        setTrackingData(obj)
+        console.log(obj)
+    });
 
     return (
         <>

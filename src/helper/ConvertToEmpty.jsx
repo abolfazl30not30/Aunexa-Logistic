@@ -7,6 +7,4 @@ export const ConvertToEmpty = (input) => {
     }
     
     return obj;
-
-    
 }

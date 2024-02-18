@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FormControl, InputAdornment, OutlinedInput, Pagination, Skeleton} from "@mui/material";
 import Checkbox, {checkboxClasses} from "@mui/material/Checkbox";
 import {useGetAllGeofenceListQuery, useGetAllGeofenceQuery} from "@/redux/features/geofence/GeofenceSlice";
@@ -57,10 +57,12 @@ function Geofence() {
         params.set("name", e.target.value);
         setFilterItem(params.toString());
     };
+
     const handleNewGeofence = () => {
         dispatch(setShapeColor("blue"))
         dispatch(setMapStatus("draw"))
     }
+
     const handlePagination = (event, value) => {
         setPage(value);
     };
@@ -69,10 +71,8 @@ function Geofence() {
         data: geofenceData = [],
         isLoading: isDataLoading,
         isError: isDataError,
-    } = useGetAllGeofenceQuery(
-        {page, sort, filterItem},
-        {refetchOnMountOrArgChange: true}
-    );
+    } = useGetAllGeofenceQuery({page, sort, filterItem}, {refetchOnMountOrArgChange: true});
+
 
     return (
         <>
