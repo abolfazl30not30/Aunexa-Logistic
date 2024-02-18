@@ -124,7 +124,7 @@ export default function FixFailureDialog(props) {
                                     </div>
                                     <div className="w-[45%]">
                                     <div className="mb-2">
-                                        <span className="text-[0.9rem] text-gray70 ">  دپارتمان</span>
+                                        <span className="text-[0.9rem] text-gray70 ">  ناوگان</span>
                                     </div>
                                     <div className="border border-[#D9D9D9] bg-[#F2EDED] flex justify-start px-4">
                                         <div className="p-2">
@@ -218,7 +218,7 @@ export default function FixFailureDialog(props) {
                                 {props.fixTarget?.machine?.subOrganizationName&&
                                 <div>
                                     <span className="ml-1 text-gray9F text-[0.8rem]">
-                                          دپارتمان :
+                                          ناوگان :
                                     </span>
                                     <span className="text-[#29262A] text-[0.8rem]">
                                     {props.fixTarget?.machine?.subOrganizationName}

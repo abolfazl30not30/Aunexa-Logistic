@@ -224,7 +224,7 @@ function Ticket() {
                           موضوع تیکت
                         </th>
                         <th className="table-cell md:px-10 px-2  py-4">
-                          دپارتمان
+                          ناوگان
                         </th>
                         <th className="hidden md:table-cell md:px-10 px-2  py-4">
                           نام فرستنده

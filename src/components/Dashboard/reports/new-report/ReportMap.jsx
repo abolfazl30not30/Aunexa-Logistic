@@ -20,7 +20,6 @@ const RecenterAutomatically = ({lat, lng}) => {
 }
 
 export default function ReportMap(props) {
-
     const [center, setCenter] = useState([29.120738496597934, 55.33779332882627]);
 
     const ZOOM_LEVEL = 15;
@@ -69,7 +68,6 @@ export default function ReportMap(props) {
     }
 
     useEffect(() => {
-
         if(props.locations?.length){
             let updateArray = []
             for (let loc of props.locations){
@@ -100,7 +98,7 @@ export default function ReportMap(props) {
     return (
         <>
             <div className="report-map">
-                <MapContainer center={center} zoom={ZOOM_LEVEL}>
+                <MapContainer key={new Date().getTime()} center={center} zoom={ZOOM_LEVEL}>
 
                     {
                         radioValue === "satelliteMap" ? (<SatelliteMap/>) : (<DefaultMap/>)

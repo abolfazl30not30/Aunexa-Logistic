@@ -38,7 +38,7 @@ export default function AddTicketDialog(props) {
     const [submitData, { isLoading:isSubmitLoading ,error}] = useSaveTicketMutation()
     const schema = yup.object().shape({
         title: yup.string().required("لطفا موضوع پیام را مشخص کنید"),
-        targetDepartmentId: yup.string().required("لطفا دپارتمان مورد نظر را انتخاب کنید"),
+        targetDepartmentId: yup.string().required("لطفا ناوگان مورد نظر را انتخاب کنید"),
     
         
         
@@ -146,7 +146,7 @@ export default function AddTicketDialog(props) {
                                                             </React.Fragment>
                                                         )
                                                     }}
-                                                    placeholder="به دپارتمان"
+                                                    placeholder="به ناوگان"
                                                 />}
                                         />
 

@@ -217,7 +217,7 @@ export default function page() {
               </div>
               <div className="flex flex-col">
                 <label className="mb-2" for="subOrganizationName">
-                  نام دپارتمان
+                  نام ناوگان
                 </label>
                 <TextField
                   type="text"

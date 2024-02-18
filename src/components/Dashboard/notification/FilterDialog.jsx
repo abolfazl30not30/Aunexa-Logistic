@@ -264,7 +264,7 @@ export default function FilterDialog(props) {
                                                         </React.Fragment>
                                                     )
                                                 }}
-                                                placeholder="دپارتمان"
+                                                placeholder="ناوگان"
                                             />}
                                     />
                                 </div> */}

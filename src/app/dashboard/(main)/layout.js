@@ -489,65 +489,21 @@ export default function RootLayout({ children }) {
                     </Link>
                   </div>
                   <div>
-                    <details className="group py-3 border-b border-b-1 border-b-solid  border-b-borderGray">
-                      <summary className="flex items-center justify-between gap-2 p-2 font-medium marker:content-none hover:cursor-pointer">
-                        <span className="text-gray9F group-open:text-textGray text-[0.9rem]">
-                          گزارش ها
-                        </span>
-                        <svg
-                          className="transition group-open:rotate-90"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                        >
-                          <path
-                            d="M10 4L6 8L10 12"
-                            stroke="#9F9F9F"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </summary>
-                      <ul className="flex flex-col gap-1 pr-2">
-                        <li>
-                          <Link
-                            onClick={handleCloseSidebar}
-                            href="/dashboard/reports/new-report"
-                            className="block py-2 px-5"
-                          >
+                      <Link
+                          onClick={handleCloseSidebar}
+                          href="/dashboard/reports/new-report"
+                          className="block py-2 px-5"
+                      >
                             <span
-                              className={
-                                pathname === "/dashboard/reports/new-report"
-                                  ? "text-mainRed text-[0.9rem]"
-                                  : "text-gray9F hover:text-textGray text-[0.9rem]"
-                              }
+                                className={
+                                  pathname === "/dashboard/reports/new-report"
+                                      ? "text-mainRed text-[0.9rem]"
+                                      : "text-gray9F hover:text-textGray text-[0.9rem]"
+                                }
                             >
                               گزارش جدید
                             </span>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            onClick={handleCloseSidebar}
-                            href="/dashboard/reports/history-of-reports"
-                            className="block py-2 px-5"
-                          >
-                            <span
-                              className={
-                                pathname ===
-                                "/dashboard/reports/history-of-reports"
-                                  ? "text-mainRed text-[0.9rem]"
-                                  : "text-gray9F hover:text-textGray text-[0.9rem]"
-                              }
-                            >
-                              سابقه گزارش ها
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </details>
+                      </Link>
                   </div>
                   <div>
                     <Link
@@ -606,62 +562,8 @@ export default function RootLayout({ children }) {
                             </span>
                           </Link>
                         </li>
-
-                        <li>
-                          <Link
-                            onClick={handleCloseSidebar}
-                            href="/dashboard/failure-and-repair-report"
-                            className="block py-2 px-5"
-                          >
-                            <span
-                              className={
-                                pathname ===
-                                "/dashboard/failure-and-repair-report"
-                                  ? "text-mainRed text-[0.9rem]"
-                                  : "text-gray9F hover:text-textGray text-[0.9rem]"
-                              }
-                            >
-                              گزارش خرابی و تعمیرات
-                            </span>
-                          </Link>
-                        </li>
-
-                        <li>
-                          <Link
-                            onClick={handleCloseSidebar}
-                            href="/dashboard/history-of-reports"
-                            className="block py-2 px-5"
-                          >
-                            <span
-                              className={
-                                pathname === "/dashboard/history-of-reports"
-                                  ? "text-mainRed text-[0.9rem]"
-                                  : "text-gray9F hover:text-textGray text-[0.9rem]"
-                              }
-                            >
-                              سابقه گزارشات
-                            </span>
-                          </Link>
-                        </li>
                       </ul>
                     </details>
-                  </div>
-                  <div>
-                    <Link
-                      href="/dashboard/ticket"
-                      onClick={handleCloseSidebar}
-                      className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                    >
-                      <span
-                        className={
-                          pathname === "/dashboard/ticket"
-                            ? "text-mainRed text-[0.9rem]"
-                            : "text-gray9F hover:text-textGray text-[0.9rem]"
-                        }
-                      >
-                        تیکت
-                      </span>
-                    </Link>
                   </div>
                   <div>
                     <Link
@@ -676,7 +578,7 @@ export default function RootLayout({ children }) {
                             : "text-gray9F hover:text-textGray text-[0.9rem]"
                         }
                       >
-                        اعلانیه
+                        اعلان ها
                       </span>
                       <span className=" rounded-lg bg-mainPurple w-[1.5rem] text-[0.59rem] h-[1.2rem]  flex  items-center justify-center text-center text-white">
                         {pathname === "/dashboard/notification"
@@ -684,23 +586,6 @@ export default function RootLayout({ children }) {
                           : counterList > 99
                           ? "99+"
                           : counterList}
-                      </span>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                        onClick={handleCloseSidebar}
-                        href="/dashboard/user-account"
-                        className="block py-4 px-2 border-b border-b-1 border-b-solid  border-b-borderGray"
-                    >
-                      <span
-                          className={
-                            pathname === "/dashboard/user-account"
-                                ? "text-mainRed text-[0.9rem]"
-                                : "text-gray9F hover:text-textGray text-[0.9rem]"
-                          }
-                      >
-                        حساب کاربری
                       </span>
                     </Link>
                   </div>
